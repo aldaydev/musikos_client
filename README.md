@@ -1,6 +1,6 @@
 # bandbros_client
 
-Main - 30/01/2025 - Noche - initial configurations
+Develop - 30/01/2025 - Noche - initial configurations develop
 
 Dependencias:
 
