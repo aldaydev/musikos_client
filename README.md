@@ -1,6 +1,6 @@
 # bandbros_client
 
-Develop - 30/01/2025 - Noche - initial config sprint 1 and working on header
+Sprint-1 - 30/01/2025 - Tarde - reviewing header sizes and testing menu icons
 
 Dependencias:
 

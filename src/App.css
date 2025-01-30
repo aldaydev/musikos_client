@@ -20,7 +20,7 @@ body{
 
 .App__header{
   background-color: var(--color-pink-light);
-  min-height: 80px;
+  min-height: 70px;
 }
 
 /*-------- ESTILOS MAIN --------*/
