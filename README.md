@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 30/01/2025 - Tarde - reviewing header sizes and testing menu icons
+Sprint-1 - 31/01/2025 - Madrugada - working on signUp form
 
 Dependencias:
 
@@ -26,6 +26,7 @@ npm install react-router-dom@latest
 
 * Creación de la página "Login" (SignUp Form + SignIn Form)
     - Creación de componentes inputs reutilizables
+    - Creación de utils y custom hooks
 
 * Pruebas con el back de signUp
     - Validaciones

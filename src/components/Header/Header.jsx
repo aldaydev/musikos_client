@@ -3,11 +3,12 @@ import logo from '../../assets/icons/bandbros_logo.svg';
 import search_icon from '../../assets/icons/search_icon.svg';
 import user_icon from '../../assets/icons/user_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
+import close_icon from '../../assets/icons/close_icon.svg';
 import { Link } from 'react-router-dom';
 
 function Header (){
 
-    const isLoggedIn = false;
+    const isLoggedIn = true;
 
     return(
         <header className='App__header'>
@@ -25,6 +26,7 @@ function Header (){
                 </div>
 
                 <div className='header__navToggle'>
+                    <img src={close_icon} alt="Cross icon" />
                     <img src={menu_icon} alt="Menu icon" />
                 </div>
 

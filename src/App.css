@@ -19,19 +19,23 @@ body{
 /*-------- ESTILOS HEADER --------*/
 
 .App__header{
-  background-color: var(--color-pink-light);
-  min-height: 70px;
+  background-color: #050417;
+  min-height: 75px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .06);
+  z-index: 10;
 }
 
 /*-------- ESTILOS MAIN --------*/
 
 .App__main{
-  background-color: var(--color-white);
+  background-color: var(--color-white-light);
 }
 
 /*-------- ESTILOS FOOTER --------*/
 
 .App__footer{
-  background-color: var(--color-pink-light);
+  background-color: #050417;;
   min-height: 80px;
+  color: white;
 }
+

@@ -1,6 +1,5 @@
 .header__container{
     height: 100%;
-
     display: flex;
     justify-content: space-between;
     width: 80%;
@@ -21,7 +20,7 @@
 }
 
 .header__logo {
-    width: 3.7rem;
+    width: 3rem;
     transition: transform .3s ease-in-out;
 }
 
@@ -34,11 +33,12 @@
 }
 
 .header__brand >a:hover > .header__title > .header__title--color {
-    color: black;
+    color: var(--color-white);
 }
 
 .header__title{
-    color: black;
+    font-weight: 700;
+    color: var(--color-white);
     transition: color .3s ease-in-out;
 }
 
@@ -48,12 +48,17 @@
     transition: color .3s ease-in-out;
 }
 
+.header__nav{
+    
+}
+
 .nav__list{
     height: 100%;
     display: flex;
     align-items: center;
     font-size: 1.6rem;
     font-weight: 700;
+    
 }
 
 .nav__item{
@@ -66,6 +71,7 @@
 }
 
 .nav__item > a{
+    color: var(--color-white);
     height: 100%;
     display: flex;
     align-items: center;
@@ -73,9 +79,9 @@
     transition: transform .2s ease-in-out;
 }
 
-.nav__item:hover {
+/* .nav__item:hover {
     background-color: #fbd5e2;
-}
+} */
 
 .nav__link--color{
     padding-left: 7px;
@@ -94,4 +100,10 @@
     width: 35px;
     margin-left: 7px;
     transition: transform .3s ease-in-out;
+}
+
+.header__navToggle{
+    display: none;
+    /* display: flex;
+    align-items: center; */
 }
