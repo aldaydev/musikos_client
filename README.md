@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 01/02/2025 - Madrugada - working on validations and useFetch
+Sprint-1 - 01/02/2025 - Tarde - working on initial form components styles
 
 Dependencias:
 

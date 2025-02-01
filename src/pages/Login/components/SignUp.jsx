@@ -3,6 +3,8 @@ import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
 import validate from "../../../utils/validate.js";
 import useFetch from "../../../utils/useFetch.jsx";
+import show_icon from "../../../assets/icons/show_icon.svg";
+import hide_icon from "../../../assets/icons/hide_icon.svg";
 
 function SignUp (){
 
@@ -22,6 +24,14 @@ function SignUp (){
     const [usernameError, setUsernameError] = useState(null);
     const [passError, setPassError] = useState(null);
     const [termsError, setTermsError] = useState(null);
+
+    const [showPass, setShowPass] = useState(['password', show_icon]);
+
+    function handleShowPass (e){
+        showPass[0] === 'password'
+            ? setShowPass(['text', hide_icon])
+            : setShowPass(['password', show_icon])
+    }
 
     useEffect(() => {
         
@@ -109,14 +119,18 @@ function SignUp (){
                     onChange={handleChange}
                 />
                 {usernameError && <span>{usernameError}</span>}
-                <Input 
-                    type='password'
-                    name='pass'
-                    id='pass'
-                    value={formData.pass}
-                    placeholder='Contraseña'
-                    onChange={handleChange}
-                />
+                <Label htmlFor='pass'>
+                    <Input 
+                        type={showPass[0]}
+                        name='pass'
+                        id='pass'
+                        value={formData.pass}
+                        placeholder='Contraseña'
+                        onChange={handleChange}
+                    />
+                    <img src={showPass[1]} alt="Show icon" onClick={handleShowPass} />
+                </Label>
+                
                 {passError && <span>{passError}</span>}
 
                 <Label htmlFor='acceptTerms'>
