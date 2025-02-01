@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 31/01/2025 - Madrugada - working on signUp form
+Sprint-1 - 01/02/2025 - Madrugada - working on validations and useFetch
 
 Dependencias:
 
