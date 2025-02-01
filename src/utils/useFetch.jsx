@@ -2,25 +2,12 @@ import { useState, useEffect } from 'react';
 
 const useFetch = () => {
 
-    const [fetchReq, setFetchReq] = useState(['/']);
+    const [fetchReq, setFetchReq] = useState(null);
 
     const [fetchRes, setFetchRes] = useState();
 
-    // const handleFetch = (params) => {
-    //     setFetchReq({ ...fetchReq, ...params })
-    // };
-
     const handleFetch = (params) => {
-
-        // const ref = {
-        //     method: fetchReq.method,
-        //     headers: { 
-        //         "Content-Type": "application/json", 
-        //         "authorization": fetchReq.authorization && fetchReq.authorization
-        //     },
-        //     body: JSON.stringify(fetchReq.body)
-        // };
-
+        //Construimos el objeto con config de la petición
         const options = [
             params.endpoint,
             {
@@ -29,11 +16,10 @@ const useFetch = () => {
                 "Content-Type": "application/json", 
             }
         }];
-
-        if (params.authorization) options.headers['authorization'] = params.authorization;
-        if(params.body) options.body = JSON.parse(params.body);
-
-        console.log('OPTIONS', options);
+        //Si se envía un token, se añade al headers
+        if (params.authorization) options[1].headers['authorization'] = params.authorization;
+        //Si se envía body, se añade a options
+        if(params.body) options[1].body = JSON.stringify(params.body);
         
         setFetchReq(options)
     };
@@ -42,13 +28,17 @@ const useFetch = () => {
     const port = "3001";
 
     useEffect( () => {
-        console.log('fetch req', fetchReq[0]);
-        const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
+        
+
+        if(fetchReq){
+            const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
 
             fetch(url,fetchReq[1])
             .then(res => res.json())
-            .then(res => setFetchRes(res))
+            .then(res => {setFetchRes(res); console.log(res)})
             .catch(e => setFetchRes(e))
+        }
+            
         
 
         // if(fetchReq.method === 'GET'){
