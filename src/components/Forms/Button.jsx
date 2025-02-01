@@ -1,10 +1,11 @@
-const Button = ({ modClass, ...props }) => {
+import { Children } from "react";
+
+const Button = ({ modClass, text, ...props }) => {
     return(
-        <input 
-            type={type}
-            className={`button button--${modClass}`}
-            {...props}
-        />
+        <button className={`button button--${modClass}`}
+        {...props}>
+            {text}
+        </button>
     )
 }
 

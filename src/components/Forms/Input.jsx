@@ -1,6 +1,6 @@
 const Input = ({ type = 'text', modClass, ...props }) => {
 
-    const initialClass = `${type}__input`;
+    const initialClass = `${type}Input`;
 
     return(
         <input 

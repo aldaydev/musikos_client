@@ -1,6 +1,6 @@
 /*-------- ESTILOS FORMS --------*/
 
-.text__input, .password__input{
+.textInput, .passwordInput{
     font-size: 1.5rem;
     padding: 5px 10px;
     border: 3px solid var(--color-blue-dark);
@@ -8,9 +8,11 @@
     transition: border .2s ease-in-out;
 }
 
-.text__input:focus,
-.password__input:focus{
+.textInput:focus,
+.passwordInput:focus{
     outline: none;
     border: 3px solid var(--color-pink);
     z-index: 10;
+    transition: border .2s ease-in-out;
 }
+

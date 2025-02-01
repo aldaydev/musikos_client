@@ -5,6 +5,7 @@ import validate from "../../../utils/validate.js";
 import useFetch from "../../../utils/useFetch.jsx";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
+import Button from "../../../components/Forms/Button.jsx";
 
 function SignUp (){
 
@@ -153,7 +154,7 @@ function SignUp (){
                     onClick={handleChange}
                 />
                 {termsError && <span>{termsError}</span>}
-                <button>REGISTRAR</button>
+                <Button text='Enviar'></Button>
             </form>
         </section>
     )
