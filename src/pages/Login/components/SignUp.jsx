@@ -22,6 +22,9 @@ function SignUp (){
         acceptPrivacy: false
     });
 
+    //Timeout referente
+    const [timeoutId, setTimeoutId] = useState(null);
+
     //Form error STATES
     const [emailError, setEmailError] = useState(null);
     const [usernameError, setUsernameError] = useState(null);
@@ -49,7 +52,17 @@ function SignUp (){
 
         const { id, value, checked, type } = e.target;
 
-        onlineValidations(value, id);
+        // Cancela el timeout anterior antes de definir uno nuevo
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        // Define un nuevo timeout para ejecutar la validación
+        const newTimeoutId = setTimeout(() => {
+            onlineValidations(value, id);
+        }, 1000); // 500ms de debounce
+
+        setTimeoutId(newTimeoutId); // Guarda el nuevo timeout
 
         type === 'checkbox' 
             ? setFormData({ ...formData, [id]: checked })
@@ -60,12 +73,37 @@ function SignUp (){
 
         console.log(value.length);
 
-        if(id === 'username' && value.length >= 0){
+        if(value.length < 2){
+            return;
+        }
+
+        if(id === 'username'){
+            const checkIfUsernameExists = (username) => {
+                handleFetch({
+                    endpoint: '/musicians/check-username',
+                    method: 'POST',
+                    body: {username: username}
+                });
+    
+                setTimeout(() => {
+                    console.log(fetchRes);
+                    if (!fetchRes.exists) {
+                        setUsernameError('El username elegido está libre');
+                        console.log(usernameError);
+                    }else{
+                        setUsernameError('El username elegido está ocupado');
+                        console.log(usernameError);
+                    }
+                }, 2000);
+    
+                
+            };
             const validateUsername = validate.username(value);
             if(!validateUsername[0]){
                 setUsernameError(validateUsername[1]);
-            }else{
-                setUsernameError(null);
+            }else if(checkIfUsernameExists(value)){
+                // setUsernameError(null);
+                checkIfUsernameExists(value);
             }
         }else if(id === 'email'){
             const validateEmail = validate.email(value);
@@ -82,6 +120,7 @@ function SignUp (){
                 setPassError(null);
             }
         }
+
     }
 
 

@@ -50,11 +50,6 @@ export default function useFetch () {
 
         if(fetchReq) asyncFetch();
 
-        
-
-        
-
-
         // if(fetchReq){
         //     const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
 

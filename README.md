@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 02/02/2025 - Madrugada - Legal fetch from signUp done
+Sprint-1 - 02/02/2025 - Mañana - Reviewing and rethinking useFetch
 
 Dependencias:
 
