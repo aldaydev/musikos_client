@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 01/02/2025 - Tarde - working on initial form components styles
+Sprint-1 - 02/02/2025 - Madrugada - Legal fetch from signUp done
 
 Dependencias:
 
@@ -8,6 +8,11 @@ npm create vite@latest bandbros_client --template react
 npm install react-router-dom@latest
 
 ## Sprint 1 (Front)
+
+### OBJETIVOS:
+1. Inicialización del proyecto
+2. Diseño de estética general
+3. Función de signUp sincronizada con backend
 
 * Crear el esqueleto del frontend
     - Proyecto de React con Vite

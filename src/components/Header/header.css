@@ -9,6 +9,7 @@
 .header__brand{
     display: flex;
     align-items: center;
+    margin-right: 50px;
 }
 
 .header__brand > a{

@@ -38,6 +38,12 @@ export default {
 
     pass: (pass) => {
 
+        // Validar longitud mínima de 8 caracteres
+        const regexMinLength = /^.{8,}$/;
+        if (!regexMinLength.test(pass)) {
+            return [false, "La contraseña debe tener al menos 8 caracteres"];
+        }
+
         // Validar al menos una letra minúscula, mayúscula y un número
         const regexUpperLowerAndNumber = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
         if (!regexUpperLowerAndNumber.test(pass)) {
@@ -48,12 +54,6 @@ export default {
         const regexSpecialChar = /^(?=.*[@$!-_%*?&])/;
         if (!regexSpecialChar.test(pass)) {
             return [false, "La contraseña debe contener al menos un carácter especial: @$!-_%*?."];
-        }
-    
-        // Validar longitud mínima de 8 caracteres
-        const regexMinLength = /^.{8,}$/;
-        if (!regexMinLength.test(pass)) {
-            return [false, "La contraseña debe tener al menos 8 caracteres"];
         }
     
         // Si todas las validaciones son correctas

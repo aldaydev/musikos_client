@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = () => {
+export default function useFetch () {
 
     const [fetchReq, setFetchReq] = useState(null);
 
-    const [fetchRes, setFetchRes] = useState();
+    const [fetchRes, setFetchRes] = useState(null);
 
     const handleFetch = (params) => {
         //Construimos el objeto con config de la petición
@@ -29,44 +29,45 @@ const useFetch = () => {
 
     useEffect( () => {
         
+        async function asyncFetch (){
+            try{
+                
+                const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
+                
+                const response = await fetch(url,fetchReq[1]);
 
-        if(fetchReq){
-            const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
+                if(!response.ok){
+                    throw new Error('Error al obtener los datos');
+                }
 
-            fetch(url,fetchReq[1])
-            .then(res => res.json())
-            .then(res => {setFetchRes(res); console.log(res)})
-            .catch(e => setFetchRes(e))
+                const data = await response.json();
+                setFetchRes(data);
+
+            }catch(e){
+                console.log(e);
+            }
         }
-            
+
+        if(fetchReq) asyncFetch();
+
         
 
-        // if(fetchReq.method === 'GET'){
-        //     fetch(url)
+        
+
+
+        // if(fetchReq){
+        //     const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
+
+        //     fetch(url,fetchReq[1])
         //     .then(res => res.json())
-        //     .then(res => console.log(res))
-        //     .catch(e => console.log(e));
-        // }else{
-        //     fetch(
-        //         url,{
-        //             method: fetchReq.method,
-        //             headers: { 
-        //                 "Content-Type": "application/json", 
-        //                 "authorization": fetchReq.authorization 
-        //             },
-        //             body: JSON.stringify(fetchReq.body),
-        //         }
-                
-        //     )
-        //     .then((res) => {res.json(); console.log(res)})
-        //     .then(res => setFetchRes(res))
+        //     .then(res => {setFetchRes(res); console.log(res)})
         //     .catch(e => setFetchRes(e))
         // }
 
     }, [fetchReq])
 
-    return [handleFetch, fetchRes]
+    return [handleFetch, fetchRes, setFetchRes];
 }
 
 // Exportamos el hook personalizado como predeterminado
-export default useFetch;
+// export default useFetch;

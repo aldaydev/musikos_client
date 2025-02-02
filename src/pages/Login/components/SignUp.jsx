@@ -6,10 +6,12 @@ import useFetch from "../../../utils/useFetch.jsx";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import Button from "../../../components/Forms/Button.jsx";
+import close_icon_dark from '../../../assets/icons/close_icon.svg';
+import './signUp.css';
 
 function SignUp (){
 
-    const [handleFetch, fetchRes] = useFetch();
+    const [handleFetch, fetchRes, setFetchRes] = useFetch();
 
     //Form data STATE
     const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ function SignUp (){
 
     const [showPass, setShowPass] = useState(['password', show_icon]);
 
-    function handleShowPass (e){
+    function handleShowPass (){
         showPass[0] === 'password'
             ? setShowPass(['text', hide_icon])
             : setShowPass(['password', show_icon])
@@ -47,10 +49,41 @@ function SignUp (){
 
         const { id, value, checked, type } = e.target;
 
+        onlineValidations(value, id);
+
         type === 'checkbox' 
             ? setFormData({ ...formData, [id]: checked })
             : setFormData({ ...formData, [id]: value })
     };
+
+    const onlineValidations = (value, id) => {
+
+        console.log(value.length);
+
+        if(id === 'username' && value.length >= 0){
+            const validateUsername = validate.username(value);
+            if(!validateUsername[0]){
+                setUsernameError(validateUsername[1]);
+            }else{
+                setUsernameError(null);
+            }
+        }else if(id === 'email'){
+            const validateEmail = validate.email(value);
+            if(!validateEmail[0]){
+                setEmailError(validateEmail[1]);
+            }else{
+                setEmailError(null);
+            }
+        }else if(id === 'pass'){
+            const validatePass = validate.pass(value);
+            if(!validatePass[0]){
+                setPassError(validatePass[1]);
+            }else{
+                setPassError(null);
+            }
+        }
+    }
+
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -92,18 +125,34 @@ function SignUp (){
         }
     };
 
-    const showTerms = () => {
-        console.log('Eaaa');
+    const showTermsAndPrivacy = (show) => {
+
         handleFetch({
-            endpoint: '/legal/terms',
+            endpoint: `/legal/${show}`,
             method: 'GET'
         });
+        
+    }
+
+    const closeLegals = () =>{
+
+        let key;
+
+        fetchRes.type === 'terms'
+            ? key = 'acceptTerms'
+            : key = 'acceptPrivacy'
+
+        setFetchRes(null);
+        setFormData({...formData, [key]: true})
     }
 
     return(
         <section className="login__signUp">
+
             <h3>CREA TU CUENTA</h3>
+
             <form className="signUp__form" onSubmit={handleSubmit}>
+
                 <Input 
                     name='email'
                     id='email'
@@ -112,6 +161,7 @@ function SignUp (){
                     onChange={handleChange}
                 />
                 {emailError && <span>{emailError}</span>}
+
                 <Input 
                     name='username'
                     id='username'
@@ -120,6 +170,7 @@ function SignUp (){
                     onChange={handleChange}
                 />
                 {usernameError && <span>{usernameError}</span>}
+
                 <Label htmlFor='pass'>
                     <Input 
                         type={showPass[0]}
@@ -135,27 +186,47 @@ function SignUp (){
                 {passError && <span>{passError}</span>}
 
                 <Label htmlFor='acceptTerms'>
-                    Acepto los <a href="#" onClick={showTerms}>Terminos y condiciones</a>
+                    Acepto los <a href="#" onClick={()=>showTermsAndPrivacy('terms')}>
+                        Terminos y condiciones
+                    </a>
                 </Label>
+
                 <Input 
                     type='checkbox'
                     id='acceptTerms'
                     name='acceptTerms'
-                    onClick={handleChange}
+                    checked={formData.acceptTerms}
+                    onChange={handleChange}
                 />
 
                 <Label htmlFor='acceptPrivacy'>
-                    Acepto la <a href="#">Política de privacidad</a>
+                    Acepto la <a href="#" onClick={()=>showTermsAndPrivacy('privacy')}>
+                        Política de privacidad</a>
                 </Label>
                 <Input 
                     type='checkbox'
                     id='acceptPrivacy'
                     name='acceptPrivacy'
-                    onClick={handleChange}
+                    checked={formData.acceptPrivacy}
+                    onChange={handleChange}
                 />
                 {termsError && <span>{termsError}</span>}
-                <Button text='Enviar'></Button>
+                <Button color='pink'>Enviar</Button>
             </form>
+
+            {fetchRes && fetchRes.html
+            &&
+            <div className="legal__dialog">
+                <div className="legal__position">
+                    <div dangerouslySetInnerHTML={{ __html: fetchRes.html }}/>
+                    <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setFetchRes(null)}/>
+                    <Button color='pink' modClass='legal' onClick={()=>closeLegals('acceptTerms')}>
+                        ACEPTAR Y VOLVER
+                    </Button>
+                </div>
+                
+            </div>}
+
         </section>
     )
 }

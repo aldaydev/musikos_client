@@ -3,16 +3,51 @@
 .textInput, .passwordInput{
     font-size: 1.5rem;
     padding: 5px 10px;
-    border: 3px solid var(--color-blue-dark);
-    border-radius: 9px;
-    transition: border .2s ease-in-out;
+    border: 1px solid var(--color-blue-dark);
+    border-radius: 8px;
+    outline: 2px solid transparent;
+    margin: 0 10px;
+    /* transition: outline .2s ease-in-out; */
 }
 
 .textInput:focus,
 .passwordInput:focus{
-    outline: none;
-    border: 3px solid var(--color-pink);
+    /* outline: none; */
+    outline: 2px solid var(--color-pink);
+    outline-offset: -2px;
     z-index: 10;
-    transition: border .2s ease-in-out;
+    /* transition: outline .2s ease-in-out; */
 }
 
+.checkboxInput{
+    /* transform: scale(1.5); */
+    accent-color: var(--color-pink); /* Cambia el color cuando está marcado */
+    width: 20px;
+    height: 20px;
+    cursor: pointer; /* Hace que el cursor cambie al pasar el mouse */
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.button--pink,
+.button--black{
+    border: none;
+    padding: 7px 17px;
+    font-size: 1.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--color-white);
+    transition: background .3s ease-in-out;
+}
+
+.button--pink{
+    background-color: var(--color-pink);
+}
+
+.button--black{
+    background-color: var(--color-blue-dark);
+}
+
+.button--pink:hover{
+    background-color: var(--color-pink-light);
+}

@@ -4,6 +4,7 @@ body{
   font-size: 1.6rem;
   font-weight: 400;
   background-color: var(--color-white);
+  position: relative;
 }
 
 /*-------- ESTILOS ROOT --------*/
@@ -14,6 +15,7 @@ body{
   width: 100dvw;
   height: 100dvh;
   grid-template-rows: auto 1fr auto;
+
 }
 
 /*-------- ESTILOS HEADER --------*/

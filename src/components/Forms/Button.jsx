@@ -1,10 +1,8 @@
-import { Children } from "react";
-
-const Button = ({ modClass, text, ...props }) => {
+const Button = ({ color, modClass, children, ...props }) => {
     return(
-        <button className={`button button--${modClass}`}
+        <button className={`button--${color} button--${modClass}`}
         {...props}>
-            {text}
+            {children}
         </button>
     )
 }
