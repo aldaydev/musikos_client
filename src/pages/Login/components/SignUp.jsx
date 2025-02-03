@@ -53,14 +53,14 @@ function SignUp (){
         // Define un nuevo timeout para ejecutar la validación
         const newTimeoutId = setTimeout(() => {
             onlineValidations(value, id);
-        }, 1000); // 500ms de debounce
+        }, 700); // 700ms de debounce
 
         setTimeoutId(newTimeoutId); // Guarda el nuevo timeout
 
         if(type === 'checkbox' ){
             setFormData({ ...formData, [id]: checked })
         }else if(id === 'email' || id === 'username'){
-            setFormData({ ...formData, [id]: value.toLowerCase() })
+            setFormData({ ...formData, [id]: value })
         }else{
             setFormData({ ...formData, [id]: value })
         }
@@ -77,7 +77,7 @@ function SignUp (){
                 setUsernameError(null);
             }
         }else if(id === 'email'){
-            const validateEmail = await validate.email(value);
+            const validateEmail = await validate.email(value.toLowerCase());
             if(!validateEmail[0]){
                 setEmailError(validateEmail[1]);
             }else{
@@ -97,8 +97,8 @@ function SignUp (){
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const validateUsername = await validate.username(formData.username);
-        const validateEmail = await validate.email(formData.email);
+        const validateUsername = await validate.username(formData.username.toLowerCase());
+        const validateEmail = await validate.email(formData.email.toLowerCase());
         const validatePass = validate.pass(formData.pass);
 
         if(!validateUsername[0]){

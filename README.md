@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 03/02/2025 - Madrugada - customFetch and signUp component
+Sprint-1 - 03/02/2025 - Tarde - forcing lowercase email and username
 
 Dependencias:
 

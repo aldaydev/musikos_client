@@ -1,56 +1,66 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function useFetch () {
+const useFetch = () => {
+  const [fetchRes, setFetchRes] = useState(null); // Repuesta del fetch
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
 
-    const [fetchReq, setFetchReq] = useState(null);
+  // Datos del servidor y puerto
+  const server = "localhost";
+  const port = "3001";
 
-    const [fetchRes, setFetchRes] = useState(null);
+  /**
+   * Función para realizar un fetch de cualquier endpoint y por cualquier método
+   * @param {String} endpoint -> endpoint al que se hace el fetch
+   * @param {String} method -> método del fetch (GET por defecto)
+   * @param {*} authorization -> si el fetch requiere autorization del header
+   * @param {Object} body -> body del fetch
+   */
+  const fetchData = async ({ endpoint = "/home", method = "GET", authorization = null, body = {} }) => {
+    setIsLoading(true);
+    setFetchError(null);
 
-    const handleFetch = (params) => {
-        //Construimos el objeto con config de la petición
-        const options = [
-            params.endpoint,
-            {
-            method: params.method,
-            headers: { 
-                "Content-Type": "application/json", 
-            }
-        }];
-        //Si se envía un token, se añade al headers
-        if (params.authorization) options[1].headers['authorization'] = params.authorization;
-        //Si se envía body, se añade a options
-        if(params.body) options[1].body = JSON.stringify(params.body);
-        
-        setFetchReq(options)
-    };
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-    const server = "127.0.0.1";
-    const port = "3001";
+      // Si viene autorization, se agrega a los headers
+      if (authorization) {
+        headers["Authorization"] = authorization;
+      }
 
-    useEffect( () => {
-        
-        async function asyncFetch (){
-            try{
-                
-                const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
-                
-                const response = await fetch(url,fetchReq[1]);
+      // Opciones del fetch
+      const fetchOptions = {
+        method,
+        headers,
+      };
 
-                if(!response.ok){
-                    throw new Error('Error al obtener los datos');
-                }
+      // Si el fetch no es 'GET', se toman los datos del body
+      if (method !== "GET") {
+        fetchOptions.body = JSON.stringify(body);
+      }
 
-                const data = await response.json();
-                setFetchRes(data);
+      // Se realiza el fetch con la confiduración recibida por parámetro
+      const response = await fetch(`http://${server}:${port}/trainingpro/v1${endpoint}`, fetchOptions);
 
-            }catch(e){
-                console.log(e);
-            }
-        }
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
 
-        if(fetchReq) asyncFetch();
+      // Se contruye la respuesta desde le JSON del fetch
+      const data = await response.json();
 
-    }, [fetchReq])
+      //Se almacena la información de la respuesta del fetch
+      setFetchRes(data);
+    } catch (err) {
+      setFetchError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    return [handleFetch, fetchRes, setFetchRes];
-}
+  return { fetchRes, isLoading, fetchError, fetchData };
+};
+
+export default useFetch;
