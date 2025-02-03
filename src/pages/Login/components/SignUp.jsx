@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
 import validate from "../../../utils/validate.js";
-import useFetch from "../../../utils/useFetch.jsx";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import Button from "../../../components/Forms/Button.jsx";
 import close_icon_dark from '../../../assets/icons/close_icon.svg';
 import './signUp.css';
+import customFetch from "../../../utils/customFetch.js";
 
 function SignUp (){
-
-    const [handleFetch, fetchRes, setFetchRes] = useFetch();
 
     //Form data STATE
     const [formData, setFormData] = useState({
@@ -33,20 +31,15 @@ function SignUp (){
 
     const [showPass, setShowPass] = useState(['password', show_icon]);
 
+    const [showLegals, setShowLegals] = useState(null);
+
+    const [submitSuccess, setSubmitSucces] = useState(null);
+
     function handleShowPass (){
         showPass[0] === 'password'
             ? setShowPass(['text', hide_icon])
             : setShowPass(['password', show_icon])
     }
-
-    useEffect(() => {
-        
-        if(formData.username){
-            console.log('ESTA CAMBIANDO. Esto es para comprobar en DB si email y username ya existen');
-        }
-        
-    },[formData.username])
-
 
     const handleChange = (e) => {
 
@@ -64,49 +57,27 @@ function SignUp (){
 
         setTimeoutId(newTimeoutId); // Guarda el nuevo timeout
 
-        type === 'checkbox' 
-            ? setFormData({ ...formData, [id]: checked })
-            : setFormData({ ...formData, [id]: value })
-    };
-
-    const onlineValidations = (value, id) => {
-
-        console.log(value.length);
-
-        if(value.length < 2){
-            return;
+        if(type === 'checkbox' ){
+            setFormData({ ...formData, [id]: checked })
+        }else if(id === 'email' || id === 'username'){
+            setFormData({ ...formData, [id]: value.toLowerCase() })
+        }else{
+            setFormData({ ...formData, [id]: value })
         }
 
+    };
+
+    const onlineValidations = async (value, id) => {
+
         if(id === 'username'){
-            const checkIfUsernameExists = (username) => {
-                handleFetch({
-                    endpoint: '/musicians/check-username',
-                    method: 'POST',
-                    body: {username: username}
-                });
-    
-                setTimeout(() => {
-                    console.log(fetchRes);
-                    if (!fetchRes.exists) {
-                        setUsernameError('El username elegido está libre');
-                        console.log(usernameError);
-                    }else{
-                        setUsernameError('El username elegido está ocupado');
-                        console.log(usernameError);
-                    }
-                }, 2000);
-    
-                
-            };
-            const validateUsername = validate.username(value);
+            const validateUsername = await validate.username(value);
             if(!validateUsername[0]){
                 setUsernameError(validateUsername[1]);
-            }else if(checkIfUsernameExists(value)){
-                // setUsernameError(null);
-                checkIfUsernameExists(value);
+            }else{
+                setUsernameError(null);
             }
         }else if(id === 'email'){
-            const validateEmail = validate.email(value);
+            const validateEmail = await validate.email(value);
             if(!validateEmail[0]){
                 setEmailError(validateEmail[1]);
             }else{
@@ -123,12 +94,11 @@ function SignUp (){
 
     }
 
-
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const validateUsername = validate.username(formData.username);
-        const validateEmail = validate.email(formData.email);
+        const validateUsername = await validate.username(formData.username);
+        const validateEmail = await validate.email(formData.email);
         const validatePass = validate.pass(formData.pass);
 
         if(!validateUsername[0]){
@@ -156,20 +126,31 @@ function SignUp (){
         }
 
         if(validateUsername[0] && validateEmail[0] && validatePass[0] && formData.acceptTerms && formData.acceptPrivacy){
-            handleFetch({
+            const submitResponse = await customFetch({
                 endpoint: '/musicians/signup',
                 method: 'POST',
                 body: formData
             });
+            
+            console.log(submitResponse.msg);
+            setSubmitSucces(await submitResponse.msg);
+
+            setFormData({email: "",
+                username: "",
+                pass: "",
+                acceptTerms: false,
+                acceptPrivacy: false})
         }
     };
 
-    const showTermsAndPrivacy = (show) => {
+    const showTermsAndPrivacy = async (show) => {
 
-        handleFetch({
+        const legalsFetch = await customFetch({
             endpoint: `/legal/${show}`,
             method: 'GET'
         });
+
+        setShowLegals(await legalsFetch);
         
     }
 
@@ -177,11 +158,11 @@ function SignUp (){
 
         let key;
 
-        fetchRes.type === 'terms'
+        showLegals.type === 'terms'
             ? key = 'acceptTerms'
             : key = 'acceptPrivacy'
 
-        setFetchRes(null);
+        setShowLegals(null);
         setFormData({...formData, [key]: true})
     }
 
@@ -250,21 +231,27 @@ function SignUp (){
                     onChange={handleChange}
                 />
                 {termsError && <span>{termsError}</span>}
-                <Button color='pink'>Enviar</Button>
+                <Button color='pink'>CREAR CUENTA</Button>
             </form>
 
-            {fetchRes && fetchRes.html
-            &&
+            {showLegals && 
             <div className="legal__dialog">
                 <div className="legal__position">
-                    <div dangerouslySetInnerHTML={{ __html: fetchRes.html }}/>
-                    <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setFetchRes(null)}/>
-                    <Button color='pink' modClass='legal' onClick={()=>closeLegals('acceptTerms')}>
+                    <div dangerouslySetInnerHTML={{ __html: showLegals.html }}/>
+                    <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setShowLegals(null)}/>
+                    <Button color='pink' modClass='legal' onClick={closeLegals}>
                         ACEPTAR Y VOLVER
                     </Button>
                 </div>
                 
             </div>}
+
+            {submitSuccess &&
+            <div className="submitMsg__container">
+                <h4>¡CONFIRMA TU CUENTA!</h4>
+                <p>{submitSuccess}</p>
+            </div>
+            }
 
         </section>
     )

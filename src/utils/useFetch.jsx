@@ -50,19 +50,7 @@ export default function useFetch () {
 
         if(fetchReq) asyncFetch();
 
-        // if(fetchReq){
-        //     const url = `http://${server}:${port}/bandbros/v1${fetchReq[0]}`;
-
-        //     fetch(url,fetchReq[1])
-        //     .then(res => res.json())
-        //     .then(res => {setFetchRes(res); console.log(res)})
-        //     .catch(e => setFetchRes(e))
-        // }
-
     }, [fetchReq])
 
     return [handleFetch, fetchRes, setFetchRes];
 }
-
-// Exportamos el hook personalizado como predeterminado
-// export default useFetch;

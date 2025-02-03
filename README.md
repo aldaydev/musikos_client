@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 02/02/2025 - Mañana - Reviewing and rethinking useFetch
+Sprint-1 - 03/02/2025 - Madrugada - customFetch and signUp component
 
 Dependencias:
 

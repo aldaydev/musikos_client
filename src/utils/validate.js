@@ -1,5 +1,7 @@
+import customFetch from "./customFetch";
+
 export default {
-    username: (username) => {
+    username: async (username) => {
 
         //Regex 3 a 30 caracteres
         const regexLength = /^.{3,30}$/;
@@ -25,15 +27,39 @@ export default {
             return [false, "El username no puede tener -- o __ consecutivos"];
         }
 
+        const fetchResponse = await customFetch({
+            endpoint: '/musicians/check-username',
+            method: 'POST',
+            body: {username: username}
+        });
+
+        if(fetchResponse.exists){
+            return [false, "Ya existe una cuenta con ese username"];
+        }
+
         // Si todas las validaciones son correctas
         return [true, "Username válido"];
 
     },
 
-    email: (email) => {
+    email: async (email) => {
         // Expresión regular para validar un email
         const regex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return [regex.test(email), 'Email con formato incorrecto'];
+        if(!regex.test(email)){
+            return [false, 'Email con formato incorrecto'];
+        }
+
+        const fetchResponse = await customFetch({
+            endpoint: '/musicians/check-email',
+            method: 'POST',
+            body: {email: email}
+        });
+
+        if(fetchResponse.exists){
+            return [false, "Ya existe una cuenta con ese email"];
+        }
+        
+        return [true, 'Email válido'];
     },
 
     pass: (pass) => {
