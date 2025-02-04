@@ -6,6 +6,7 @@ Dependencias:
 
 npm create vite@latest bandbros_client --template react
 npm install react-router-dom@latest
+npm install @lottiefiles/dotlottie-react
 
 ## Sprint 1 (Front)
 
