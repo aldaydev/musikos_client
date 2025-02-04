@@ -4,10 +4,12 @@ const useFetch = () => {
   const [fetchRes, setFetchRes] = useState(null); // Repuesta del fetch
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState(null);
+  const [fetchItem, setFetchItem] = useState(null);
 
   // Datos del servidor y puerto
   const server = "localhost";
   const port = "3001";
+
 
   /**
    * Función para realizar un fetch de cualquier endpoint y por cualquier método
@@ -16,9 +18,10 @@ const useFetch = () => {
    * @param {*} authorization -> si el fetch requiere autorization del header
    * @param {Object} body -> body del fetch
    */
-  const fetchData = async ({ endpoint = "/home", method = "GET", authorization = null, body = {} }) => {
+  const fetchReq = async ({ endpoint = "/home", method = "GET", authorization = null, body = {}, item = null }) => {
     setIsLoading(true);
     setFetchError(null);
+    setFetchItem(item);
 
     try {
       const headers = {
@@ -42,7 +45,7 @@ const useFetch = () => {
       }
 
       // Se realiza el fetch con la confiduración recibida por parámetro
-      const response = await fetch(`http://${server}:${port}/trainingpro/v1${endpoint}`, fetchOptions);
+      const response = await fetch(`http://${server}:${port}/bandbros/v1${endpoint}`, fetchOptions);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -50,9 +53,9 @@ const useFetch = () => {
 
       // Se contruye la respuesta desde le JSON del fetch
       const data = await response.json();
-
+      console.log(data.html);
       //Se almacena la información de la respuesta del fetch
-      setFetchRes(data);
+      setFetchRes(await data);
     } catch (err) {
       setFetchError(err.message);
     } finally {
@@ -60,7 +63,7 @@ const useFetch = () => {
     }
   };
 
-  return { fetchRes, isLoading, fetchError, fetchData };
+  return { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem };
 };
 
 export default useFetch;

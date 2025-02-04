@@ -1,6 +1,6 @@
 # bandbros_client
 
-Sprint-1 - 03/02/2025 - Tarde - forcing lowercase email and username
+Sprint-1 - 04/02/2025 - Madrugada - working on legals modal and loading comp
 
 Dependencias:
 

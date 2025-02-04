@@ -5,11 +5,16 @@ import validate from "../../../utils/validate.js";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import Button from "../../../components/Forms/Button.jsx";
-import close_icon_dark from '../../../assets/icons/close_icon.svg';
 import './signUp.css';
 import customFetch from "../../../utils/customFetch.js";
+import LegalModal from "../../../components/Modals/LegalModal.jsx";
+import useFetch from "../../../utils/useFetch.jsx";
+import Loading from "../../../components/Loading.jsx";
 
 function SignUp (){
+
+    //UseFetch Initialization
+    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem } = useFetch();
 
     //Form data STATE
     const [formData, setFormData] = useState({
@@ -31,7 +36,7 @@ function SignUp (){
 
     const [showPass, setShowPass] = useState(['password', show_icon]);
 
-    const [showLegals, setShowLegals] = useState(null);
+    // const [showLegals, setShowLegals] = useState(null);
 
     const [submitSuccess, setSubmitSucces] = useState(null);
 
@@ -143,26 +148,31 @@ function SignUp (){
         }
     };
 
-    const showTermsAndPrivacy = async (show) => {
+    const showLegals = async (show) => {
 
-        const legalsFetch = await customFetch({
+        await fetchReq({
             endpoint: `/legal/${show}`,
-            method: 'GET'
-        });
+            item: 'legals'
+        })
 
-        setShowLegals(await legalsFetch);
+        // const legalsFetch = await customFetch({
+        //     endpoint: `/legal/${show}`,
+        //     method: 'GET'
+        // });
+
+        // setShowLegals(await legalsFetch);
         
     }
 
-    const closeLegals = () =>{
+    const acceptLegals = () =>{
 
         let key;
 
-        showLegals.type === 'terms'
+        fetchRes.type === 'terms'
             ? key = 'acceptTerms'
             : key = 'acceptPrivacy'
 
-        setShowLegals(null);
+        setFetchItem(null);
         setFormData({...formData, [key]: true})
     }
 
@@ -170,6 +180,8 @@ function SignUp (){
         <section className="login__signUp">
 
             <h3>CREA TU CUENTA</h3>
+
+            <Loading/>
 
             <form className="signUp__form" onSubmit={handleSubmit}>
 
@@ -206,7 +218,7 @@ function SignUp (){
                 {passError && <span>{passError}</span>}
 
                 <Label htmlFor='acceptTerms'>
-                    Acepto los <a href="#" onClick={()=>showTermsAndPrivacy('terms')}>
+                    Acepto los <a href="#" onClick={()=>showLegals('terms')}>
                         Terminos y condiciones
                     </a>
                 </Label>
@@ -220,7 +232,7 @@ function SignUp (){
                 />
 
                 <Label htmlFor='acceptPrivacy'>
-                    Acepto la <a href="#" onClick={()=>showTermsAndPrivacy('privacy')}>
+                    Acepto la <a href="#" onClick={()=>showLegals('privacy')}>
                         Política de privacidad</a>
                 </Label>
                 <Input 
@@ -234,17 +246,26 @@ function SignUp (){
                 <Button color='pink'>CREAR CUENTA</Button>
             </form>
 
-            {showLegals && 
-            <div className="legal__dialog">
-                <div className="legal__position">
-                    <div dangerouslySetInnerHTML={{ __html: showLegals.html }}/>
-                    <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setShowLegals(null)}/>
-                    <Button color='pink' modClass='legal' onClick={closeLegals}>
-                        ACEPTAR Y VOLVER
-                    </Button>
-                </div>
+            {(fetchRes && fetchItem === 'legals') && !fetchError ? 
+            <LegalModal 
+                isLoading={isLoading}
+                fetchRes={fetchRes} 
+                setFetchItem={setFetchItem}
+                acceptLegals={acceptLegals}
+            />
+
+            : <div>{fetchError}</div>
+            // <div className="legal__dialog">
+            //     <div className="legal__position">
+            //         <div dangerouslySetInnerHTML={{ __html: showLegals.html }}/>
+            //         <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setShowLegals(null)}/>
+            //         <Button color='pink' modClass='legal' onClick={closeLegals}>
+            //             ACEPTAR Y VOLVER
+            //         </Button>
+            //     </div>
                 
-            </div>}
+            // </div>
+            }
 
             {submitSuccess &&
             <div className="submitMsg__container">

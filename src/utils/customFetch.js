@@ -40,5 +40,7 @@ export default async function customFetch (options){
 
     }catch(e){
         console.log(e);
+
+        return {error: e, msg: 'Ha habido un error al obtener los datos'}
     }
 }
