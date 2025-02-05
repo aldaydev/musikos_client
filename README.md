@@ -1,6 +1,5 @@
 # bandbros_client
-
-Sprint-1 - 04/02/2025 - Madrugada - working on legals modal and loading comp
+### Sprint-1 - 05/02/2025 - Madrugada - testing loading component
 
 Dependencias:
 

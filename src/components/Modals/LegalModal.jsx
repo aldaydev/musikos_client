@@ -7,9 +7,9 @@ import Loading from '../Loading';
 const LegalModal = ({fetchRes, setFetchItem, acceptLegals, isLoading}) => {
 
     return createPortal(
-        isLoading ?
-        <Loading/>
-        :
+        // isLoading ?
+        // <Loading/>
+        // :
         <div className="legal__dialog">
             <div className="legal__position">
                 <div dangerouslySetInnerHTML={{ __html: fetchRes.html }}/>

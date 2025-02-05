@@ -181,7 +181,7 @@ function SignUp (){
 
             <h3>CREA TU CUENTA</h3>
 
-            <Loading/>
+            {/* <Loading/> */}
 
             <form className="signUp__form" onSubmit={handleSubmit}>
 

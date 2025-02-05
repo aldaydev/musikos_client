@@ -5,7 +5,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 const Loading = () =>{
 
     return(
-        <div >
+        <div className='loading'>
             {/* <img src={loading_animation} alt="Loading animation" style={{width: '100px'}}/> */}
             <DotLottieReact
             src="https://lottie.host/8ae8f523-3f31-4736-b127-a54a14846f7e/OLN32mFQfU.lottie"
