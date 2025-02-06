@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 05/02/2025 - Madrugada - testing loading component
+### Sprint-1 - 06/02/2025 - Madrugada - changing password keys
 
 Dependencias:
 

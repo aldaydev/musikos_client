@@ -1,15 +1,19 @@
+//CSS imports
+import './signUp.css';
+//React imports
 import { useState } from "react";
+//Component imports
 import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
+import Button from "../../../components/Forms/Button";
+import LegalModal from "../../../components/Modals/LegalModal";
+//Utils imports
 import validate from "../../../utils/validate.js";
+import useFetch from "../../../utils/useFetch.jsx";
+//Media imports
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
-import Button from "../../../components/Forms/Button.jsx";
-import './signUp.css';
-import customFetch from "../../../utils/customFetch.js";
-import LegalModal from "../../../components/Modals/LegalModal.jsx";
-import useFetch from "../../../utils/useFetch.jsx";
-import Loading from "../../../components/Loading.jsx";
+
 
 function SignUp (){
 
@@ -20,7 +24,7 @@ function SignUp (){
     const [formData, setFormData] = useState({
         email: "",
         username: "",
-        pass: "",
+        password: "",
         acceptTerms: false,
         acceptPrivacy: false
     });
@@ -31,19 +35,19 @@ function SignUp (){
     //Form error STATES
     const [emailError, setEmailError] = useState(null);
     const [usernameError, setUsernameError] = useState(null);
-    const [passError, setPassError] = useState(null);
+    const [passwordError, setPasswordError] = useState(null);
     const [termsError, setTermsError] = useState(null);
 
-    const [showPass, setShowPass] = useState(['password', show_icon]);
+    const [showPassword, setShowPassword] = useState(['password', show_icon]);
 
     // const [showLegals, setShowLegals] = useState(null);
 
     const [submitSuccess, setSubmitSucces] = useState(null);
 
-    function handleShowPass (){
-        showPass[0] === 'password'
-            ? setShowPass(['text', hide_icon])
-            : setShowPass(['password', show_icon])
+    function handleShowPassword (){
+        showPassword[0] === 'password'
+            ? setShowPassword(['text', hide_icon])
+            : setShowPassword(['password', show_icon])
     }
 
     const handleChange = (e) => {
@@ -88,12 +92,12 @@ function SignUp (){
             }else{
                 setEmailError(null);
             }
-        }else if(id === 'pass'){
-            const validatePass = validate.pass(value);
-            if(!validatePass[0]){
-                setPassError(validatePass[1]);
+        }else if(id === 'password'){
+            const validatePassword = validate.password(value);
+            if(!validatePassword[0]){
+                setPasswordError(validatePassword[1]);
             }else{
-                setPassError(null);
+                setPasswordError(null);
             }
         }
 
@@ -104,7 +108,7 @@ function SignUp (){
 
         const validateUsername = await validate.username(formData.username.toLowerCase());
         const validateEmail = await validate.email(formData.email.toLowerCase());
-        const validatePass = validate.pass(formData.pass);
+        const validatePassword = validate.password(formData.password);
 
         if(!validateUsername[0]){
             setUsernameError(validateUsername[1]);
@@ -118,10 +122,10 @@ function SignUp (){
             setEmailError(null);
         }
 
-        if(!validatePass[0]){
-            setPassError(validatePass[1]);
+        if(!validatePassword[0]){
+            setPasswordError(validatePassword[1]);
         }else{
-            setPassError(null);
+            setPasswordError(null);
         }
 
         if(!formData.acceptTerms || !formData.acceptPrivacy){
@@ -130,8 +134,8 @@ function SignUp (){
             setTermsError(null);
         }
 
-        if(validateUsername[0] && validateEmail[0] && validatePass[0] && formData.acceptTerms && formData.acceptPrivacy){
-            const submitResponse = await customFetch({
+        if(validateUsername[0] && validateEmail[0] && validatePassword[0] && formData.acceptTerms && formData.acceptPrivacy){
+            const submitResponse = await fetchReq({
                 endpoint: '/musicians/signup',
                 method: 'POST',
                 body: formData
@@ -142,7 +146,7 @@ function SignUp (){
 
             setFormData({email: "",
                 username: "",
-                pass: "",
+                password: "",
                 acceptTerms: false,
                 acceptPrivacy: false})
         }
@@ -155,13 +159,6 @@ function SignUp (){
             item: 'legals'
         })
 
-        // const legalsFetch = await customFetch({
-        //     endpoint: `/legal/${show}`,
-        //     method: 'GET'
-        // });
-
-        // setShowLegals(await legalsFetch);
-        
     }
 
     const acceptLegals = () =>{
@@ -205,17 +202,17 @@ function SignUp (){
 
                 <Label htmlFor='pass'>
                     <Input 
-                        type={showPass[0]}
-                        name='pass'
-                        id='pass'
-                        value={formData.pass}
+                        type={showPassword[0]}
+                        name='password'
+                        id='password'
+                        value={formData.password}
                         placeholder='Contraseña'
                         onChange={handleChange}
                     />
-                    <img src={showPass[1]} alt="Show icon" onClick={handleShowPass} />
+                    <img src={showPassword[1]} alt="Show icon" onClick={handleShowPassword} />
                 </Label>
                 
-                {passError && <span>{passError}</span>}
+                {passwordError && <span>{passwordError}</span>}
 
                 <Label htmlFor='acceptTerms'>
                     Acepto los <a href="#" onClick={()=>showLegals('terms')}>
@@ -255,16 +252,6 @@ function SignUp (){
             />
 
             : <div>{fetchError}</div>
-            // <div className="legal__dialog">
-            //     <div className="legal__position">
-            //         <div dangerouslySetInnerHTML={{ __html: showLegals.html }}/>
-            //         <img src={close_icon_dark} alt="Cross icon" className="legal__exit" onClick={()=>setShowLegals(null)}/>
-            //         <Button color='pink' modClass='legal' onClick={closeLegals}>
-            //             ACEPTAR Y VOLVER
-            //         </Button>
-            //     </div>
-                
-            // </div>
             }
 
             {submitSuccess &&
