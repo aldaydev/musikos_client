@@ -7,18 +7,20 @@ import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
 import Button from "../../../components/Forms/Button";
 import LegalModal from "../../../components/Modals/LegalModal";
+import ErrorModal from '../../../components/Modals/ErrorModal';
 //Utils imports
 import validate from "../../../utils/validate.js";
 import useFetch from "../../../utils/useFetch.jsx";
 //Media imports
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
+import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
 
 
 function SignUp (){
 
     //UseFetch Initialization
-    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem } = useFetch();
+    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
     //Form data STATE
     const [formData, setFormData] = useState({
@@ -39,10 +41,6 @@ function SignUp (){
     const [termsError, setTermsError] = useState(null);
 
     const [showPassword, setShowPassword] = useState(['password', show_icon]);
-
-    // const [showLegals, setShowLegals] = useState(null);
-
-    const [submitSuccess, setSubmitSucces] = useState(null);
 
     function handleShowPassword (){
         showPassword[0] === 'password'
@@ -135,14 +133,12 @@ function SignUp (){
         }
 
         if(validateUsername[0] && validateEmail[0] && validatePassword[0] && formData.acceptTerms && formData.acceptPrivacy){
-            const submitResponse = await fetchReq({
+            await fetchReq({
                 endpoint: '/musicians/signup',
                 method: 'POST',
-                body: formData
+                body: formData,
+                item: 'signup'
             });
-            
-            console.log(submitResponse.msg);
-            setSubmitSucces(await submitResponse.msg);
 
             setFormData({email: "",
                 username: "",
@@ -243,22 +239,18 @@ function SignUp (){
                 <Button color='pink'>CREAR CUENTA</Button>
             </form>
 
-            {(fetchRes && fetchItem === 'legals') && !fetchError ? 
+            {(fetchRes && fetchItem === 'legals') && !fetchError && 
             <LegalModal 
                 isLoading={isLoading}
-                fetchRes={fetchRes} 
+                fetchRes={fetchRes || fetchError} 
                 setFetchItem={setFetchItem}
                 acceptLegals={acceptLegals}
-            />
+            />}
 
-            : <div>{fetchError}</div>
-            }
+            {fetchError && <ErrorModal fetchError={fetchError} setFetchError={setFetchError}/>}
 
-            {submitSuccess &&
-            <div className="submitMsg__container">
-                <h4>¡CONFIRMA TU CUENTA!</h4>
-                <p>{submitSuccess}</p>
-            </div>
+            {fetchRes && fetchItem === 'signup' &&
+            <SuccessModal type={fetchItem} fetchRes={fetchRes} setFetchItem={setFetchItem}/>
             }
 
         </section>

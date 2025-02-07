@@ -2,9 +2,8 @@ import { createPortal } from 'react-dom';
 
 import close_icon from '../../assets/icons/close_icon.svg'
 import Button from '../Forms/Button';
-import Loading from '../Loading';
 
-const LegalModal = ({fetchRes, setFetchItem, acceptLegals, isLoading}) => {
+const LegalModal = ({fetchRes, setFetchItem, acceptLegals}) => {
 
     return createPortal(
         // isLoading ?

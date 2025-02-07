@@ -47,23 +47,32 @@ const useFetch = () => {
       // Se realiza el fetch con la confiduración recibida por parámetro
       const response = await fetch(`http://${server}:${port}/bandbros/v1${endpoint}`, fetchOptions);
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
       // Se contruye la respuesta desde le JSON del fetch
       const data = await response.json();
-      console.log(data.html);
-      //Se almacena la información de la respuesta del fetch
-      setFetchRes(await data);
+
+      if (!response.ok) {
+        const err = new Error(data.message || data.statusText);
+        err.type = data.type; // Agregar la causa como una propiedad extra
+        err.status = response.status;
+        throw err;
+      }else{
+        //Se almacena la información de la respuesta del fetch
+        setFetchRes(await data);
+      }
+      
     } catch (err) {
-      setFetchError(err.message);
+      if(err.message === 'Failed to fetch'){
+        setFetchError({message: 'No se ha podido realizar la solicitud.', type: 'de conexión', status: err.status});
+      }else{
+        console.log(err.status);
+        setFetchError({message: err.message, cause: err.type, status: err.status});
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem };
+  return { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError };
 };
 
 export default useFetch;

@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 06/02/2025 - Madrugada - changing password keys
+### Sprint-1 - 07/02/2025 - Madrugada - working on modals
 
 Dependencias:
 
