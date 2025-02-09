@@ -18,8 +18,11 @@ function Header (){
                     <Link to="/">
                         <img src={logo} alt="Logo image" className='header__logo'/>
                         <h2 className='header__title'>
-                            <span className='header__title--color'>B</span>AND
-                            <span className='header__title--color'>B</span>ROS
+                            {/* <span className='header__title--color'>B</span>AND
+                            <span className='header__title--color'>B</span>ROS */}
+                            <span className='header__title--color'>M</span>USIKO
+                            {/* <span className='header__title--color'>S</span>I
+                            <span className='header__title--color'>K</span>O */}
                         </h2>
                     </Link>
                     

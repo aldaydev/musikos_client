@@ -38,13 +38,16 @@
 }
 
 .header__title{
+    margin-left: 10px;
     font-weight: 700;
     color: var(--color-white);
     transition: color .3s ease-in-out;
+    letter-spacing: 0.5px;
 }
 
 .header__title--color{
-    margin-left: 7px;
+    /* margin-left: 7px; */
+    
     color: var(--color-pink);
     transition: color .3s ease-in-out;
 }
