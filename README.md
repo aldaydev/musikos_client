@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 09/02/2025 - Mañana - musiko change
+### Sprint-1 - 10/02/2025 - Madrugada - succes and error modals
 
 Dependencias:
 
