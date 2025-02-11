@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 10/02/2025 - Madrugada - succes and error modals
+### Sprint-1 - 11/02/2025 - Mañana - changing fetch url to musikos
 
 Dependencias:
 

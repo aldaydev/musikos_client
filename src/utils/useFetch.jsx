@@ -45,7 +45,7 @@ const useFetch = () => {
       }
 
       // Se realiza el fetch con la confiduración recibida por parámetro
-      const response = await fetch(`http://${server}:${port}/bandbros/v1${endpoint}`, fetchOptions);
+      const response = await fetch(`http://${server}:${port}/musikos/v1${endpoint}`, fetchOptions);
 
       // Se contruye la respuesta desde le JSON del fetch
       const data = await response.json();
