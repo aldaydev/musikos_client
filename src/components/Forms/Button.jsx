@@ -1,6 +1,11 @@
-const Button = ({ color, modClass, children, ...props }) => {
+const Button = ({ color = "pink", modClass, children, ...props }) => {
+
+    let className = !modClass
+        ? `button--${color}`
+        : `button--${color} button--${modClass}`
+
     return(
-        <button className={`button--${color} button--${modClass}`}
+        <button className={className}
         {...props}>
             {children}
         </button>

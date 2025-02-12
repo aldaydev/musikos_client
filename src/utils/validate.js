@@ -3,6 +3,10 @@ import customFetch from "./customFetch";
 export default {
     username: async (username) => {
 
+        if(!username){
+            return [false, 'Campo obligatorio'];
+        }
+
         //Regex 3 a 30 caracteres
         const regexLength = /^.{3,30}$/;
         if (!regexLength.test(username)) {
@@ -43,6 +47,9 @@ export default {
     },
 
     email: async (email) => {
+        if(!email){
+            return [false, 'Campo obligatorio'];
+        }
         // Expresión regular para validar un email
         const regex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if(!regex.test(email)){
@@ -63,6 +70,10 @@ export default {
     },
 
     password: (password) => {
+
+        if(!password){
+            return [false, 'Campo obligatorio'];
+        }
 
         // Validar longitud mínima de 8 caracteres
         const regexMinLength = /^.{8,}$/;

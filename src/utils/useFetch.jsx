@@ -56,13 +56,14 @@ const useFetch = () => {
         err.status = response.status;
         throw err;
       }else{
+        console.log(data);
         //Se almacena la información de la respuesta del fetch
         setFetchRes(await data);
       }
       
     } catch (err) {
       if(err.message === 'Failed to fetch'){
-        setFetchError({message: 'No se ha podido realizar la solicitud.', type: 'de conexión', status: err.status});
+        setFetchError({message: 'No se ha podido realizar la solicitud.', status: '---'});
       }else{
         console.log(err.status);
         setFetchError({message: err.message, cause: err.type, status: err.status});

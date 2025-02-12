@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 11/02/2025 - Mañana - changing fetch url to musikos
+### Sprint-1 - 12/02/2025 - Noche - creating exitButton
 
 Dependencias:
 

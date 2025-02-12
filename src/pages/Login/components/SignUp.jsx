@@ -236,7 +236,7 @@ function SignUp (){
                     onChange={handleChange}
                 />
                 {termsError && <span>{termsError}</span>}
-                <Button color='pink'>CREAR CUENTA</Button>
+                <Button>CREAR CUENTA</Button>
             </form>
 
             {(fetchRes && fetchItem === 'legals') && !fetchError && 

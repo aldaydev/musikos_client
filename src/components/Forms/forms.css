@@ -51,3 +51,27 @@
 .button--pink:hover{
     background-color: var(--color-pink-light);
 }
+
+.exitButton--pink,
+.exitButton--black{
+    width: 40px;
+    border-radius: 50%;
+    position: fixed;
+    padding: 3px;
+    top: 17%;
+    right: 27.5%;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.exitButton--pink{
+    background-color: var(--color-pink);
+}
+
+.exitButton--black{
+    background-color: var(--color-blue-dark);
+}
+
+.exitButton--pink:hover{
+    background-color: var(--color-pink-light);
+}
