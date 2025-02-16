@@ -60,7 +60,7 @@ function SignUp (){
         // Define un nuevo timeout para ejecutar la validación
         const newTimeoutId = setTimeout(() => {
             onlineValidations(value, id);
-        }, 700); // 700ms de debounce
+        }, 1000); // 1s de debounce
 
         setTimeoutId(newTimeoutId); // Guarda el nuevo timeout
 
@@ -184,8 +184,10 @@ function SignUp (){
                     value={formData.email}
                     placeholder='Email'
                     onChange={handleChange}
+                    error={emailError}
+                    modClass={emailError && 'error'}
                 />
-                {emailError && <span>{emailError}</span>}
+                {/* {emailError && <span>{emailError}</span>} */}
 
                 <Input 
                     name='username'
@@ -193,8 +195,10 @@ function SignUp (){
                     value={formData.username}
                     placeholder='Nombre de usuario'
                     onChange={handleChange}
+                    error={usernameError}
+                    modClass={usernameError && 'error'}
                 />
-                {usernameError && <span>{usernameError}</span>}
+                {/* {usernameError && <span>{usernameError}</span>} */}
 
                 <Label htmlFor='pass'>
                     <Input 
@@ -204,11 +208,15 @@ function SignUp (){
                         value={formData.password}
                         placeholder='Contraseña'
                         onChange={handleChange}
+                        error={passwordError}
+                        modClass={passwordError && 'error'}
+                        showPassImg={showPassword[1]}
+                        showPassFunc={handleShowPassword}
                     />
-                    <img src={showPassword[1]} alt="Show icon" onClick={handleShowPassword} />
+                    {/* <img src={showPassword[1]} alt="Show icon" onClick={handleShowPassword} /> */}
                 </Label>
                 
-                {passwordError && <span>{passwordError}</span>}
+                {/* {passwordError && <span>{passwordError}</span>} */}
 
                 <Label htmlFor='acceptTerms'>
                     Acepto los <a href="#" onClick={()=>showLegals('terms')}>

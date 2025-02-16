@@ -26,7 +26,7 @@ export default async function customFetch (options){
         
         const fetchOptions = setFetchOptions(options);
 
-        const url = `http://${server}:${port}/bandbros/v1${fetchOptions[0]}`;
+        const url = `http://${server}:${port}/musikos/v1${fetchOptions[0]}`;
         
         const response = await fetch(url,fetchOptions[1]);
 
