@@ -15,6 +15,7 @@ import useFetch from "../../../utils/useFetch.jsx";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
+import Checkbox from '../../../components/Forms/Checkbox.jsx';
 
 
 function SignUp (){
@@ -38,7 +39,7 @@ function SignUp (){
     const [emailError, setEmailError] = useState(null);
     const [usernameError, setUsernameError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
-    const [termsError, setTermsError] = useState(null);
+    const [legalsError, setlegalsError] = useState(null);
 
     const [showPassword, setShowPassword] = useState(['password', show_icon]);
 
@@ -66,6 +67,11 @@ function SignUp (){
 
         if(type === 'checkbox' ){
             setFormData({ ...formData, [id]: checked })
+            if(id === 'acceptTerms' && checked === true){
+                setlegalsError(null);
+            }else if(id === 'acceptPrivacy' && checked === true){
+                setlegalsError(null);
+            }
         }else if(id === 'email' || id === 'username'){
             setFormData({ ...formData, [id]: value })
         }else{
@@ -126,10 +132,12 @@ function SignUp (){
             setPasswordError(null);
         }
 
-        if(!formData.acceptTerms || !formData.acceptPrivacy){
-            setTermsError('Debes aceptar los condiciones y la política de privacidad');
+        if(!formData.acceptTerms){
+            setlegalsError('Debes aceptar las condiciones de uso');
+        }else if(!formData.acceptPrivacy){
+            setlegalsError('Debes aceptar la política de privacidad');
         }else{
-            setTermsError(null);
+            setlegalsError(null);
         }
 
         if(validateUsername[0] && validateEmail[0] && validatePassword[0] && formData.acceptTerms && formData.acceptPrivacy){
@@ -172,9 +180,7 @@ function SignUp (){
     return(
         <section className="login__signUp">
 
-            <h3>CREA TU CUENTA</h3>
-
-            {/* <Loading/> */}
+            <h3 className='signUp__title'>REGÍSTRATE AHORA</h3>
 
             <form className="signUp__form" onSubmit={handleSubmit}>
 
@@ -187,7 +193,6 @@ function SignUp (){
                     error={emailError}
                     modClass={emailError && 'error'}
                 />
-                {/* {emailError && <span>{emailError}</span>} */}
 
                 <Input 
                     name='username'
@@ -198,7 +203,6 @@ function SignUp (){
                     error={usernameError}
                     modClass={usernameError && 'error'}
                 />
-                {/* {usernameError && <span>{usernameError}</span>} */}
 
                 <Label htmlFor='pass'>
                     <Input 
@@ -213,38 +217,41 @@ function SignUp (){
                         showPassImg={showPassword[1]}
                         showPassFunc={handleShowPassword}
                     />
-                    {/* <img src={showPassword[1]} alt="Show icon" onClick={handleShowPassword} /> */}
                 </Label>
+
+                <section className='legals_checkboxes'>
+                    <Checkbox
+                        id='acceptTerms'
+                        name='acceptTerms'
+                        checked={formData.acceptTerms}
+                        onChange={handleChange}
+                    >
+                        <div>
+                            <label htmlFor='acceptTerms'>Acepto los</label>
+                            <span onClick={()=>showLegals('terms')} className='legalSpan'>
+                                Términos y condiciones
+                            </span>
+                        </div>
+                    </Checkbox>
+
+                    <Checkbox
+                        id='acceptPrivacy'
+                        name='acceptPrivacy'
+                        checked={formData.acceptPrivacy}
+                        onChange={handleChange}
+                    >
+                        <div>
+                            <label htmlFor='acceptPrivacy'>Acepto la</label>
+                            <span onClick={()=>showLegals('privacy')} className='legalSpan'>
+                                Política de privacidad
+                            </span>
+                        </div>
+                    </Checkbox>
+                    {legalsError && <span className='checkboxError'>{legalsError}</span>}
+                </section>
+
                 
-                {/* {passwordError && <span>{passwordError}</span>} */}
-
-                <Label htmlFor='acceptTerms'>
-                    Acepto los <a href="#" onClick={()=>showLegals('terms')}>
-                        Terminos y condiciones
-                    </a>
-                </Label>
-
-                <Input 
-                    type='checkbox'
-                    id='acceptTerms'
-                    name='acceptTerms'
-                    checked={formData.acceptTerms}
-                    onChange={handleChange}
-                />
-
-                <Label htmlFor='acceptPrivacy'>
-                    Acepto la <a href="#" onClick={()=>showLegals('privacy')}>
-                        Política de privacidad</a>
-                </Label>
-                <Input 
-                    type='checkbox'
-                    id='acceptPrivacy'
-                    name='acceptPrivacy'
-                    checked={formData.acceptPrivacy}
-                    onChange={handleChange}
-                />
-                {termsError && <span>{termsError}</span>}
-                <Button>CREAR CUENTA</Button>
+                <Button>REGÍSTRARSE</Button>
             </form>
 
             {(fetchRes && fetchItem === 'legals') && !fetchError && 
@@ -258,7 +265,7 @@ function SignUp (){
             {fetchError && <ErrorModal fetchError={fetchError} setFetchError={setFetchError}/>}
 
             {fetchRes && fetchItem === 'signup' &&
-            <SuccessModal type={fetchItem} fetchRes={fetchRes} setFetchItem={setFetchItem}/>
+            <SuccessModal fetchRes={fetchRes} setFetchItem={setFetchItem}/>
             }
 
         </section>

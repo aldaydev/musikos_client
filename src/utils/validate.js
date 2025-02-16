@@ -90,7 +90,7 @@ export default {
         // Validar que contenga al menos un carácter especial
         const regexSpecialChar = /^(?=.*[@$!-_%*?&])/;
         if (!regexSpecialChar.test(password)) {
-            return [false, "Debe contener al menos un carácter especial: @$!-_%*?."];
+            return [false, "Al menos un carácter especial: @$!-_%*?."];
         }
     
         // Si todas las validaciones son correctas

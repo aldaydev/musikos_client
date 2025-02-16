@@ -1,40 +1,11 @@
-/*-------- ESTILOS FORMS --------*/
+/*-----TEXT & PASSWORD INPUTS-----*/
 
 .inputContainer{
     display: inline-block;
     position: relative;
-    margin-bottom: 30px;
     min-width: 400px;
-    margin: 0 10px 35px 10px;
+    margin: 0 10px 20px 10px;
     z-index: 10;
-}
-
-.inputError{
-    text-align: center;
-    text-wrap: pretty;
-    font-size: 1.4rem;
-    font-weight: bold;
-    position: absolute;
-    width: 95%;
-    margin: 0 auto;
-    top: 45px;
-    left: 0px;
-    right: 0;
-    z-index: -10;
-    animation: inputError .3s ease-in-out both;
-    color: var(--color-pink);
-}
-
-@keyframes inputError {
-    from{
-        top: 0;
-        opacity: 0;
-        /* transform: scale(0); */
-    }to{
-        top: 45px;
-        opacity: 1;
-        /* transform: scale(1); */
-    }
 }
 
 .textInput, 
@@ -46,12 +17,10 @@
     border: 1px solid var(--color-blue-dark);
     border-radius: 8px;
     outline: 2px solid transparent;
-    /* margin: 0 10px; */
-    /* transition: outline .2s ease-in-out; */
 }
 
 .passwordInput{
-    padding: 5px 40px 5px 10px;
+    padding: 5px 50px 5px 10px;
 }
 
 .showPassIcon{
@@ -69,27 +38,65 @@
 
 .textInput:focus,
 .passwordInput:focus{
-    /* outline: none; */
     outline: 2px solid var(--color-pink);
     outline-offset: -2px;
     z-index: 10;
-    /* transition: outline .2s ease-in-out; */
+}
+
+.inputError{
+    text-align: center;
+    text-wrap: pretty;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: block;
+    /* position: absolute; */
+    width: 95%;
+    margin: 3px auto;
+    top: 45px;
+    left: 0px;
+    right: 0;
+    z-index: -10;
+    animation: inputError .3s ease-in-out both;
+    color: var(--color-pink);
+}
+
+@keyframes inputError {
+    from{
+        top: 0;
+        opacity: 0;
+    }to{
+        top: 45px;
+        opacity: 1;
+    }
+}
+
+/*-----CHECKBOX INPUTS-----*/
+
+.checkboxContainer{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width:fit-content;
+    /* margin: 10px; */
 }
 
 .checkboxInput{
     /* transform: scale(1.5); */
-    accent-color: var(--color-pink); /* Cambia el color cuando está marcado */
+    accent-color: var(--color-pink);
     width: 20px;
     height: 20px;
-    cursor: pointer; /* Hace que el cursor cambie al pasar el mouse */
+    cursor: pointer;
     vertical-align: middle;
-    margin: 0 10px;
+    margin: 0 0 0 15px;
 }
+
+/*-----BUTTONS-----*/
 
 .button--pink,
 .button--black{
+    height: 40px;
     border: none;
-    padding: 7px 17px;
+    padding: 7px 20px;
     font-size: 1.8rem;
     border-radius: 8px;
     cursor: pointer;

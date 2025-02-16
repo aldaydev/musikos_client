@@ -1,5 +1,5 @@
 # bandbros_client
-### Sprint-1 - 16/02/2025 - Noche - rethinking form components
+### Sprint-1 - 16/02/2025 - Tarde - signUp styles
 
 Dependencias:
 

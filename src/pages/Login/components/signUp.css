@@ -1,75 +1,43 @@
-
-.legal__dialog{
-    background-color: var(--color-blue-trans);
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: legal .3s ease-in-out both;
+/* .signUp__title{
+    text-align: center;
+    font-size: 2.2rem;
 }
 
-.legal__position{
-    width: 50%;
-    height: 70%;
-    padding: 50px 70px 50px 50px;
-    overflow-y: auto;
-    background-color:  var(--color-white);
-    position: relative;
-
+.signUp__form{
     display: flex;
     flex-direction: column;
+    align-items:center;
+    justify-content: center;
 }
 
-.legal__exit{
-    width: 40px;
-    background-color: var(--color-pink);
-    border-radius: 50%;
-    position: fixed;
-    padding: 3px;
-    top: 17%;
-    right: 27.5%;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
+.legals_checkboxes{
+    margin: 30px 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-.legal__exit:hover{
-    background-color: var(--color-pink-light);
+.checkboxError{
+        text-align: center;
+        text-wrap: pretty;
+        font-size: 1.4rem;
+        font-weight: bold;
+        
+        width: 95%;
+        margin: 0 auto;
+        top: 65px;
+        left: 0px;
+        right: 0;
+        z-index: 10;
+        animation: checkboxError .3s ease-in-out both;
+        color: var(--color-pink);
 }
-
-.legal__container{
-    margin-bottom: 50px;
-}
-
-.legal__title{
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.legal__subtitle{
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.legal__text{
-    margin-bottom: 15px;
-    text-wrap: pretty;
-}
-
-.button--legal{
-    align-self: center;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-@keyframes legal {
+    
+@keyframes checkboxError {
     from{
         opacity: 0;
     }to{
         opacity: 1;
     }
-}
+} */

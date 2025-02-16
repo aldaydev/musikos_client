@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "../../../components/Forms/Input";
+import Button from "../../../components/Forms/Button";
 
 function SignIn (){
 
@@ -8,7 +9,7 @@ function SignIn (){
 
     return(
         <section className="login__signUp">
-            <h3>ACCEDE</h3>
+            <h3 className="signIn__title">ACCEDE A TU CUENTA</h3>
             <form className="signUp__form">
 
                 <Input 
@@ -22,7 +23,7 @@ function SignIn (){
                     placeholder='Contraseña'
                     onChange={(e)=>setPassValue(e.taget.value)}
                 />
-                <button>ACCEDER</button>
+                <Button modClass='signIn'>ACCEDER</Button>
             </form>
         </section>
     )

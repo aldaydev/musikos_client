@@ -1,28 +1,15 @@
 import { createPortal } from 'react-dom';
 
-import close_icon from '../../assets/icons/close_icon.svg'
-import { useEffect, useState } from 'react';
+import ExitButton from './ExitButton';
 
-const SuccessModal = ({type, fetchRes, setFetchItem}) => {
-
-    // const [title, setTitle] = useState('');
-
-    // useEffect(()=>{
-    //     switch (type){
-    //         case 'signup':
-    //             setTitle('¡CONFIRMA TU CUENTA!');
-    //             break;
-    //         default:
-    //     }
-    // },[type])
+const SuccessModal = ({fetchRes, setFetchItem}) => {
     
-
     return createPortal(
-        <div className="legal__dialog">
-            <div className="legal__position">
-                <h3>{fetchRes.title}</h3>
-                <h4>{fetchRes.message}</h4>
-                <img src={close_icon} alt="Cross icon" className="legal__exit" onClick={()=>setFetchItem(null)}/>
+        <div className="modal__placement">
+            <div className="success__position">
+                <h3 className='success__title'>{fetchRes.title}</h3>
+                <h4 className='success__text'>{fetchRes.message}</h4>
+                <ExitButton exit={()=>setFetchItem(null)}/>
             </div>
         </div>,
     document.body

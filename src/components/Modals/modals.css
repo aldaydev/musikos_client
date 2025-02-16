@@ -1,0 +1,119 @@
+/*---------- GENERAL MODAL STYLES ----------*/
+
+.modal__placement{
+    background-color: var(--color-blue-trans);
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: legal .3s ease-in-out both;
+}
+
+.exitButton--pink,
+.exitButton--black{
+    width: 40px;
+    border-radius: 50%;
+    position: absolute;
+    padding: 3px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.exitButton--pink{
+    background-color: var(--color-pink);
+}
+
+.exitButton--black{
+    background-color: var(--color-blue-dark);
+}
+
+.exitButton--pink:hover{
+    background-color: var(--color-pink-light);
+}
+
+/*---------- LEGAL MODAL STYLES ----------*/
+
+.legal__position{
+    width: 50%;
+    height: 70%;
+    padding: 50px 70px 50px 50px;
+    overflow-y: auto;
+    background-color:  var(--color-white);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.legal__container{
+    margin-bottom: 50px;
+}
+
+.legal__title{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.legal__subtitle{
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.legal__text{
+    margin-bottom: 15px;
+    text-wrap: pretty;
+}
+
+.button--legal{
+    align-self: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@keyframes legal {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+
+.legalSpan{
+    color: var(--color-pink);
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+/*---------- ERROR & SUCCESS MODALS STYLES ----------*/
+
+.error__position,
+.success__position{
+    margin-bottom: 60px;
+    position: relative;
+    width: 50%;
+    min-height: 25%;
+    padding: 50px 70px 50px 50px;
+    overflow-y: auto;
+    background-color: var(--color-white);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.success__title,
+.error__title{
+    font-size: 2.3rem;
+    margin-bottom: 15px;
+}
+
+.success__text,
+.error__text{
+    font-size: 1.8rem;
+}

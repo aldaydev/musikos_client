@@ -20,7 +20,7 @@ function Header (){
                         <h2 className='header__title'>
                             {/* <span className='header__title--color'>B</span>AND
                             <span className='header__title--color'>B</span>ROS */}
-                            <span className='header__title--color'>M</span>USIKO
+                            <span className='header__title--color'>M</span>USIKOS
                             {/* <span className='header__title--color'>S</span>I
                             <span className='header__title--color'>K</span>O */}
                         </h2>
@@ -38,7 +38,7 @@ function Header (){
                         <li className='nav__item'>
                             <Link to="/buscar-musicos">
                                 <span className='nav__link--color'>B</span>USCAR 
-                                <span className='nav__link--color'>M</span>ÚSICOS
+                                {/* <span className='nav__link--color'>M</span>ÚSICOS */}
                                 <img src={search_icon} alt="Search icon" className='nav__icon'/>
                             </Link>
                         </li>
@@ -46,7 +46,7 @@ function Header (){
                             <li className='nav__item'>
                         
                             <Link to="/login">
-                            <span className='nav__link--color'>A</span>CCEDE
+                            <span className='nav__link--color'>A</span>CCEDER
                                 <img src={user_icon} alt="User icon" className='nav__icon'/>
                             </Link>
                         </li>
