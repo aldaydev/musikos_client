@@ -3,18 +3,20 @@ import { useState } from "react";
 //Component imports
 import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
+import Checkbox from '../../../components/Forms/Checkbox.jsx';
 import Button from "../../../components/Forms/Button";
 import LegalModal from "../../../components/Modals/LegalModal";
 import ErrorModal from '../../../components/Modals/ErrorModal';
+import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
+import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
+
 //Utils imports
 import validate from "../../../utils/validate.js";
 import useFetch from "../../../utils/useFetch.jsx";
 //Media imports
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
-import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
-import Checkbox from '../../../components/Forms/Checkbox.jsx';
-import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
+
 
 
 function SignUp (){
@@ -203,7 +205,7 @@ function SignUp (){
                     modClass={usernameError && 'error'}
                 />
 
-                <Label htmlFor='pass'>
+                <Label htmlFor='password'>
                     <Input 
                         type={showPassword[0]}
                         name='password'
