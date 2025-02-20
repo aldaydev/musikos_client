@@ -117,3 +117,18 @@
 .error__text{
     font-size: 1.8rem;
 }
+
+.error_resendContainer,
+.success_resendContainer{
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.succes_resendText{
+    border: 2px solid var(--color-pink);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: var(--color-pink);
+    font-weight: bold;
+    text-wrap: nowrap;
+}

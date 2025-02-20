@@ -1,5 +1,3 @@
-//CSS imports
-import './signUp.css';
 //React imports
 import { useState } from "react";
 //Component imports
@@ -262,10 +260,10 @@ function SignUp (){
                 acceptLegals={acceptLegals}
             />}
 
-            {fetchError && <ErrorModal fetchError={fetchError} setFetchError={setFetchError}/>}
+            {fetchError && <ErrorModal error={fetchError} setError={setFetchError}/>}
 
             {fetchRes && fetchItem === 'signup' &&
-            <SuccessModal fetchRes={fetchRes} setFetchItem={setFetchItem}/>
+            <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
             }
 
         </section>

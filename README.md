@@ -1,5 +1,5 @@
-# bandbros_client
-### Sprint-1 - 16/02/2025 - Tarde - signUp styles
+# musikos_client
+### Sprint-1 - 20/02/2025 - Madrugada - error and success modals working
 
 Dependencias:
 

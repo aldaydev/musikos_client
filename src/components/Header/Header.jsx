@@ -1,5 +1,5 @@
 import './header.css';
-import logo from '../../assets/icons/bandbros_logo.svg';
+import logo from '../../assets/icons/musikos_logo.svg';
 import search_icon from '../../assets/icons/search_icon.svg';
 import user_icon from '../../assets/icons/user_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
