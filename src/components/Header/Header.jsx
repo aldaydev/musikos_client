@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function Header (){
 
-    const isLoggedIn = true;
+    const isLoggedIn = false;
 
     return(
         <header className='App__header'>
@@ -42,7 +42,7 @@ function Header (){
                                 <img src={search_icon} alt="Search icon" className='nav__icon'/>
                             </Link>
                         </li>
-                        {isLoggedIn ? 
+                        {!isLoggedIn ? 
                             <li className='nav__item'>
                         
                             <Link to="/login">

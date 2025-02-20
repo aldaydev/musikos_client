@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint-1 - 20/02/2025 - Madrugada - error and success modals working
+### Sprint-1 - 20/02/2025 - Mañana - spinner animation and modal
 
 Dependencias:
 

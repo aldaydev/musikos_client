@@ -1,0 +1,8 @@
+/*---------- SPINNER STYLES ----------*/
+.spinner{
+    width: 150px;
+}
+
+.spinner--little{
+    width: 40px;
+}

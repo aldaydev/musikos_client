@@ -4,6 +4,7 @@ import Button from '../Forms/Button';
 import useFetch from '../../utils/useFetch';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Spinner from '../spinners/Spinner';
 
 const ErrorModal = ({error, setError}) => {
 
@@ -11,7 +12,7 @@ const ErrorModal = ({error, setError}) => {
 
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
-    const handeResend = async (username) => {
+    const handleResend = async (username) => {
         await fetchReq({
             endpoint: '/musicians/resend-confirmation',
             method: 'POST',
@@ -43,7 +44,10 @@ const ErrorModal = ({error, setError}) => {
                 <ExitButton exit={handleExit}/>
                 {error.link && !fetchError &&
                     <div className='error_resendContainer'>
-                        <Button onClick={()=>handeResend(error.username)}>REENVIAR EMAIL DE CONFIRMACIÓN</Button>
+                        {isLoading ? <Spinner modClass='little'/>
+                        :
+                        <Button onClick={()=>handleResend(error.username)}>REENVIAR EMAIL DE CONFIRMACIÓN</Button>
+                        }
                     </div>
                 }
                 {fetchRes && 

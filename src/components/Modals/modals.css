@@ -44,6 +44,7 @@
     width: 50%;
     height: 70%;
     padding: 50px 70px 50px 50px;
+    margin-bottom: 60px;
     overflow-y: auto;
     background-color:  var(--color-white);
     position: relative;
@@ -131,4 +132,15 @@
     color: var(--color-pink);
     font-weight: bold;
     text-wrap: nowrap;
+}
+
+/*---------- SPINNER MODAL STYLES ----------*/
+
+.modal_placement--spinner{
+    background-color: transparent;
+}
+
+.spinner__position{
+    background-color: transparent;
+    margin-bottom: 60px;
 }

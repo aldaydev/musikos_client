@@ -14,6 +14,7 @@ import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
 import Checkbox from '../../../components/Forms/Checkbox.jsx';
+import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
 
 
 function SignUp (){
@@ -262,9 +263,11 @@ function SignUp (){
 
             {fetchError && <ErrorModal error={fetchError} setError={setFetchError}/>}
 
-            {fetchRes && fetchItem === 'signup' &&
-            <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
+            {fetchRes && fetchItem === 'signup' && !isLoading &&
+            <SuccessModal success={fetchRes} setSuccess={setFetchItem} isLoading={isLoading}/>
             }
+
+            {isLoading && <SpinnerModal/>}
 
         </section>
     )
