@@ -42,25 +42,32 @@ const ErrorModal = ({error, setError}) => {
                 </h3>
                 <h4 className='error__text'>{error.message}</h4>
                 <ExitButton exit={handleExit}/>
-                {error.link && !fetchError &&
-                    <div className='error_resendContainer'>
+
+                {error.link && !fetchError && !fetchRes &&
+                    <div className='error__resendButtonContainer'>
                         {isLoading ? <Spinner modClass='little'/>
                         :
                         <Button onClick={()=>handleResend(error.username)}>REENVIAR EMAIL DE CONFIRMACIÓN</Button>
                         }
-                    </div>
-                }
+                    </div>}
+
                 {fetchRes && 
-                    <div className='success_resendContainer'>
-                        <span className='succes_resendText'>EMAIL ENVIADO</span>
+                    <div className='error__resendResContainer'>
+                        <span className='error__resendText'>{fetchRes.message}</span>
                     </div>
                     
                 }
+
                 {fetchError && 
-                    <div className='success_resendContainer'>
-                        <span className='succes_resendText'>HA HABIDO UN ERROR ({fetchError.status})</span>
+                    <div className='error__resendResContainer'>
+                        <span className='error__resendText'>
+                            {fetchError.status === 400 ? 
+                                'USUARIO INEXISTENTE O YA CONFIRMADO'
+                                :
+                                `HA HABIDO UN ERROR (${fetchError.status})`
+                            }
+                        </span>
                     </div>
-                    
                 }
             </div>
         </div>,

@@ -119,19 +119,20 @@
     font-size: 1.8rem;
 }
 
-.error_resendContainer,
-.success_resendContainer{
+.error__resendButtonContainer,
+.error__resendResContainer{
     margin: 0 auto;
     margin-top: 40px;
 }
 
-.succes_resendText{
+.error__resendResContainer{
     border: 2px solid var(--color-pink);
     padding: 10px 20px;
     border-radius: 10px;
+    text-align: center;
     color: var(--color-pink);
     font-weight: bold;
-    text-wrap: nowrap;
+    text-wrap: pretty;
 }
 
 /*---------- SPINNER MODAL STYLES ----------*/
@@ -143,4 +144,13 @@
 .spinner__position{
     background-color: transparent;
     margin-bottom: 60px;
+    animation: spinner .5s ease-in-out .2s both;
+}
+
+@keyframes spinner {
+    from{
+        opactity: 0
+    }to{
+        opacity: 1;
+    }
 }

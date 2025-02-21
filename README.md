@@ -1,18 +1,32 @@
 # musikos_client
-### Sprint-1 - 21/02/2025 - Madrugada - login styles
+### Sprint-1 - 21/02/2025 - Mañana - refactoring
 
 Dependencias:
 
-npm create vite@latest bandbros_client --template react
-npm install react-router-dom@latest
-npm install @lottiefiles/dotlottie-react
+- npm create vite@latest bandbros_client --template react
+- npm install react-router-dom@latest
+- npm install @lottiefiles/dotlottie-react
 
-## Sprint 1 (Front)
+## 1er SPRINT (FRONTEND)
 
-### OBJETIVOS:
-1. Inicialización del proyecto
-2. Diseño de estética general
-3. Función de signUp sincronizada con backend
+### RESUMEN DE OBJETIVOS:
+
+Al igual que en el back, en el primer sprint del front me he centrado en configuraciones y disposiciones globales que agilizarán mucho los siguientes sprints, realizando solo la funcionalidad de signUp, que queda operativa y sincronizada con el back.
+
+1. Inicialización del proyecto (react/vite).
+2. Diseño de estética general (colores, logo, tipografía...)
+3. Disposición incial de las páginas y componentes reutilizables.
+4. Función de signUp sincronizada con backend.
+5. Diseño de ErrorModal (componente) reutilizable.
+6. Diseño de SuccessModal (componente) reutilizable.
+7. Diseño de LegalModal (componente) para mostrar los términos y la política de privacidad.
+8. Creación de useFetch para las peticiones.
+9. Creación de customFetch para peticiones desde js puro.
+10. Creación de fichero validate.js para validaciones.
+11. Diseño y creación de spinner de carga (img + modal).
+
+
+---------- NOTAS ----------
 
 * Crear el esqueleto del frontend
     - Proyecto de React con Vite

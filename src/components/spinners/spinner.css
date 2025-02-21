@@ -1,8 +1,18 @@
 /*---------- SPINNER STYLES ----------*/
 .spinner{
     width: 150px;
+    animation: spinner .5s ease-in-out .2s both;
 }
 
 .spinner--little{
     width: 40px;
+    animation: spinner .5s ease-in-out .2s both;
+}
+
+@keyframes spinner {
+    from{
+        opactity: 0
+    }to{
+        opacity: 1;
+    }
 }
