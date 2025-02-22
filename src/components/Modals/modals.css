@@ -144,12 +144,12 @@
 .spinner__position{
     background-color: transparent;
     margin-bottom: 60px;
-    animation: spinner .5s ease-in-out .2s both;
+    animation: spinner .5s ease-in-out 1s both;
 }
 
 @keyframes spinner {
     from{
-        opactity: 0
+        opactity: 0;
     }to{
         opacity: 1;
     }

@@ -18,7 +18,7 @@ const useFetch = () => {
    * @param {*} authorization -> si el fetch requiere autorization del header
    * @param {Object} body -> body del fetch
    */
-  const fetchReq = async ({ endpoint = "/home", method = "GET", authorization = null, body = {}, item = null }) => {
+  const fetchReq = async ({ endpoint = "/home", method = "GET", authorization = null, body = {}, item = null, credentials = 'include' }) => {
     setIsLoading(true);
     setFetchError(null);
     setFetchItem(item);
@@ -36,8 +36,13 @@ const useFetch = () => {
       // Opciones del fetch
       const fetchOptions = {
         method,
-        headers,
+        headers
       };
+
+      //Si las credenciales están habilitadas las metemos
+      if(credentials == 'include'){
+        fetchOptions.credentials = credentials
+      }
 
       // Si el fetch no es 'GET', se toman los datos del body
       if (method !== "GET") {

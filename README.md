@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint-1 - 21/02/2025 - Mañana - refactoring
+### Sprint 2 - 22/02/2025 - Noche - signin component
 
 Dependencias:
 

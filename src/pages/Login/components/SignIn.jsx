@@ -1,22 +1,32 @@
 //React imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //Component imports
 import Input from "../../../components/Forms/Input";
 import Button from "../../../components/Forms/Button";
 import Label from "../../../components/Forms/Label";
+
+import ErrorModal from '../../../components/Modals/ErrorModal';
+import SuccessModal from '../../../components/Modals/SuccessModal';
+
 //Utils imports
 import useFetch from "../../../utils/useFetch.jsx";
 //Media imports
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
+import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
 
 function SignIn (){
 
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
-    const [signInValue, setsignInValue] = useState('');
-    const [passValue, setPassValue] = useState('');
+    const [ formError, setFormError ] = useState(null);
+
+    useEffect(()=>{
+        fetchError 
+            && fetchError.status === 400 
+            && setFormError('Usuario o contraseña inválidos');
+    },[fetchError])
 
     //Form data STATE
     const [formData, setFormData] = useState({login: "", password: ""});
@@ -27,7 +37,6 @@ function SignIn (){
         const {name, value} = e.target;
 
         setFormData({...formData, [name]: value});
-        console.log(formData);
     }
 
     function handleShowPassword (){
@@ -42,21 +51,22 @@ function SignIn (){
             endpoint: '/musicians/signin',
             method: 'POST',
             body: formData,
-            item: 'signup'
+            item: 'signin'
         });
     }
 
     return(
         <section className="login__signIn">
             <h3 className="signIn__title">ACCEDE A TU CUENTA</h3>
-            <form className="signIn__form">
+            <form className="signIn__form" onSubmit={handleSubmit}>
 
                 <Input 
                     name='login'
                     id='login'
                     value={formData.login}
-                    placeholder='Email o Username' 
+                    placeholder='Email o Username'
                     onChange={handleChange}
+                    modClass={fetchError && 'error'}
                 />
 
                 <Label htmlFor='pass'>
@@ -67,18 +77,26 @@ function SignIn (){
                         value={formData.password}
                         placeholder='Contraseña'
                         onChange={handleChange}
-                        // modClass={passwordError && 'error'}
+                        modClass={fetchError && 'error'}
                         showPassImg={showPassword[1]}
                         showPassFunc={handleShowPassword}
+                        
                     />
                 </Label>
 
                 
                 <span className="resetPass__link">He olvidado mi contraseña</span>
-               
 
                 <Button modClass='signIn'>ACCEDER</Button>
             </form>
+            
+            {/* {fetchError && fetchError.status !== 400 && <ErrorModal error={fetchError} setError={setFetchError}/>}
+
+            {fetchRes && fetchItem === 'signin' && !isLoading &&
+                <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
+            }
+
+            {!formError && !fetchRes && isLoading && <SpinnerModal/>} */}
         </section>
     )
 }

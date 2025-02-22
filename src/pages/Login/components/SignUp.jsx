@@ -266,7 +266,7 @@ function SignUp (){
             {fetchError && <ErrorModal error={fetchError} setError={setFetchError}/>}
 
             {fetchRes && fetchItem === 'signup' && !isLoading &&
-            <SuccessModal success={fetchRes} setSuccess={setFetchItem} isLoading={isLoading}/>
+            <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
             }
 
             {isLoading && <SpinnerModal/>}
