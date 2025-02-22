@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 2 - 22/02/2025 - Noche - signin component
+### Sprint 2 - 22/02/2025 - Noche - designing authContext
 
 Dependencias:
 

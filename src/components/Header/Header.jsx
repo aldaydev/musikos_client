@@ -5,10 +5,13 @@ import user_icon from '../../assets/icons/user_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
 import close_icon from '../../assets/icons/close_icon.svg';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 function Header (){
 
-    const isLoggedIn = false;
+    const { isLoggedIn  } = useContext(AuthContext);
+    
 
     return(
         <header className='App__header'>

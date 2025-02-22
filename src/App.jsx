@@ -6,12 +6,13 @@ import DashBoard from './pages/Dashboard';
 import Login from './pages/Login/Login';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
     <Router>
       <Header/>
         <main className="App__main">
@@ -23,8 +24,7 @@ function App() {
         </main>
       <Footer/>
     </Router>
-      
-    </>
+    </AuthProvider>
   )
 }
 
