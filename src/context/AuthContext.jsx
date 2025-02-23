@@ -12,14 +12,23 @@ export const AuthProvider = ({ children }) => {
     const [username, setUsername] = useState(false);
 
     useEffect(()=>{
-        fetchReq({
-            endpoint: '/musicians/verify-token',
-            method: 'POST',
-            item: 'verifyAccessToken'
-        });
-
-
+        if(!sessionStorage.user){
+            fetchReq({
+                endpoint: '/musicians/verify-token',
+                method: 'POST',
+                item: 'verifyAccessToken'
+            });
+        }else{
+            setIsLoggedIn(true);
+        }
     },[])
+
+    useEffect(()=>{
+        if(fetchItem === 'verifyAccessToken'){
+            
+        }
+
+    }, [fetchRes, fetchError])
 
     return (
         <AuthContext.Provider value={{ isLoggedIn }}>
