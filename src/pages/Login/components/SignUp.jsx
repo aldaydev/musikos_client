@@ -62,7 +62,7 @@ function SignUp (){
         // Define un nuevo timeout para ejecutar la validación
         const newTimeoutId = setTimeout(() => {
             onlineValidations(value, id);
-        }, 1000); // 1s de debounce
+        }, 700); // 700ms de debounce
 
         setTimeoutId(newTimeoutId); // Guarda el nuevo timeout
 
@@ -111,8 +111,8 @@ function SignUp (){
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const validateUsername = await validate.username(formData.username.toLowerCase());
-        const validateEmail = await validate.email(formData.email.toLowerCase());
+        const validateUsername = await validate.username(formData.username);
+        const validateEmail = await validate.email(formData.email);
         const validatePassword = validate.password(formData.password);
 
         if(!validateUsername[0]){

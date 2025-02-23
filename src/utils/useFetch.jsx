@@ -18,7 +18,7 @@ const useFetch = () => {
    * @param {*} authorization -> si el fetch requiere autorization del header
    * @param {Object} body -> body del fetch
    */
-  const fetchReq = async ({ endpoint = "/home", method = "GET", authorization = null, body = {}, item = null, credentials = 'include' }) => {
+  const fetchReq = async ({ endpoint = "/home", method = "GET", authorization = null, body = {}, item = null, credentials }) => {
     setIsLoading(true);
     setFetchError(null);
     setFetchItem(item);
@@ -56,22 +56,18 @@ const useFetch = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        const err = new Error(data.message || data.statusText);
-        err.type = data.type; // Agregar la causa como una propiedad extra
-        err.status = response.status;
-        throw err;
+        throw {message: data.message, status: data.status};
       }else{
         console.log(data);
         //Se almacena la información de la respuesta del fetch
         setFetchRes(await data);
       }
       
-    } catch (err) {
-      if(err.message === 'Failed to fetch'){
+    } catch (error) {
+      if(error.message === 'Failed to fetch'){
         setFetchError({message: 'No se ha podido realizar la solicitud.', status: '---'});
       }else{
-        console.log(err.status);
-        setFetchError({message: err.message, cause: err.type, status: err.status});
+        setFetchError({message: error.message, status: error.status});
       }
     } finally {
       setIsLoading(false);

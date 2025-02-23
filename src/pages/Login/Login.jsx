@@ -9,12 +9,13 @@ import SuccessModal from '../../components/Modals/SuccessModal';
 
 function Login (){
 
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [confirmationError, setConfirmationError] = useState(null);
     const [confirmationSuccess, setConfirmationSuccess] = useState(null);
 
     useEffect(()=>{
         const params = Object.fromEntries(searchParams.entries());
+        setSearchParams({}, { replace: true });
         if(params.error === 'expired'){
             setConfirmationError({
                 title: 'Enlace caducado',

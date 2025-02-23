@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 2 - 22/02/2025 - Noche - designing authContext
+### Sprint 2 - 23/02/2025 - Tarde - authContext design running
 
 Dependencias:
 

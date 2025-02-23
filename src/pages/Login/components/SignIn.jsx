@@ -1,5 +1,6 @@
 //React imports
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 //Component imports
 import Input from "../../../components/Forms/Input";
 import Button from "../../../components/Forms/Button";
@@ -14,18 +15,23 @@ import useFetch from "../../../utils/useFetch.jsx";
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
+import { AuthContext } from "../../../context/AuthContext.jsx";
 
 function SignIn (){
 
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
+    const { setIsLoggedIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
     const [ formError, setFormError ] = useState(null);
 
     useEffect(()=>{
         fetchError 
             && fetchError.status === 400 
-            && setFormError('Usuario o contraseña inválidos');
+            && setFormError('Usuario y/o contraseña no válidos');
     },[fetchError])
 
     //Form data STATE
@@ -47,13 +53,27 @@ function SignIn (){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(!formData.login || !formData.password){
+            return setFormError('Faltan datos necesarios')
+        }
+
         await fetchReq({
             endpoint: '/musicians/signin',
             method: 'POST',
             body: formData,
-            item: 'signin'
+            item: 'signin',
+            credentials: 'include'
         });
     }
+
+    useEffect(()=>{
+        if(fetchRes && fetchItem === 'signin'){
+            sessionStorage.auth = JSON.stringify(fetchRes);
+            setIsLoggedIn(true);
+            navigate('/');
+        }
+    },[fetchRes, fetchItem, navigate])
 
     return(
         <section className="login__signIn">
@@ -80,7 +100,7 @@ function SignIn (){
                         modClass={fetchError && 'error'}
                         showPassImg={showPassword[1]}
                         showPassFunc={handleShowPassword}
-                        
+                        error={formError}
                     />
                 </Label>
 
@@ -90,13 +110,8 @@ function SignIn (){
                 <Button modClass='signIn'>ACCEDER</Button>
             </form>
             
-            {/* {fetchError && fetchError.status !== 400 && <ErrorModal error={fetchError} setError={setFetchError}/>}
+            {fetchError && fetchError.status !== 400 && <ErrorModal error={fetchError} setError={setFetchError}/>}
 
-            {fetchRes && fetchItem === 'signin' && !isLoading &&
-                <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
-            }
-
-            {!formError && !fetchRes && isLoading && <SpinnerModal/>} */}
         </section>
     )
 }
