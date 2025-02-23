@@ -7,6 +7,8 @@ import Login from './pages/Login/Login';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { AuthProvider } from './context/AuthContext';
+import ProtectedFromNoAuth from './components/ProtectedRoutes/ProtectedFromNoAuth';
+import ProtectedFromAuth from './components/ProtectedRoutes/ProtectedFromAuth';
 
 
 function App() {
@@ -18,8 +20,15 @@ function App() {
         <main className="App__main">
           <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<DashBoard />} />
-              <Route path="/login" element={<Login/>} />
+
+              <Route element={<ProtectedFromNoAuth />}>
+                <Route path="/dashboard" element={<DashBoard />} />
+              </Route>
+
+              <Route element={<ProtectedFromAuth />}>
+                <Route path="/login" element={<Login/>} />
+              </Route>
+              
           </Routes>
         </main>
       <Footer/>

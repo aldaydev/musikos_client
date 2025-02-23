@@ -22,14 +22,14 @@ function Header (){
 
     const handleLogout = async () => {
         sessionStorage.auth = JSON.stringify({verified: false});
-        setIsLoggedIn(false);
         await fetchReq({
-            endpoint: '/musicians/clear-cookies',
+            endpoint: '/auth/clear-cookies',
             method: 'POST',
             item: 'clearCookies',
             credentials: 'include'
         });
         navigate('/');
+        window.location.reload();
     }
     
 

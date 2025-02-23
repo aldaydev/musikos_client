@@ -143,7 +143,7 @@ function SignUp (){
 
         if(validateUsername[0] && validateEmail[0] && validatePassword[0] && formData.acceptTerms && formData.acceptPrivacy){
             await fetchReq({
-                endpoint: '/musicians/signup',
+                endpoint: '/auth/signup',
                 method: 'POST',
                 body: formData,
                 item: 'signup'

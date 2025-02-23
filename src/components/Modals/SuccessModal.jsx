@@ -1,14 +1,10 @@
 import { createPortal } from 'react-dom';
 import ExitButton from './ExitButton';
-import { useSearchParams } from 'react-router-dom';
 
 const SuccessModal = ({success, setSuccess}) => {
-    
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleExit = () => {
         setSuccess(null);
-        searchParams && setSearchParams({}, { replace: true })
     }
 
     return createPortal(

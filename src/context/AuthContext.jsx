@@ -8,9 +8,13 @@ export const AuthProvider = ({ children }) => {
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(
-        (sessionStorage.auth && JSON.parse(sessionStorage.auth).verified) || false
-    );
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        if(sessionStorage.auth && JSON.parse(sessionStorage.auth).verified){
+            return true;
+        }else{
+            return false;
+        }
+    });
 
     const [authInternalError, setAuthInternalError] = useState(false);
 
@@ -20,7 +24,7 @@ export const AuthProvider = ({ children }) => {
             if(!sessionStorage.auth){
                 console.log('Es la primera vez que se comprueba si el usuario está logeado');
                 fetchReq({
-                    endpoint: '/musicians/verify-access-token',
+                    endpoint: '/auth/verify-access-token',
                     method: 'POST',
                     item: 'verifyAccessToken',
                     credentials: 'include'
@@ -35,7 +39,6 @@ export const AuthProvider = ({ children }) => {
                     console.log(isLoggedIn);
                     setIsLoggedIn(false);
                 }
-                
             }
         }
     },[])
@@ -49,7 +52,7 @@ export const AuthProvider = ({ children }) => {
             }else if(fetchError && fetchError.status === 400){
                 console.log('AccessToken no válido. Solicitando renovación...');
                 fetchReq({
-                    endpoint: '/musicians/new-access-token',
+                    endpoint: '/auth/new-access-token',
                     method: 'POST',
                     item: 'newAccessToken',
                     credentials: 'include'

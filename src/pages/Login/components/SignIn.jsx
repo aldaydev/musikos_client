@@ -31,7 +31,7 @@ function SignIn (){
     useEffect(()=>{
         fetchError 
             && fetchError.status === 400 
-            && setFormError('Usuario y/o contraseña no válidos');
+            && setFormError('Usuario y/o contraseña incorrectos');
     },[fetchError])
 
     //Form data STATE
@@ -55,11 +55,11 @@ function SignIn (){
         e.preventDefault();
 
         if(!formData.login || !formData.password){
-            return setFormError('Faltan datos necesarios')
+            return setFormError('Faltan campos obligatorios');
         }
 
         await fetchReq({
-            endpoint: '/musicians/signin',
+            endpoint: '/auth/signin',
             method: 'POST',
             body: formData,
             item: 'signin',
@@ -70,8 +70,9 @@ function SignIn (){
     useEffect(()=>{
         if(fetchRes && fetchItem === 'signin'){
             sessionStorage.auth = JSON.stringify(fetchRes);
-            setIsLoggedIn(true);
+            // setIsLoggedIn(true);
             navigate('/');
+            window.location.reload();
         }
     },[fetchRes, fetchItem, navigate])
 

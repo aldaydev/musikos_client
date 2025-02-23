@@ -3,18 +3,15 @@ import ExitButton from './ExitButton';
 import Button from '../Forms/Button';
 import useFetch from '../../utils/useFetch';
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import Spinner from '../spinners/Spinner';
 
 const ErrorModal = ({error, setError}) => {
-
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
     const handleResend = async (username) => {
         await fetchReq({
-            endpoint: '/musicians/resend-confirmation',
+            endpoint: '/auth/resend-confirmation',
             method: 'POST',
             body: {username},
             item: 'resend'
@@ -23,15 +20,13 @@ const ErrorModal = ({error, setError}) => {
 
     const handleExit = () => {
         setError(null);
-        setSearchParams({}, { replace: true })
     }
 
     useEffect(() => {
         if(fetchRes && error.link){
             setError({...error, link: null});
-            setSearchParams({}, { replace: true })
         }
-    }, [fetchRes, error, setError, searchParams, setSearchParams])
+    }, [fetchRes, error, setError])
 
     return createPortal(
         <div className="modal__placement">
