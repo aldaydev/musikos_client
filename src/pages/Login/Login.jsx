@@ -27,8 +27,9 @@ function Login (){
     useEffect(()=>{
         if(searchParams && !isLoggedIn){
             const params = Object.fromEntries(searchParams.entries());
+            
             setSearchParams({}, { replace: true });
-            console.log(params);
+            console.log('PARAMS', params);
             if(params.error){
                 const username = params.username || null;
                 const paramError = setErrorMessage(params.type, params.error, username);
@@ -99,8 +100,6 @@ function Login (){
 
     return(
         <div className="login__container">
-            {!sessionStorage.auth || !JSON.parse(sessionStorage.auth).verified &&
-                <>
                     <h1 className='main__title'>
                         ZONA DE ACCESO
                     </h1>
@@ -128,11 +127,7 @@ function Login (){
                             recoverPass={newPassModal}
                             setRecoverPass={setNewPassModal}
                         />
-                    }
-                </>
             }
-
-
         </div>
     )
 }
