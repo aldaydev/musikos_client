@@ -12,8 +12,8 @@ const SuccessModal = ({success, setSuccess}) => {
             
             <div className="success__position">
                 <h3 className='success__title'>{success.title}</h3>
-                    <h4 className='success__text'>{success.message}</h4>
-                    <ExitButton exit={handleExit}/>
+                <h4 className='success__text'>{success.message}</h4>
+                <ExitButton exit={handleExit}/>
             </div>
             
         </div>,

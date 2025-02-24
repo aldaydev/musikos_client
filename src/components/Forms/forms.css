@@ -8,6 +8,10 @@
     z-index: 10;
 }
 
+.inputContainer--recoverPass{
+    min-width: 300px;
+}
+
 .textInput, 
 .passwordInput{
     width: 100%;

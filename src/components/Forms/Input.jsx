@@ -1,9 +1,14 @@
-const Input = ({ type = 'text', modClass, error, showPassImg, showPassFunc, ...props }) => {
+const Input = ({ type = 'text', modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
 
     const initialClass = `${type}Input`;
+    
+    let inputContainer = 'inputContainer';
+    if(divModClass){
+        inputContainer = `inputContainer inputContainer--${divModClass}`;
+    }
 
     return(
-        <div className="inputContainer">
+        <div className={inputContainer}>
             <input 
                 type={type}
                 className={!modClass ? initialClass : `${initialClass} ${initialClass}--${modClass}`} 

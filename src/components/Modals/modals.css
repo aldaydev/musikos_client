@@ -119,13 +119,20 @@
     font-size: 1.8rem;
 }
 
-.error__resendButtonContainer,
-.error__resendResContainer{
+.error__buttonContainer,
+.error__resContainer,
+.succes__buttonContainer{
     margin: 0 auto;
     margin-top: 40px;
 }
 
-.error__resendResContainer{
+.succes__buttonContainer{
+    position: relative;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.error__resContainer{
     border: 2px solid var(--color-pink);
     padding: 10px 20px;
     border-radius: 10px;
@@ -133,6 +140,22 @@
     color: var(--color-pink);
     font-weight: bold;
     text-wrap: pretty;
+}
+
+.success__loginError{
+    text-align: center;
+    text-wrap: pretty;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: block;
+    position: absolute;
+    width: 95%;
+    margin: 3px auto;
+    bottom: -15px;
+    left: 0px;
+    right: 0;
+    z-index: 100;
+    color: var(--color-pink);
 }
 
 /*---------- SPINNER MODAL STYLES ----------*/

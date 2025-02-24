@@ -16,6 +16,7 @@ import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
 import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
 import { AuthContext } from "../../../context/AuthContext.jsx";
+import RecoverPassModal from "../../../components/Modals/RecoverPassModal.jsx";
 
 function SignIn (){
 
@@ -24,9 +25,19 @@ function SignIn (){
 
     const { setIsLoggedIn } = useContext(AuthContext);
 
+    const [ recoverPass, setRecoverPass ] = useState(null);
+
     const navigate = useNavigate();
 
     const [ formError, setFormError ] = useState(null);
+
+    const handleRecoverPass = () => {
+        setRecoverPass({ 
+            title: 'Recuperar contraseña',
+            message: 'Indica tu email o username para recuperar tu contraseña',
+            link: true
+        })
+    }
 
     useEffect(()=>{
         fetchError 
@@ -37,13 +48,13 @@ function SignIn (){
     //Form data STATE
     const [formData, setFormData] = useState({login: "", password: ""});
 
-    const [showPassword, setShowPassword] = useState(['password', show_icon]);
-
     const handleChange = (e) => {
         const {name, value} = e.target;
 
         setFormData({...formData, [name]: value});
     }
+
+    const [showPassword, setShowPassword] = useState(['password', show_icon]);
 
     function handleShowPassword (){
         showPassword[0] === 'password'
@@ -106,12 +117,14 @@ function SignIn (){
                 </Label>
 
                 
-                <span className="resetPass__link">He olvidado mi contraseña</span>
+                <span className="resetPass__link" onClick={handleRecoverPass}>He olvidado mi contraseña</span>
 
                 <Button modClass='signIn'>ACCEDER</Button>
             </form>
             
             {fetchError && fetchError.status !== 400 && <ErrorModal error={fetchError} setError={setFetchError}/>}
+
+            {recoverPass && <RecoverPassModal recoverPass={recoverPass} setRecoverPass={setRecoverPass}/>}
 
         </section>
     )

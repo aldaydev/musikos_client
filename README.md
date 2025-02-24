@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 2 - 23/02/2025 - Tarde - authContext and signin completed
+### Sprint 2 - 23/02/2025 - Noche - working on recover password modals
 
 Dependencias:
 
