@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import useFetch from '../../utils/useFetch';
+import SuccessModal from '../Modals/SuccessModal'
 
 
 function Header (){
@@ -24,10 +25,15 @@ function Header (){
         sessionStorage.auth = JSON.stringify({verified: false});
         await fetchReq({
             endpoint: '/auth/clear-cookies',
-            method: 'POST',
+            method: 'DELETE',
             item: 'clearCookies',
             credentials: 'include'
         });
+        
+    }
+
+    const handleExit = () => {
+        setFetchItem(null);
         navigate('/');
         window.location.reload();
     }
@@ -90,6 +96,11 @@ function Header (){
                                 </li>
                             </ul>
                             
+                        }
+
+                        {fetchRes && fetchItem === 'clearCookies' &&
+                            <SuccessModal success={fetchRes} setSuccess={handleExit}
+                            />
                         }
                         
 

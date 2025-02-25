@@ -33,7 +33,8 @@ function Login (){
                 const username = params.username || null;
                 const paramError = setErrorMessage(params.type, params.error, username);
                 setParamsError(paramError);
-            }else{
+            }else if(params.success){
+                console.log('AQUÍ', params)
                 if(params.success && params.type === 'confirmation'){
                     setParamsSucces({
                         title: '¡Tu cuenta ha sido confirmada con éxito!',

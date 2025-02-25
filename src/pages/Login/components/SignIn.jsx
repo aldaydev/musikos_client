@@ -122,7 +122,7 @@ function SignIn (){
                 <Button modClass='signIn'>ACCEDER</Button>
             </form>
             
-            {fetchError && fetchError.status !== 400 && <ErrorModal error={fetchError} setError={setFetchError}/>}
+            {fetchError && fetchItem === 'signin' && fetchError.status === 500 && <ErrorModal error={fetchError} setError={setFetchError}/>}
 
             {recoverPass && <RecoverPassModal recoverPass={recoverPass} setRecoverPass={setRecoverPass}/>}
 

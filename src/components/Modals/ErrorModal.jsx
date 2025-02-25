@@ -5,7 +5,7 @@ import useFetch from '../../utils/useFetch';
 import { useEffect } from 'react';
 import Spinner from '../spinners/Spinner';
 
-const ErrorModal = ({error, setError}) => {
+const ErrorModal = ({error, setError, setItem}) => {
 
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
@@ -20,6 +20,7 @@ const ErrorModal = ({error, setError}) => {
 
     const handleExit = () => {
         setError(null);
+        setItem(null);
     }
 
     useEffect(() => {

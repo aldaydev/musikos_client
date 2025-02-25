@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 2 - 25/02/2025 - Mañana - recover password modals done
+### Sprint 2 - 25/02/2025 - Tarde - testing signup and signin 
 
 Dependencias:
 

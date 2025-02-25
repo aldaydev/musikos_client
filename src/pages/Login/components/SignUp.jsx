@@ -263,9 +263,13 @@ function SignUp (){
                 acceptLegals={acceptLegals}
             />}
 
-            {fetchError && <ErrorModal error={fetchError} setError={setFetchError}/>}
+            {fetchError && <ErrorModal 
+                error={fetchError} 
+                setError={setFetchError}
+                setItem={setFetchItem}
+            />}
 
-            {fetchRes && fetchItem === 'signup' && !isLoading &&
+            {!fetchError && fetchRes && fetchItem === 'signup' && !isLoading &&
             <SuccessModal success={fetchRes} setSuccess={setFetchItem}/>
             }
 

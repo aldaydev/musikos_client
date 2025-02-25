@@ -20,20 +20,29 @@ export const AuthProvider = ({ children }) => {
 
 
     useEffect(()=>{
+        //If user is not loggedin in context
         if(!isLoggedIn){
+            //If sessionStorage has no data about log
             if(!sessionStorage.auth){
                 console.log('Es la primera vez que se comprueba si el usuario está logeado');
+                //Request to verify access token
                 fetchReq({
                     endpoint: '/auth/verify-access-token',
-                    method: 'POST',
+                    method: 'GET',
                     item: 'verifyAccessToken',
                     credentials: 'include'
                 });
+
+            //If sessionStorage has data about log
             }else{
                 console.log('No es la primera vez que se comprueba si el usuario está logeado');
+
+                //If loggedin at SessionStorage
                 if(JSON.parse(sessionStorage.auth).verified){
                     console.log('Está logeado a través de sessionStorage');
                     setIsLoggedIn(true);
+                    
+                //If not loggedin at SessionStorage
                 }else{
                     console.log('Ya se ha comprobado que no está logeado');
                     console.log(isLoggedIn);
@@ -53,7 +62,7 @@ export const AuthProvider = ({ children }) => {
                 console.log('AccessToken no válido. Solicitando renovación...');
                 fetchReq({
                     endpoint: '/auth/new-access-token',
-                    method: 'POST',
+                    method: 'GET',
                     item: 'newAccessToken',
                     credentials: 'include'
                 });
