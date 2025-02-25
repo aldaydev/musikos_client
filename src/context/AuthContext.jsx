@@ -58,8 +58,8 @@ export const AuthProvider = ({ children }) => {
                 console.log('Ha habido un problema interno');
                 setAuthInternalError(fetchError);
                 setIsLoggedIn(false);
-            }else if(fetchError && fetchError.status === 400){
-                console.log('AccessToken no válido. Solicitando renovación...');
+            }else if(fetchError && (fetchError.status === 401 || 400)){
+                console.log('AccessToken no válido. Solicitando renovación con refreshToken');
                 fetchReq({
                     endpoint: '/auth/new-access-token',
                     method: 'GET',
@@ -77,12 +77,12 @@ export const AuthProvider = ({ children }) => {
             if(fetchError && fetchError.status === 500){
                 console.log('Ha habido un problema interno');
                 setAuthInternalError(fetchError);
-            }else if(fetchError && fetchError.status === 400){
+            }else if(fetchError && (fetchError.status === 400 || 401)){
                 console.log('refreshToken no válido. No está loggeado');
                 sessionStorage.auth = JSON.stringify({verified: false});
                 setIsLoggedIn(false);
             }else if(fetchRes){
-                console.log('Obteniendo datos del accessToken');
+                console.log('RefreshToken válido, obteniendo nuevo accessToken');
                 sessionStorage.auth = JSON.stringify(fetchRes);
                 setIsLoggedIn(true);
             }

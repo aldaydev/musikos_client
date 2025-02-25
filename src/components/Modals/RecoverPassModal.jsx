@@ -102,7 +102,7 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                             <Input 
                                 type={showPassword[0]}
                                 name='password'
-                                id='pass'
+                                id='recoverPass'
                                 value={passwordValue}
                                 placeholder='Contraseña'
                                 onChange={(e)=>setPasswordValue(e.target.value)}
@@ -126,7 +126,7 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                             />
                             }
                             
-                            <Button modClass={'recoverPass'}>
+                            <Button modClass={fetchError ? 'recoverPass recoverPass--error' :'recoverPass'}>
                                 {!recoverPass.password 
                                     ? 'RECUPERAR'
                                     : 'ENVIAR'
