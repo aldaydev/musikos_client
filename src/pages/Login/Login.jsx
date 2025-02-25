@@ -27,7 +27,6 @@ function Login (){
     useEffect(()=>{
         if(searchParams && !isLoggedIn){
             const params = Object.fromEntries(searchParams.entries());
-            
             setSearchParams({}, { replace: true });
             console.log('PARAMS', params);
             if(params.error){
@@ -45,58 +44,13 @@ function Login (){
                         title: 'Recuperación de contraseña',
                         message: `Escribe tu nueva contraseña para ${params.username}`,
                         password: true,
-                        link:true
+                        link:true,
+                        username: params.username
                     });
                 }
             } 
         }
-    }, [isLoggedIn, searchParams, navigate])
-
-    // useEffect(()=>{
-        
-    //     // if(isLoggedIn){
-    //     //     navigate('/dashboard');
-    //     //     window.location.reload();
-    //     // }
-
-    //     if(searchParams && !isLoggedIn){
-    //         const params = Object.fromEntries(searchParams.entries());
-    //         setSearchParams({}, { replace: true });
-    //         if(params.error === 'expired'){
-    //             setConfirmationError({
-    //                 title: 'Enlace caducado',
-    //                 message: 'El enlace de confirmación ha caducado. Si necesitas que te mandemos un nuevo email de confirmación pulsa en el siguiente enlace: ',
-    //                 username: params.username,
-    //                 link: true
-    //             });
-    //         }else if(params.error === 'already-confirmed'){
-    //             setConfirmationError({
-    //                 title: 'Ya confirmado',
-    //                 message: 'Ya confirmaste tu cuenta anteriormente. Puedes acceder con tus datos en el apartado "ACCEDE A TU CUENTA" en esta misma página.'
-    //             });
-    //         }else if(params.error === 'incorrect'){
-    //             setConfirmationError({
-    //                 title: 'Enlace incorrecto',
-    //                 message: 'En enlace de confirmación ha sido maniplado o es incorrecto. Si necesitas que te mandemos un nuevo email de confirmación pulsa en el siguiente enlace: ',
-    //                 username: params.username,
-    //                 link: true
-    //             });
-    //         }else if(params.error === 'external' || params.error === 'unexpected'){
-    //             setConfirmationError({
-    //                 title: 'Error interno',
-    //                 message: 'Ha habido un problema interno a la hora de confirmar tu cuenta. Por favor, prueba dentro de unos minutos o solicita un nuevo email de confirmación en el siguiente enlace: ',
-    //                 username: params.username,
-    //                 link: true
-    //             });
-    //         }else if(params.success){
-    //             setConfirmationSuccess({
-    //                 title: '¡Tu cuenta ha sido confirmada con éxito!',
-    //                 message: 'Ya puedes acceder desde la sección "ACCEDE A TU CUENTA" en esta misma página.'
-    //             });
-    //         }
-    //     }
-        
-    // },[searchParams, isLoggedIn, navigate]);
+    }, [isLoggedIn, searchParams, navigate]);
 
     return(
         <div className="login__container">
@@ -127,7 +81,7 @@ function Login (){
                             recoverPass={newPassModal}
                             setRecoverPass={setNewPassModal}
                         />
-            }
+                    }
         </div>
     )
 }

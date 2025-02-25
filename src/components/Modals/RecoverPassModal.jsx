@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import SpinnerModal from './SpinnerModal';
 import show_icon from "../../assets/icons/show_icon.svg";
 import hide_icon from "../../assets/icons/hide_icon.svg";
+import validate from '../../utils/validate';
 
 const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
 
@@ -17,6 +18,8 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
     }
 
     const [showPassword, setShowPassword] = useState(['password', show_icon]);
+    const [passwordError, setPasswordError] = useState([]);
+    const [loginValueError, setLoginValueError] = useState([]);
     
     function handleShowPassword (){
         showPassword[0] === 'password'
@@ -25,11 +28,22 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
     }
 
     useEffect(()=>{
+        if(fetchError && fetchItem === 'emailToRecoverPass'){
+            setLoginValueError(fetchError.message);
+        }else if(fetchError && fetchItem === 'passwordRecover'){
+            setPasswordError([fetchError.message]);
+        }
+    },[fetchError, fetchItem])
+
+    useEffect(()=>{
         
         if(fetchItem === 'emailToRecoverPass' && fetchRes){
-            setRecoverPass({title: fetchRes.title, message: fetchRes.message})
+            setRecoverPass({title: fetchRes.title, message: fetchRes.message, password: true})
         }
-        console.log('RECOVERPASS',recoverPass.password);
+
+        if(fetchItem === 'passwordRecover' && fetchRes){
+            setRecoverPass({title: fetchRes.title, message: fetchRes.message, password: true})
+        }
     },[fetchItem, fetchRes])
 
     const [loginValue, setloginValue] = useState('');
@@ -39,22 +53,37 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
         e.preventDefault();
         
         if(!recoverPass.password){
-            await fetchReq({
-                endpoint: '/auth/validate-password-recover',
-                method: 'POST',
-                body: {login: loginValue},
-                item: 'emailToRecoverPass',
-                credentials: 'include'
-            });
+
+            if(!loginValue){
+                setLoginValueError('Campo obligatorio');
+            }else{
+                setLoginValueError([]);
+                await fetchReq({
+                    endpoint: '/auth/password-recover-email',
+                    method: 'POST',
+                    body: {login: loginValue},
+                    item: 'emailToRecoverPass',
+                    credentials: 'include'
+                });
+            }
         }else{
-            await fetchReq({
-                endpoint: '/auth/password-recover',
-                method: 'POST',
-                body: {password: passwordValue},
-                item: 'passwordRecover'
-            });
+            const validatePass = validate.password(passwordValue);
+            console.log(validatePass);
+            if(!validatePass[0]){
+                setPasswordError(validatePass[1]);
+            }else{
+                await fetchReq({
+                    endpoint: '/auth/password-recover',
+                    method: 'PATCH',
+                    body: {
+                        password: passwordValue,
+                        username: recoverPass.username
+                    },
+                    item: 'passwordRecover',
+                    credentials: 'include'
+                });
+            }
         }
-        
     }
 
     return createPortal(
@@ -67,8 +96,8 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                 {(recoverPass.link && !fetchRes) &&
                     <div className='succes__buttonContainer'>
                     
-                        <form className='succes__form' onSubmit={handleSubmit}>
-                            {recoverPass
+                        <form className='recoverPass__Form' onSubmit={handleSubmit}>
+                            {recoverPass.password
                             ?
                             <Input 
                                 type={showPassword[0]}
@@ -80,7 +109,8 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                                 modClass={fetchError && 'error'}
                                 showPassImg={showPassword[1]}
                                 showPassFunc={handleShowPassword}
-                                // error={passwordError}
+                                error={passwordError}
+                                divModClass='recoverPass'
                             />
 
                             :       
@@ -91,20 +121,37 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                                 placeholder='Email o Username'
                                 onChange={(e)=>setloginValue(e.target.value)}
                                 modClass={fetchError && 'error'}
-                                divModClass={'recoverPass'}
+                                divModClass='recoverPass'
+                                error={loginValueError}
                             />
                             }
                             
-                            <Button>RECUPERAR</Button>
+                            <Button modClass={'recoverPass'}>
+                                {!recoverPass.password 
+                                    ? 'RECUPERAR'
+                                    : 'ENVIAR'
+                                }
+                            </Button>
+                            
                         </form>
-                        {fetchError && fetchItem === 'emailToRecoverPass' &&
-                            <span className='success__loginError'>{fetchError.message}</span>
-                        }
+                        
                     </div>}
 
                     {isLoading &&
                         <SpinnerModal/>
                     }
+
+                    {/* {fetchError && 
+                        <div className='resetPassError__resContainer'>
+                            <span className='resetPassError__text'>
+                                {fetchError.status === 500 ? 
+                                    'USUARIO INEXISTENTE O YA CONFIRMADO'
+                                    :
+                                    `HA HABIDO UN ERROR (${fetchError.status})`
+                                }
+                            </span>
+                        </div>
+                    } */}
             </div>
             
         </div>,

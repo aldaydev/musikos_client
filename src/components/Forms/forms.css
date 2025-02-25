@@ -121,6 +121,10 @@
     background-color: var(--color-pink-light);
 }
 
+.button--recoverPass{
+    margin: 0 10px;
+}
+
 .exitButton--pink,
 .exitButton--black{
     width: 40px;

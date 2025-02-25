@@ -44,13 +44,13 @@ const ErrorModal = ({error, setError}) => {
                         :
                         <Button onClick={()=>handleResend(error.username)}>REENVIAR EMAIL DE CONFIRMACIÓN</Button>
                         }
-                    </div>}
+                    </div>
+                }
 
                 {fetchRes && 
                     <div className='error__resContainer'>
                         <span className='error__resendText'>{fetchRes.message}</span>
                     </div>
-                    
                 }
 
                 {fetchError && 

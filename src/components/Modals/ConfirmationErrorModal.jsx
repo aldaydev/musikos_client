@@ -32,12 +32,12 @@ const ConfirmationErrorModal = ({confirmationError, setConfirmationError}) => {
                     username: params.username,
                     link: true
                 });
-            }else if(params.error === 'already-updated'){
+            }else if(confirmationError === 'already-updated'){
                 setConfirmationError({
                     title: 'Ya confirmado',
                     message: 'Ya confirmaste tu cuenta anteriormente. Puedes acceder con tus datos en el apartado "ACCEDE A TU CUENTA" en esta misma página.'
                 });
-            }else if(params.error === 'incorrect'){
+            }else if(confirmationError === 'incorrect'){
                 setConfirmationError({
                     title: 'Enlace incorrecto',
                     message: 'En enlace de confirmación ha sido maniplado o es incorrecto. Si necesitas que te mandemos un nuevo email de confirmación pulsa en el siguiente enlace: ',

@@ -177,3 +177,20 @@
         opacity: 1;
     }
 }
+
+.resetPassError__resContainer{
+    border: 2px solid var(--color-pink);
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-pink);
+    font-weight: bold;
+    text-wrap: pretty;
+}
+
+.recoverPass__Form{
+    display: flex;
+    flex-direction: column;
+}
