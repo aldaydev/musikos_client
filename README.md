@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 2 - 25/02/2025 - Tarde - testing tokens
+### Sprint 2 - 26/02/2025 - Tarde - handling some request errors and begining to setUp search envorinment
 
 Dependencias:
 

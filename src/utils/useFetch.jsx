@@ -51,7 +51,7 @@ const useFetch = () => {
 
       // Se realiza el fetch con la confiduración recibida por parámetro
       const response = await fetch(`http://${server}:${port}/musikos/v1${endpoint}`, fetchOptions);
-
+  
       // Se contruye la respuesta desde le JSON del fetch
       const data = await response.json();
 
@@ -64,6 +64,7 @@ const useFetch = () => {
       }
       
     } catch (error) {
+      console.log('ERRORMESSAGE', error);
       if(error.message === 'Failed to fetch'){
         setFetchError({message: 'No se ha podido realizar la solicitud.', status: '---'});
       }else{

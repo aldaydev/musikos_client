@@ -1,4 +1,6 @@
+//React imports
 import { createContext, useEffect, useState } from "react";
+//Utils imports
 import useFetch from "../utils/useFetch";
 
 export const AuthContext = createContext();
@@ -17,7 +19,6 @@ export const AuthProvider = ({ children }) => {
     });
 
     const [authInternalError, setAuthInternalError] = useState(false);
-
 
     useEffect(()=>{
         //If user is not loggedin in context

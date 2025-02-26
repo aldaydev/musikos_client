@@ -1,13 +1,18 @@
+//Style imports
 import './login.css';
+//React imports
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
+//Context imports
+import { AuthContext } from '../../context/AuthContext';
+//Component imports
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
-import { useContext, useEffect, useState } from 'react';
 import ErrorModal from '../../components/Modals/ErrorModal';
 import SuccessModal from '../../components/Modals/SuccessModal';
-import { AuthContext } from '../../context/AuthContext';
-import setErrorMessage from '../../utils/errorMessages';
 import RecoverPassModal from '../../components/Modals/RecoverPassModal';
+//Uitls imports
+import setErrorMessage from '../../utils/errorMessages';
 
 
 function Login (){
@@ -17,8 +22,6 @@ function Login (){
     const { isLoggedIn } = useContext(AuthContext);
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const [confirmationError, setConfirmationError] = useState(null);
-    const [confirmationSuccess, setConfirmationSuccess] = useState(null);
     const [paramsError, setParamsError] = useState(null);
     const [paramsSuccess, setParamsSucces] = useState(null);
     const [newPassModal, setNewPassModal] = useState(null);

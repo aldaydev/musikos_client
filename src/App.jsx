@@ -1,12 +1,18 @@
+//Style imports
 import './App.css';
 import './components/Forms/forms.css';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
+//React imports
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+//Context imports
+import { AuthProvider } from './context/AuthContext';
+//Pages imports
 import DashBoard from './pages/Dashboard';
 import Login from './pages/Login/Login';
 import Home from './pages/Home';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { AuthProvider } from './context/AuthContext';
+import Search from './pages/Search/Search';
+//Components imports
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import ProtectedFromNoAuth from './components/ProtectedRoutes/ProtectedFromNoAuth';
 import ProtectedFromAuth from './components/ProtectedRoutes/ProtectedFromAuth';
 
@@ -28,6 +34,8 @@ function App() {
               <Route element={<ProtectedFromAuth />}>
                 <Route path="/login" element={<Login/>} />
               </Route>
+
+              <Route path="/buscar" element={<Search/>}/>
               
           </Routes>
         </main>

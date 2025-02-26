@@ -9,7 +9,6 @@ import LegalModal from "../../../components/Modals/LegalModal";
 import ErrorModal from '../../../components/Modals/ErrorModal';
 import SuccessModal from '../../../components/Modals/SuccessModal.jsx';
 import SpinnerModal from "../../../components/Modals/SpinnerModal.jsx";
-
 //Utils imports
 import validate from "../../../utils/validate.js";
 import useFetch from "../../../utils/useFetch.jsx";

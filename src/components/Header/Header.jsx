@@ -65,7 +65,7 @@ function Header (){
                 <nav className='header__nav'>
                     <ul className='nav__list'>
                         <li className='nav__item'>
-                            <Link to="/buscar-musicos">
+                            <Link to="/buscar">
                                 <span className='nav__link--color'>B</span>USCAR 
                                 {/* <span className='nav__link--color'>M</span>ÚSICOS */}
                                 <img src={search_icon} alt="Search icon" className='nav__icon'/>
