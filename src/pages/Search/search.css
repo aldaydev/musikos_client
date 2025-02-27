@@ -1,0 +1,18 @@
+.musician__image{
+    width: 150px;
+}
+
+.searchList__musician{
+    display: flex;
+}
+
+.musician__dataContainer{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.musician__imageContainer{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 3 - 27/02/2025 - Mañana - working on search page
+### Sprint 3 - 27/02/2025 - Tarde - working on searchList component
 
 ## 1o SPRINT (FRONTEND)
 s
