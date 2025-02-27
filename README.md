@@ -1,11 +1,25 @@
 # musikos_client
-### Sprint 2 - 26/02/2025 - Tarde - handling some request errors and begining to setUp search envorinment
+### Sprint 2 - 27/02/2025 - Madrugada - testing errors and back connections
 
-Dependencias:
+## 1o SPRINT (FRONTEND)
 
-- npm create vite@latest bandbros_client --template react
-- npm install react-router-dom@latest
-- npm install @lottiefiles/dotlottie-react
+### RESUMEN DE OBJETIVOS:
+
+He creado todo lo necesario para el signin en el front, así como comprobado la funcionalidad con el back. He ajustado componentes para que sean más reutilizables.
+
+1. Diseño del componente Signin.
+    (Acceso a cuenta)
+2. Diseño del componente RecoverPassModal.
+    (Modal para reestablecer la contraseña)
+3. Reajuste de componentes errorModal y succesModal.
+    (Errores y respuestas de solicitudes http)
+4. Revisión de lógica en la página "Login".
+    (Gestión de "query params" y ventanas modales)
+5. Creación de fichero "errorMessages" reutilizables.
+    (Traducir errores provenientes de "query params")
+6. Reajuste de "useFetch" para gestionar mejor los errores.
+    (Errores provenientes del back, errores del navegador/conexión)
+7. Aplicación de estilos.
 
 ## 1er SPRINT (FRONTEND)
 
@@ -27,6 +41,13 @@ Al igual que en el back, en el primer sprint del front me he centrado en configu
 
 
 ---------- NOTAS ----------
+
+Dependencias:
+
+- npm create vite@latest 
+- bandbros_client --template react
+- npm install react-router-dom@latest
+- npm install @lottiefiles/dotlottie-react
 
 * Crear el esqueleto del frontend
     - Proyecto de React con Vite

@@ -12,7 +12,7 @@ import ErrorModal from '../../components/Modals/ErrorModal';
 import SuccessModal from '../../components/Modals/SuccessModal';
 import RecoverPassModal from '../../components/Modals/RecoverPassModal';
 //Uitls imports
-import setErrorMessage from '../../utils/errorMessages';
+import {setErrorMessage, setSuccesMessage} from '../../utils/customMessages';
 
 
 function Login (){
@@ -39,18 +39,22 @@ function Login (){
             }else if(params.success){
                 console.log('AQUÍ', params)
                 if(params.success && params.type === 'confirmation'){
-                    setParamsSucces({
-                        title: '¡Tu cuenta ha sido confirmada con éxito!',
-                        message: 'Ya puedes acceder desde la sección "ACCEDE A TU CUENTA" en esta misma página.'
-                    })
+                    const modalData = setSuccesMessage(params.type, params.username);
+                    setParamsSucces(modalData);
+                    // setParamsSucces({
+                    //     title: '¡Tu cuenta ha sido confirmada con éxito!',
+                    //     message: 'Ya puedes acceder desde la sección "ACCEDE A TU CUENTA" en esta misma página.'
+                    // })
                 }else if(params.success && params.type === 'recoverPassword'){
-                    setNewPassModal({
-                        title: 'Recuperación de contraseña',
-                        message: `Escribe tu nueva contraseña para ${params.username}`,
-                        password: true,
-                        link:true,
-                        username: params.username
-                    });
+                    const modalData = setSuccesMessage(params.type, params.email, params.username);
+                    setNewPassModal(modalData);
+                    // setNewPassModal({
+                    //     title: 'Recuperación de contraseña',
+                    //     message: `Escribe tu nueva contraseña para ${params.username}`,
+                    //     password: true,
+                    //     link:true,
+                    //     username: params.username
+                    // });
                 }
             } 
         }

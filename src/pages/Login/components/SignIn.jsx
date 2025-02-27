@@ -38,9 +38,10 @@ function SignIn (){
     }
 
     useEffect(()=>{
-        fetchError 
-            && fetchError.status === 400 
-            && setFormError('Usuario y/o contraseña incorrectos');
+        if(fetchError){
+            fetchError.status === 400 && setFormError('Usuario y/o contraseña incorrectos');
+            fetchError.status === 403 && setFormError(fetchError.message);
+        }
     },[fetchError])
 
     //Form data STATE

@@ -1,4 +1,4 @@
-export default function setErrorMessage (type, error, username){
+export function setErrorMessage (type, error, username){
     let result;
     if(type === 'confirmation'){
         switch (error){
@@ -58,4 +58,23 @@ export default function setErrorMessage (type, error, username){
     }
 
     return result;
+}
+
+export function setSuccesMessage (type, email, username){
+    if(type === 'confirmation'){
+        return {
+            title: '¡Tu cuenta ha sido confirmada con éxito!',
+            message: 'Ya puedes acceder desde la sección "ACCEDE A TU CUENTA" en esta misma página.'
+        }
+    }    
+    if(type === 'recoverPassword'){
+        return {
+            title: 'Recuperación de contraseña',
+            message: `Escribe tu nueva contraseña para ${email}`,
+            password: true,
+            link:true,
+            email: email,
+            username: username
+        }
+    }
 }

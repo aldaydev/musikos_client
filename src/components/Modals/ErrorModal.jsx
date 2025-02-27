@@ -57,9 +57,15 @@ const ErrorModal = ({error, setError, setItem}) => {
                 {fetchError && 
                     <div className='error__resContainer'>
                         <span className='error__resendText'>
-                            {fetchError.status === 400 ? 
+                            {fetchError.status === 400 &&
                                 'USUARIO INEXISTENTE O YA CONFIRMADO'
-                                :
+                            }
+
+                            {fetchError.status === 409 &&
+                                fetchError.message
+                            }
+
+                            {fetchError.status === 500 && 
                                 `HA HABIDO UN ERROR (${fetchError.status})`
                             }
                         </span>

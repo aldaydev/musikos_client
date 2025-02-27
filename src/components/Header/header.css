@@ -43,17 +43,12 @@
     color: var(--color-white);
     transition: color .3s ease-in-out;
     letter-spacing: 0.5px;
+    user-select: none;
 }
 
 .header__title--color{
-    /* margin-left: 7px; */
-    
     color: var(--color-pink);
     transition: color .3s ease-in-out;
-}
-
-.header__nav{
-    
 }
 
 .nav__list{
@@ -82,11 +77,8 @@
     padding: 10px 10px;
     transition: transform .2s ease-in-out;
     cursor: pointer;
+    user-select: none;
 }
-
-/* .nav__item:hover {
-    background-color: #fbd5e2;
-} */
 
 .nav__link--color{
     padding-left: 7px;

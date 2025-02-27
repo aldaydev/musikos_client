@@ -62,8 +62,7 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                     endpoint: '/auth/password-recover-email',
                     method: 'POST',
                     body: {login: loginValue},
-                    item: 'emailToRecoverPass',
-                    credentials: 'include'
+                    item: 'emailToRecoverPass'
                 });
             }
         }else{
@@ -77,10 +76,10 @@ const RecoverPassModal = ({recoverPass, setRecoverPass}) => {
                     method: 'PATCH',
                     body: {
                         password: passwordValue,
-                        username: recoverPass.username
+                        username: recoverPass.username,
+                        email: recoverPass.email
                     },
-                    item: 'passwordRecover',
-                    credentials: 'include'
+                    item: 'passwordRecover'
                 });
             }
         }
