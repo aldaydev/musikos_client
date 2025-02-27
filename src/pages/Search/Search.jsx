@@ -8,9 +8,11 @@ function Search (){
     const {fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
     const [musicians, setMusicians] = useState(null);
 
+    const baseImageUrl = 'https://raw.githubusercontent.com/aldaydev/musikos_images/main/profiles/';
+
     useEffect(()=>{
         fetchReq({
-            endpoint: '/search/all',
+            endpoint: '/musicians',
             method: 'GET',
             item: 'searchAll'
         });
@@ -25,7 +27,15 @@ function Search (){
             </form>
             <section className="search__listContainer">
                 <ul className="search__list">
-
+                    {fetchRes && fetchItem === 'searchAll' && 
+                    fetchRes.map((musician, i) => (
+                        <li key={i}>
+                            <span>{musician.username}</span>
+                            <span>{musician.id}</span>
+                            <img src={`${baseImageUrl}${musician.image}`}/>
+                        </li>
+                    ))
+                    }
                 </ul>
             </section>
 

@@ -1,8 +1,8 @@
 # musikos_client
-### Sprint 2 - 27/02/2025 - Madrugada - testing errors and back connections
+### Sprint 3 - 27/02/2025 - Mañana - working on search page
 
 ## 1o SPRINT (FRONTEND)
-
+s
 ### RESUMEN DE OBJETIVOS:
 
 He creado todo lo necesario para el signin en el front, así como comprobado la funcionalidad con el back. He ajustado componentes para que sean más reutilizables.
