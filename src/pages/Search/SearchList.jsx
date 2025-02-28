@@ -7,10 +7,6 @@ function SearchList ({musicianslist, loading}){
 
     const baseImageUrl = 'https://raw.githubusercontent.com/aldaydev/musikos_images/main/profiles/';
 
-    useEffect(()=>{
-        console.log('MusicianList',musicianslist);
-    },[musicianslist])
-
     return(
         <section className="searchList__container">
             <h2>LISTADO DE MÚSICOS</h2>
@@ -26,8 +22,22 @@ function SearchList ({musicianslist, loading}){
                         <div className="musician__dataContainer">
                             <span>Nombre: {musician.name}</span>
                             <span> Edad: {musician.age}</span>
-                            <span> Estilos: {musician.styles}</span>
-                            <span> Instrumentos: {musician.instruments}</span>
+                            <ul> Estilos: 
+                                {musician.styles ? musician.styles.map((style)=>{
+                                    return <span className="musician__style">{style}</span>
+                                })
+                                :
+                                    <span>No indicado</span>
+                                }
+                            </ul>
+                            <ul> Instrumentos: 
+                                {musician.instruments ? musician.instruments.map((instrument)=>{
+                                    return <span className="musician__instrument">{instrument}</span>
+                                })
+                                :
+                                    <span>No indicado</span>
+                                }
+                            </ul>
                             <div>
                                 <span> {musician.region}</span>
                             </div>
