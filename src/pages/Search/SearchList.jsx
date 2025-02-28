@@ -26,8 +26,11 @@ function SearchList ({musicianslist, loading}){
                         <div className="musician__dataContainer">
                             <span>Nombre: {musician.name}</span>
                             <span> Edad: {musician.age}</span>
-                            <span> Estilos: {musician.styles?.length > 0 ? musician.styles : 'No indicado'}</span>
-                            <span> Instrumentos: {musician.instruments?.length > 0 ? musician.instruments : 'No indicado'}</span>
+                            <span> Estilos: {musician.styles}</span>
+                            <span> Instrumentos: {musician.instruments}</span>
+                            <div>
+                                <span> {musician.region}</span>
+                            </div>
                         </div>
                         
                     </li>
