@@ -11,16 +11,27 @@ function Search (){
     const [musicianslist, setMusiciansList] = useState([]);
 
     useEffect(()=>{
-        fetchReq({
-            endpoint: '/musicians',
-            method: 'GET',
-            item: 'searchAll'
-        });
+        if(!sessionStorage.lastSearch){
+            fetchReq({
+                endpoint: '/musicians',
+                method: 'GET',
+                item: 'searchAll'
+            });
+        }
     }, []);
 
     useEffect(()=>{
-        setMusiciansList(fetchRes);
+        if(fetchItem === 'searchAll'){
+            setMusiciansList(fetchRes);
+            sessionStorage.lastSearch = JSON.stringify(fetchRes);
+        }
     },[fetchRes])
+
+    useEffect(()=>{
+        console.log('-----Esta cogiendo de sessionStorage-----');
+        sessionStorage.lastSearch &&
+        setMusiciansList(JSON.parse(sessionStorage.lastSearch));
+    },[sessionStorage])
 
     return(
         <div className="search__container">
