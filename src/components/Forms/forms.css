@@ -23,6 +23,11 @@
     outline: 2px solid transparent;
 }
 
+
+.option {           
+    padding: 10px;            /* Solo funciona en algunos navegadores */
+}
+
 .passwordInput{
     padding: 5px 50px 5px 10px;
 }
@@ -75,6 +80,7 @@
     }
 }
 
+
 /*-----CHECKBOX INPUTS-----*/
 
 .checkboxContainer{
@@ -94,6 +100,88 @@
     vertical-align: middle;
     margin: 0 0 0 15px;
 }
+
+/*-----SELECTORS-----*/
+
+.selectorContainer{
+    display: inline-block;
+    position: relative;
+    width:fit-content;
+    min-width: 300px;
+    margin: 0 10px 20px 10px;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--color-blue-dark);
+    border-radius: 8px;
+    outline: 2px solid transparent;
+}
+
+.selector__title{
+    width: auto;
+    height: 40px;
+    font-size: 1.7rem;
+    padding: 5px 15px;
+    padding-top: 7px;
+    text-align: end;
+
+    position: relative;
+}
+
+.selectedCircle{
+    width: 22px;
+    height: 22px;
+    background-color: var(--color-pink);
+    border-radius: 50%;
+    position: absolute;
+    left: 15px;
+    top: 25%;
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1px;
+}
+
+.selector__icon{
+    vertical-align:middle;
+    margin-bottom: 3px;
+    margin-left: 12px;
+}
+
+.options__container{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 300px;
+    transition: height .3s ease-in-out;
+}
+
+.options__label{
+    font-size: 1.8rem;
+    padding: 2px 0px;
+    font-size: 1.7rem;
+}
+
+.options__input{
+    appearance: none;
+    display: none;
+}
+
+.options__span{
+    display: block;
+    width: 100%;
+    padding: 3px 15px;
+}
+
+.options__container .options__input:checked + .options__span {
+    background: var(--color-pink);
+    color: var(--color-white);
+}
+
+
 
 /*-----BUTTONS-----*/
 
@@ -156,3 +244,4 @@
 .exitButton--pink:hover{
     background-color: var(--color-pink-light);
 }
+

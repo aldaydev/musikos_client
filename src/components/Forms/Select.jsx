@@ -1,32 +1,26 @@
 import { useEffect } from "react";
 import useFetch from "../../utils/useFetch";
 
-const Select = ({ type = 'text', modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
-
-    const {fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
-
-    const initialClass = `${type}Input`;
-    
-    let inputContainer = 'inputContainer';
-    if(divModClass){
-        inputContainer = `inputContainer inputContainer--${divModClass}`;
-    }
-
-    useEffect(()=>{
-        fetchReq({
-            endpoint: '/generic/get-instruments',
-            method: 'GET',
-            item: 'getInstruments'
-        });
-    }, []);
+const Select = ({ options, type, id, value, onChange, modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
 
     return(
-        <div className={inputContainer}>
-            <select>
-                {fetchRes && fetchItem === 'getInstruments' && fetchRes.instruments.map((instrument) => {
-                    <option>{instrument}</option>
-                })}
-                <option>Hola</option>
+        <div className={divModClass ? `selectContainer selectContainer--${divModClass}` : 'selectContainer'}>
+
+            <select 
+                id={id} 
+                name={id} 
+                className="select"
+                onChange={onChange}
+                value={value}
+            >
+                <option value={null} className="option">
+                    {type}
+                </option>
+                {options && options.map((option) => (
+                    <option key={option.id} value={option.name}>
+                        {option.name}
+                    </option>
+                ))}
             </select>
         </div>
         

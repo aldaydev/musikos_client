@@ -4,8 +4,6 @@ import useFetch from "../../utils/useFetch";
 import SearchForm from "./SearchForm";
 import SearchList from "./SearchList";
 
-
-
 function Search (){
 
     const {fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
