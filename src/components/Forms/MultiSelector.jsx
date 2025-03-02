@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import down_icon from '../../assets/icons/down_icon.svg';
 
-const MultiSelector = ({ options, getSelection, title, divModClass }) => {
+const MultiSelector = ({ options, setSelection, title, divModClass }) => {
 
     const [selected, setSelected] = useState([]);
     const [listVisible, setListVisible] = useState(false);
@@ -19,7 +19,7 @@ const MultiSelector = ({ options, getSelection, title, divModClass }) => {
     useEffect(()=>{
         selected.length > 0 ? setSelectedCircle(true) : setSelectedCircle(false);
         setSelectedCount(selected.length);
-        options && selected.length === options.length ? getSelection(null) : getSelection(selected);
+        options && selected.length === options.length ? setSelection(null) : setSelection(selected);
     },[selected, options])
 
     return(
@@ -41,7 +41,12 @@ const MultiSelector = ({ options, getSelection, title, divModClass }) => {
             >
                 {options && options.map((option) => (
                 <label key={option.id} className="options__label">
-                        <input type="checkbox" value={option.name} onChange={handleSelector} className="options__input"/>
+                        <input 
+                            type="checkbox"
+                            value={option.name} 
+                            onChange={handleSelector} 
+                            className="options__input"
+                        />
                         <span className="options__span">{option.name}</span>
                 </label>
                 ))}

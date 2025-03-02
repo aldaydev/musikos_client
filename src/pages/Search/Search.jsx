@@ -1,8 +1,8 @@
 import './search.css';
 import { useEffect, useState } from "react";
 import useFetch from "../../utils/useFetch";
-import SearchForm from "./SearchForm";
-import SearchList from "./SearchList";
+import SearchForm from "./components/searchForm/SearchForm";
+import SearchList from "./components/searchList/SearchList";
 
 function Search (){
 
@@ -28,10 +28,9 @@ function Search (){
     },[fetchRes])
 
     useEffect(()=>{
-        console.log('-----Esta cogiendo de sessionStorage-----');
         sessionStorage.lastSearch &&
         setMusiciansList(JSON.parse(sessionStorage.lastSearch));
-    },[sessionStorage])
+    },[sessionStorage]);
 
     return(
         <div className="search__container">

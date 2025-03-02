@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useFetch from "../../utils/useFetch";
-import ErrorModal from '../../components/Modals/ErrorModal';
+import useFetch from "../../../../utils/useFetch";
+import ErrorModal from '../../../../components/Modals/ErrorModal';
 
 
 function SearchList ({musicianslist, loading}){

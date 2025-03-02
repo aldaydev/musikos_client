@@ -1,8 +1,8 @@
 # musikos_client
-### Sprint 3 - 01/03/2025 - Mañana - working on searchForm components
+### Sprint 3 - 02/03/2025 - Madrugada - working on searchForm components
 
-## 1o SPRINT (FRONTEND)
-s
+## 2o SPRINT (FRONTEND)
+
 ### RESUMEN DE OBJETIVOS:
 
 He creado todo lo necesario para el signin en el front, así como comprobado la funcionalidad con el back. He ajustado componentes para que sean más reutilizables.
