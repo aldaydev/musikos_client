@@ -15,9 +15,13 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import ProtectedFromNoAuth from './components/ProtectedRoutes/ProtectedFromNoAuth';
 import ProtectedFromAuth from './components/ProtectedRoutes/ProtectedFromAuth';
+import useFetch from './utils/useFetch';
+import Spinner from './components/spinners/Spinner';
 
 
 function App() {
+
+  const {isLoading} = useFetch();
 
   return (
     <AuthProvider>
@@ -35,7 +39,11 @@ function App() {
                 <Route path="/login" element={<Login/>} />
               </Route>
 
-              <Route path="/buscar" element={<Search/>}/>
+              {
+                isLoading ? <Spinner/>
+                : <Route path="/buscar" element={<Search/>}/>
+              }
+              
               
           </Routes>
         </main>

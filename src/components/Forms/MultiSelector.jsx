@@ -20,7 +20,7 @@ const MultiSelector = ({ options, setSelection, title, divModClass }) => {
         selected.length > 0 ? setSelectedCircle(true) : setSelectedCircle(false);
         setSelectedCount(selected.length);
         options && selected.length === options.length ? setSelection(null) : setSelection(selected);
-    },[selected, options])
+    },[selected, setSelection, options])
 
     return(
         <div className={divModClass ? `selectorContainer selectorContainer--${divModClass}` : 'selectorContainer'}>

@@ -8,9 +8,11 @@
     z-index: 10;
 }
 
-.inputContainer--recoverPass{
+.inputContainer--recoverPass,
+.inputContainer--searchByName{
     min-width: 300px;
 }
+
 
 .textInput, 
 .passwordInput{
@@ -106,7 +108,9 @@
 .selectorContainer{
     display: inline-block;
     position: relative;
-    width:fit-content;
+    background-color: white;
+    /* width:fit-content; */
+    width: 300px;
     min-width: 300px;
     margin: 0 10px 20px 10px;
     z-index: 10;
@@ -121,13 +125,17 @@
 
 .selector__title{
     width: auto;
-    height: 40px;
+    height: fit-content;
     font-size: 1.7rem;
-    padding: 5px 15px;
+    padding: 5px 17px 5px 50px;
     padding-top: 7px;
     text-align: end;
 
     position: relative;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 .selectedCircle{
@@ -149,6 +157,7 @@
     vertical-align:middle;
     margin-bottom: 3px;
     margin-left: 12px;
+    height: 100%;
 }
 
 .options__container{

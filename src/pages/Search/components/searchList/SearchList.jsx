@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import useFetch from "../../../../utils/useFetch";
 import ErrorModal from '../../../../components/Modals/ErrorModal';
+import Spinner from "../../../../components/spinners/Spinner";
 
 
-function SearchList ({musicianslist, loading}){
+function SearchList ({musicianslist, isLoading}){
 
     const baseImageUrl = 'https://raw.githubusercontent.com/aldaydev/musikos_images/main/profiles/';
 
     return(
         <section className="searchList__container">
             <h2>LISTADO DE MÚSICOS</h2>
-            
+            {!isLoading ?
             <ul className="searchList__musicians">
                 {musicianslist &&
                 musicianslist.map((musician, i) => (
@@ -47,6 +48,10 @@ function SearchList ({musicianslist, loading}){
                 ))
                 }
             </ul>
+            :
+            <Spinner/>
+            }
+            
         </section>
     )
 }

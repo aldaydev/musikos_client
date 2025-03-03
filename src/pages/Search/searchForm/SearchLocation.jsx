@@ -1,33 +1,23 @@
-import { useEffect } from 'react';
 import Selector from '../../../../components/Forms/Selector';
-import { UseSearchContext } from '../../../../context/SearchContext';
+import useFetch from '../../../utils/useFetch';
 import useSearch from '../../useSearch';
-import useFetch from '../../../../utils/useFetch';
 
 function SearchLocation (){
 
-    const {province, setProvince, setTown} = useSearch();
-    const {allProvinces, currentTowns, setCurrentTowns} = UseSearchContext();
+    const {allProvinces, currentTowns, province, setProvince, setTown} = useSearch();
 
-    //UseFetch Initialization
-    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
+    // const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
     // useEffect(()=>{
+    //     console.log('REGION', region)
     //     if(province && province.length > 0 && province[1]){
     //         fetchReq({
     //             endpoint: `/generic/towns?code=${province[1]}`,
     //             method: 'GET',
-    //             item: 'townsByProvince'
+    //             item: 'provincesByRegion'
     //         });
     //     }
-    // },[province]);
-
-
-    useEffect(()=>{
-        if(fetchRes && fetchItem ==='townsByProvince'){
-            setCurrentTowns(fetchRes);
-        }
-    },[fetchRes])
+    // },[province])
 
     return(
         <article className="searchForm__container">
@@ -45,6 +35,7 @@ function SearchLocation (){
                         setSelection={setTown} 
                         title='Población'
                     />
+
                 } */}
 
         </article>

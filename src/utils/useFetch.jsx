@@ -58,13 +58,12 @@ const useFetch = () => {
       if (!response.ok) {
         throw {message: data.message, status: data.status};
       }else{
-        console.log(data);
+        // console.log(data);
         //Se almacena la información de la respuesta del fetch
         setFetchRes(await data);
       }
       
     } catch (error) {
-      console.log('ERRORMESSAGE', error);
       if(error.message === 'Failed to fetch'){
         setFetchError({message: 'No se ha podido realizar la solicitud.', status: '---'});
       }else{

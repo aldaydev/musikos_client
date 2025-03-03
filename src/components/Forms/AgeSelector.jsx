@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import useFetch from "../../utils/useFetch";
 import down_icon from '../../assets/icons/down_icon.svg';
 
-const Selector = ({ options, setSelection, title, required = false, setExtraData, id, value, onChange, modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
+const AgeSelector = ({ options, setSelection, title, required = false, setExtraData, id, value, onChange, modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
 
     const [listVisible, setListVisible] = useState(false);
-    const [selected, setSelected] = useState([title, null]);
+    const [selected, setSelected] = useState(title);
 
     const handleSelector = (e) => {
-        setSelected([e.target.value, e.target.id]);
+        setSelected(e.target.value);
     };
 
     const [selectedCircle, setSelectedCircle] = useState(false);
 
     useEffect(()=>{
-        selected[0] !== title ? setSelectedCircle(true) : setSelectedCircle(false);
+        selected !== title ? setSelectedCircle(true) : setSelectedCircle(false);
 
-        if(selected[0] !== title && selected[0] !== 'Cualquiera'){
+        if(selected !== title && selected !== 'Cualquiera'){
             setSelection(selected);
         }else{
             setSelection(null);
@@ -25,7 +25,7 @@ const Selector = ({ options, setSelection, title, required = false, setExtraData
     },[selected]);
 
     useEffect(()=>{
-        setSelected([title, null]);
+        setSelected(title);
         setListVisible(false);
     }, [options])
 
@@ -37,7 +37,10 @@ const Selector = ({ options, setSelection, title, required = false, setExtraData
                     className="selectedCircle"
                     style={{ display: selectedCircle ? 'inline' : 'none' }}>
                 </span>
-                {selected[0]}
+                {selected !== title 
+                    ? `${title}: ${selected}`
+                    : title
+                }
                 <img src={down_icon} className="selector__icon" />
             </label>
 
@@ -53,8 +56,8 @@ const Selector = ({ options, setSelection, title, required = false, setExtraData
                     options.map((option, i) => (
                         
                         <label key={i} className="options__label">
-                            <input type="radio" name='options' onChange={handleSelector} value={option.name} className="options__input" id={option.code}/>
-                            <span className="options__span">{option.name}</span>
+                            <input type="radio" name='options' onChange={handleSelector} value={option} className="options__input" id={i}/>
+                            <span className="options__span">{option}</span>
                         </label>
                     ))
 
@@ -66,4 +69,4 @@ const Selector = ({ options, setSelection, title, required = false, setExtraData
     )
 }
 
-export default Selector;
+export default AgeSelector;

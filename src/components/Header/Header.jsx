@@ -8,7 +8,7 @@ import menu_icon from '../../assets/icons/menu_icon.svg';
 import close_icon from '../../assets/icons/close_icon.svg';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { UseAuthContext } from '../../context/AuthContext';
 import useFetch from '../../utils/useFetch';
 import SuccessModal from '../Modals/SuccessModal'
 
@@ -19,7 +19,7 @@ function Header (){
 
     const navigate = useNavigate();
 
-    const { isLoggedIn, setIsLoggedIn  } = useContext(AuthContext);
+    const { isLoggedIn, setIsLoggedIn  } = UseAuthContext();
 
     const handleLogout = async () => {
         sessionStorage.auth = JSON.stringify({verified: false});
