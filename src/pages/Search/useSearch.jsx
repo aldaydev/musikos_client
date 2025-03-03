@@ -9,16 +9,16 @@ const useSearch = () => {
     const [instruments, setInstruments] = useState([]);
     const [province, setProvince] = useState([]);
     const [town, setTown] = useState(null);
-    const [minAge, setMinAge] = useState(null);
-    const [maxAge, setMaxAge] = useState(null);
+    const [minAge, setMinAge] = useState(16);
+    const [maxAge, setMaxAge] = useState(100);
     const [name, setName] = useState('');
     const [queryObject, setQueryObject] = useState({
         instruments: '',
         styles: '',
         province: '',
         town: '',
-        minAge: '16',
-        maxAge: '100',
+        minAge: 'minAge=16',
+        maxAge: 'maxAge=100',
         name: ''
     })
     // const [queryString, setQueryString] = useState('?');
@@ -59,6 +59,8 @@ const useSearch = () => {
             handleQuery('instruments', instrumentsQquery);
             // const queryString = instruments.map(inst => `instrument=${encodeURIComponent(inst)}`).join('&');
             // console.log(queryString);
+        }else{
+            handleQuery('instruments', null);
         }
     }, [instruments]);
 
@@ -70,6 +72,8 @@ const useSearch = () => {
             handleQuery('styles', stylesQquery);
             // setQueryString((prev)=>{ return prev += stylesQquery})
             // handleQuery('styles', styles);
+        }else{
+            handleQuery('styles', null);
         }
     }, [styles]);
     
@@ -81,8 +85,69 @@ const useSearch = () => {
             handleQuery('province', provinceQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
+        }else{
+            handleQuery('province', null);
         }
     }, [province]);
+
+    useEffect(()=>{
+        if(town && town.length > 0){
+            console.log(town[0]);
+            const townQuery = `town=${encodeURIComponent(town[0])}`
+            console.log(townQuery);
+            handleQuery('town', townQuery);
+            // setQueryString((prev)=>{ return prev += provinceQuery})
+            // handleQuery('province', province[0]);
+        }else{
+            handleQuery('town', null);
+        }
+    }, [town]);
+
+    useEffect(()=>{
+        if(minAge){
+            console.log(typeof minAge);
+            console.log(maxAge);
+            let minAgeQuery = `minAge=${minAge}`;
+            // if(minAge > maxAge){
+            //     minAgeQuery = `minAge=${maxAge}`
+            // }else{
+            //     minAgeQuery = `minAge=${minAge}`
+            // }
+            console.log(minAgeQuery);
+            handleQuery('minAge', minAgeQuery);
+            // setQueryString((prev)=>{ return prev += provinceQuery})
+            // handleQuery('province', province[0]);
+        }else{
+            handleQuery('minAge', 'minAge=16');
+        }
+    }, [minAge]);
+
+    useEffect(()=>{
+        if(maxAge){
+            console.log(typeof maxAge);
+            console.log(minAge);
+            let maxAgeQuery = `maxAge=${maxAge}`;
+            console.log(maxAgeQuery);
+            handleQuery('maxAge', maxAgeQuery);
+            // setQueryString((prev)=>{ return prev += provinceQuery})
+            // handleQuery('province', province[0]);
+        }else{
+            handleQuery('maxAge', 'maxAge=100');
+        }
+    }, [maxAge]);
+
+    useEffect(()=>{
+        if(name){
+            console.log(name);
+            let nameQuery = `name=${name}`;
+            console.log(nameQuery);
+            handleQuery('name', nameQuery);
+            // setQueryString((prev)=>{ return prev += provinceQuery})
+            // handleQuery('province', province[0]);
+        }else{
+            handleQuery('name', null);
+        }
+    }, [name]);
 
     useEffect(()=>{
         console.log('Final query', queryObject);

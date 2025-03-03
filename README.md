@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 3 - 02/03/2025 - Madrugada - fighting with searchForm
+### Sprint 3 - 03/03/2025 - Madrugada - problems with searchForm solved
 
 ## 2o SPRINT (FRONTEND)
 

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import useFetch from "../../utils/useFetch";
 import down_icon from '../../assets/icons/down_icon.svg';
 
-const AgeSelector = ({ options, setSelection, title, required = false, setExtraData, id, value, onChange, modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
+const AgeSelector = ({ options, setSelection, title, required = false, isSelected, setExtraData, id, value, onChange, modClass, divModClass, error, showPassImg, showPassFunc, ...props }) => {
 
     const [listVisible, setListVisible] = useState(false);
-    const [selected, setSelected] = useState(title);
+    const [selected, setSelected] = useState(isSelected || title);
 
     const handleSelector = (e) => {
         setSelected(e.target.value);
