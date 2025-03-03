@@ -20,7 +20,8 @@ const useSearch = () => {
         minAge: 'minAge=16',
         maxAge: 'maxAge=100',
         name: ''
-    })
+    });
+    const [finalQuery, setFinalQuery] = useState();
     // const [queryString, setQueryString] = useState('?');
 
     // const [queryString, setQueryString] = useState([]);
@@ -53,7 +54,7 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(instruments && instruments.length > 0){
-            console.log(instruments);
+            // console.log(instruments);
             const instrumentsQquery = setQueryFromArray('instruments', instruments);
             console.log(instrumentsQquery);
             handleQuery('instruments', instrumentsQquery);
@@ -66,9 +67,9 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(styles && styles.length > 0){
-            console.log(styles);
+            // console.log(styles);
             const stylesQquery = setQueryFromArray('styles', styles);
-            console.log(stylesQquery);
+            // console.log(stylesQquery);
             handleQuery('styles', stylesQquery);
             // setQueryString((prev)=>{ return prev += stylesQquery})
             // handleQuery('styles', styles);
@@ -79,9 +80,9 @@ const useSearch = () => {
     
     useEffect(()=>{
         if(province && province.length > 0){
-            console.log(province[0]);
+            // console.log(province[0]);
             const provinceQuery = `province=${encodeURIComponent(province[0])}`
-            console.log(provinceQuery);
+            // console.log(provinceQuery);
             handleQuery('province', provinceQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
@@ -92,9 +93,9 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(town && town.length > 0){
-            console.log(town[0]);
+            // console.log(town[0]);
             const townQuery = `town=${encodeURIComponent(town[0])}`
-            console.log(townQuery);
+            // console.log(townQuery);
             handleQuery('town', townQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
@@ -105,15 +106,15 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(minAge){
-            console.log(typeof minAge);
-            console.log(maxAge);
+            // console.log(typeof minAge);
+            // console.log(maxAge);
             let minAgeQuery = `minAge=${minAge}`;
             // if(minAge > maxAge){
             //     minAgeQuery = `minAge=${maxAge}`
             // }else{
             //     minAgeQuery = `minAge=${minAge}`
             // }
-            console.log(minAgeQuery);
+            // console.log(minAgeQuery);
             handleQuery('minAge', minAgeQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
@@ -124,10 +125,10 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(maxAge){
-            console.log(typeof maxAge);
-            console.log(minAge);
+            // console.log(typeof maxAge);
+            // console.log(minAge);
             let maxAgeQuery = `maxAge=${maxAge}`;
-            console.log(maxAgeQuery);
+            // console.log(maxAgeQuery);
             handleQuery('maxAge', maxAgeQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
@@ -138,9 +139,9 @@ const useSearch = () => {
 
     useEffect(()=>{
         if(name){
-            console.log(name);
+            // console.log(name);
             let nameQuery = `name=${name}`;
-            console.log(nameQuery);
+            // console.log(nameQuery);
             handleQuery('name', nameQuery);
             // setQueryString((prev)=>{ return prev += provinceQuery})
             // handleQuery('province', province[0]);
@@ -150,7 +151,16 @@ const useSearch = () => {
     }, [name]);
 
     useEffect(()=>{
-        console.log('Final query', queryObject);
+        // console.log('Final query', queryObject);
+        // let queryString = '?';
+        const queryString = Array.from(Object.entries(queryObject)).filter(query => query[1]).map(query => query[1]).join('&');
+        // console.log(queryString);
+        setFinalQuery(queryString);
+
+        // for(let key in queryObject){
+        //     // console.log(queryObject[key]);
+        //     queryString += queryObject[key];
+        // }
     },[queryObject])
 
     // const [queryArr, setQueryArr] = useState();
@@ -212,7 +222,8 @@ const useSearch = () => {
         maxAge,
         setMaxAge,
         name,
-        setName
+        setName,
+        finalQuery
     };
 }
 

@@ -17,13 +17,11 @@ import AgeSelector from '../../../../components/Forms/AgeSelector';
 
 function SearchForm() {
 
-    const { minAge, setMinAge, maxAge, setMaxAge, setStyles, setInstruments, province, setProvince, setTown, name, setName  } = useSearch();
-    const { allAges, allProvinces, currentTowns, setCurrentTowns } = UseSearchContext();
-
-    const { allStyles, allInstruments } = UseSearchContext();
+    const { minAge, setMinAge, maxAge, setMaxAge, setStyles, setInstruments, province, setProvince, setTown, name, setName, finalQuery } = useSearch();
+    const { allAges, allProvinces, currentTowns, setCurrentTowns, allStyles, allInstruments  } = UseSearchContext();
 
     //UseFetch Initialization
-    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
+    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
 
 
     const [error, setError] = useState(null);
@@ -34,9 +32,21 @@ function SearchForm() {
     //         : setError(null);
     // }, [minAge, maxAge])
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log(finalQuery);
+        fetchReq({
+            endpoint: `/musicians/filter?${finalQuery}`,
+            method: 'GET',
+            item: 'filterMusicians'
+        });
+        console.log('Ha hecho fetch');
+    }
+
     useEffect(() => {
         (minAge && maxAge) && minAge > maxAge
-            && setMinAge(maxAge)
+            ? setMinAge(maxAge)
+            : setMaxAge(maxAge)
     }, [minAge, maxAge])
 
     useEffect(()=>{
@@ -121,7 +131,7 @@ function SearchForm() {
                 // modClass={emailError && 'error'}
                 />
 
-                <Button style={{ marginLeft: '10px' }}>CONFIRMAR BÚSQUEDA</Button>
+                <Button onClick={handleSearch}>CONFIRMAR BÚSQUEDA</Button>
 
             </form>
         </section>

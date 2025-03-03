@@ -58,7 +58,7 @@ const useFetch = () => {
       if (!response.ok) {
         throw {message: data.message, status: data.status};
       }else{
-        // console.log(data);
+        console.log(data);
         //Se almacena la información de la respuesta del fetch
         setFetchRes(await data);
       }
