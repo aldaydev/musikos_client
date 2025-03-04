@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 3 - 03/03/2025 - Tarde - conecting searchForm with backend
+### Sprint 3 - 04/03/2025 - Tarde - testing searchForm with backend
 
 ## 2o SPRINT (FRONTEND)
 

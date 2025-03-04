@@ -18,7 +18,7 @@ import AgeSelector from '../../../../components/Forms/AgeSelector';
 function SearchForm() {
 
     const { minAge, setMinAge, maxAge, setMaxAge, setStyles, setInstruments, province, setProvince, setTown, name, setName, finalQuery } = useSearch();
-    const { allAges, allProvinces, currentTowns, setCurrentTowns, allStyles, allInstruments  } = UseSearchContext();
+    const { allAges, allProvinces, currentTowns, setCurrentTowns, allStyles, allInstruments, setFinalList } = UseSearchContext();
 
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
@@ -63,6 +63,11 @@ function SearchForm() {
     useEffect(() => {
         if (fetchRes && fetchItem === 'townsByProvince') {
             setCurrentTowns(fetchRes);
+        }
+
+        if (fetchRes && fetchItem === 'filterMusicians') {
+            setFinalList(fetchRes);
+            // sessionStorage.lastSearch = JSON.stringify(fetchRes);
         }
     }, [fetchRes])
 

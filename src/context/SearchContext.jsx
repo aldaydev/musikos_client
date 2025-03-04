@@ -84,6 +84,8 @@ export const SearchProvider = ({ children }) => {
     //     }
     // },[province]);
 
+    const [finalList, setFinalList] = useState(null);
+
 
     return (
         <SearchContext.Provider value={{ 
@@ -92,7 +94,9 @@ export const SearchProvider = ({ children }) => {
             allInstruments,
             allProvinces,
             currentTowns,
-            setCurrentTowns
+            setCurrentTowns,
+            finalList, 
+            setFinalList
         }}>
             {children}
         </SearchContext.Provider>

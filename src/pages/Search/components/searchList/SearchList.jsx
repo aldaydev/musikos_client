@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import useFetch from "../../../../utils/useFetch";
 import ErrorModal from '../../../../components/Modals/ErrorModal';
 import Spinner from "../../../../components/spinners/Spinner";
+import { UseSearchContext } from "../../../../context/SearchContext";
 
 
 function SearchList ({musicianslist, isLoading}){
+
+    const { finalList } = UseSearchContext();
 
     const baseImageUrl = 'https://raw.githubusercontent.com/aldaydev/musikos_images/main/profiles/';
 
@@ -13,8 +16,8 @@ function SearchList ({musicianslist, isLoading}){
             <h2>LISTADO DE MÚSICOS</h2>
             {!isLoading ?
             <ul className="searchList__musicians">
-                {musicianslist &&
-                musicianslist.map((musician, i) => (
+                {finalList &&
+                finalList.map((musician, i) => (
                     <li key={i} className="searchList__musician">
                         <div className="musician__imageContainer">
                             <img src={`${baseImageUrl}${musician.image}`} alt={`${musician.username || 'default'} user image`} className="musician__image"/>
@@ -40,7 +43,7 @@ function SearchList ({musicianslist, isLoading}){
                                 }
                             </ul>
                             <div>
-                                <span> {musician.region}</span>
+                                <span> {musician.province}</span>
                             </div>
                         </div>
                         

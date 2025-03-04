@@ -17,6 +17,7 @@ import ProtectedFromNoAuth from './components/ProtectedRoutes/ProtectedFromNoAut
 import ProtectedFromAuth from './components/ProtectedRoutes/ProtectedFromAuth';
 import useFetch from './utils/useFetch';
 import Spinner from './components/spinners/Spinner';
+import { SearchProvider } from './context/SearchContext';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <Header/>
         <main className="App__main">
+          <SearchProvider>
           <Routes>
               <Route path="/" element={<Home />} />
 
@@ -46,6 +48,7 @@ function App() {
               
               
           </Routes>
+          </SearchProvider>
         </main>
       <Footer/>
     </Router>
