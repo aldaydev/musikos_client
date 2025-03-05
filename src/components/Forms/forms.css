@@ -15,7 +15,8 @@
 
 
 .textInput, 
-.passwordInput{
+.passwordInput,
+.dateInput{
     width: 100%;
     height: 40px;
     font-size: 1.5rem;
@@ -25,9 +26,23 @@
     outline: 2px solid transparent;
 }
 
+.dateInput{
+    width: 30%;
+    /* margin: 0 auto; */
+    appearance: none; /* Oculta los estilos por defecto en algunos navegadores */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.label--birthdate{
+    text-align: center;
+    display: flex;
+    margin: 0 9px;
+    margin-bottom: 15px;
+}
 
 .option {           
-    padding: 10px;            /* Solo funciona en algunos navegadores */
+    padding: 10px; 
 }
 
 .passwordInput{
@@ -43,13 +58,15 @@
 }
 
 .textInput--error,
-.passwordInput--error{
+.passwordInput--error,
+.dateInput--error{
     outline: 2px solid var(--color-pink);
     outline-offset: -2px;
 }
 
 .textInput:focus,
-.passwordInput:focus{
+.passwordInput:focus,
+.dateInput:focus{
     outline: 2px solid var(--color-pink);
     outline-offset: -2px;
     z-index: 10;

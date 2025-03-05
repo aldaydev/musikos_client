@@ -1,5 +1,5 @@
 //React imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //Component imports
 import Input from "../../../components/Forms/Input";
 import Label from "../../../components/Forms/Label";
@@ -15,6 +15,7 @@ import useFetch from "../../../utils/useFetch.jsx";
 //Media imports
 import show_icon from "../../../assets/icons/show_icon.svg";
 import hide_icon from "../../../assets/icons/hide_icon.svg";
+import DateInput from "../../../components/Forms/DateInput.jsx";
 
 
 
@@ -28,6 +29,7 @@ function SignUp (){
         email: "",
         username: "",
         password: "",
+        birthdate: {year: "", month: "", day: ""},
         acceptTerms: false,
         acceptPrivacy: false
     });
@@ -39,6 +41,7 @@ function SignUp (){
     const [emailError, setEmailError] = useState(null);
     const [usernameError, setUsernameError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
+    const [birthdateError, setBirthdateError] = useState(null);
     const [legalsError, setlegalsError] = useState(null);
 
     const [showPassword, setShowPassword] = useState(['password', show_icon]);
@@ -78,6 +81,10 @@ function SignUp (){
             setFormData({ ...formData, [id]: value })
         }
 
+        if(id === 'year' || id === 'month' || id === 'day'){
+            setFormData({ ...formData, birthdate: {...formData.birthdate, [id]: value} })
+        }
+
     };
 
     const onlineValidations = async (value, id) => {
@@ -103,6 +110,27 @@ function SignUp (){
             }else{
                 setPasswordError(null);
             }
+        }else if(id === 'year'){
+            const validateYear = validate.year(value);
+            if(!validateYear[0]){
+                setBirthdateError(validateYear[1]);
+            }else{
+                setBirthdateError(null);
+            }
+        }else if(id === 'month'){
+            const validateMonth = validate.month(value);
+            if(!validateMonth[0]){
+                setBirthdateError(validateMonth[1]);
+            }else{
+                setBirthdateError(null);
+            }
+        }else if(id === 'day'){
+            const validateDay = validate.day(value);
+            if(!validateDay[0]){
+                setBirthdateError(validateDay[1]);
+            }else{
+                setBirthdateError(null);
+            }
         }
 
     }
@@ -113,6 +141,7 @@ function SignUp (){
         const validateUsername = await validate.username(formData.username);
         const validateEmail = await validate.email(formData.email);
         const validatePassword = validate.password(formData.password);
+        const validateBirthdate = validate.birthdate(formData.birthdate);
 
         if(!validateUsername[0]){
             setUsernameError(validateUsername[1]);
@@ -132,6 +161,12 @@ function SignUp (){
             setPasswordError(null);
         }
 
+        if(!validateBirthdate[0]){
+            setBirthdateError(validateBirthdate[1]);
+        }else{
+            setBirthdateError(null);
+        }
+
         if(!formData.acceptTerms){
             setlegalsError('Debes aceptar las condiciones de uso');
         }else if(!formData.acceptPrivacy){
@@ -140,7 +175,7 @@ function SignUp (){
             setlegalsError(null);
         }
 
-        if(validateUsername[0] && validateEmail[0] && validatePassword[0] && formData.acceptTerms && formData.acceptPrivacy){
+        if(validateUsername[0] && validateEmail[0] && validatePassword[0] && validateBirthdate[0] && formData.acceptTerms && formData.acceptPrivacy){
             await fetchReq({
                 endpoint: '/auth/signup',
                 method: 'POST',
@@ -151,6 +186,7 @@ function SignUp (){
             setFormData({email: "",
                 username: "",
                 password: "",
+                birthdate: {year: "", month: "", day: ""},
                 acceptTerms: false,
                 acceptPrivacy: false})
         }
@@ -198,7 +234,7 @@ function SignUp (){
                     name='username'
                     id='username'
                     value={formData.username}
-                    placeholder='Nombre de usuario'
+                    placeholder='Username'
                     onChange={handleChange}
                     error={usernameError}
                     modClass={usernameError && 'error'}
@@ -218,6 +254,33 @@ function SignUp (){
                         showPassFunc={handleShowPassword}
                     />
                 </Label>
+
+                <div className='birthdate__container'>
+                    <span className="birthdate__title">Fecha de nacimiento</span>
+                    <div className="birthdate__inputsContainer">
+                        <DateInput 
+                            id='day'
+                            placeholder='Día'
+                            value={formData.birthdate.day}
+                            onChange={handleChange}
+                        />
+                        <DateInput 
+                            id='month'
+                            placeholder='Mes'
+                            value={formData.birthdate.month}
+                            onChange={handleChange}
+                        />
+                        <DateInput 
+                            id='year'
+                            placeholder='Año'
+                            value={formData.birthdate.age}
+                            onChange={handleChange}
+                            modClass={birthdateError && 'error'}
+                        />
+                    </div>
+                    {birthdateError && <span className="inputError">{birthdateError}</span>}
+                </div>
+                
 
                 <section className='legals_checkboxes'>
                     <Checkbox

@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 3 - 05/03/2025 - Madrugada - third sprint finished
+### Sprint 4 - 05/03/2025 - Madrugada - adding birthdate to signUp
 
 ## 3er SPRINT (FRONTEND)
 
