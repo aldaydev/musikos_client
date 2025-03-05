@@ -28,28 +28,25 @@ function App() {
     <AuthProvider>
     <Router>
       <Header/>
-        <main className="App__main">
-          <SearchProvider>
-          <Routes>
-              <Route path="/" element={<Home />} />
-
-              <Route element={<ProtectedFromNoAuth />}>
-                <Route path="/dashboard" element={<DashBoard />} />
-              </Route>
-
-              <Route element={<ProtectedFromAuth />}>
-                <Route path="/login" element={<Login/>} />
-              </Route>
-
-              {
-                isLoading ? <Spinner/>
-                : <Route path="/buscar" element={<Search/>}/>
-              }
-              
-              
-          </Routes>
-          </SearchProvider>
-        </main>
+      <main className="App__main">
+        <SearchProvider>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route element={<ProtectedFromNoAuth />}>
+              <Route path="/dashboard" element={<DashBoard />} />
+            </Route>
+            <Route element={<ProtectedFromAuth />}>
+              <Route path="/login" element={<Login/>} />
+            </Route>
+            {
+              isLoading ? <Spinner/>
+              : <Route path="/buscar" element={<Search/>}/>
+            }
+            
+            
+        </Routes>
+        </SearchProvider>
+      </main>
       <Footer/>
     </Router>
     </AuthProvider>

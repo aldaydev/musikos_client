@@ -87,8 +87,8 @@ function SearchForm() {
 
     return (
         <section className="searchForm__container">
-            <h2>FILTRAR BÚSQUEDA</h2>
-            <form className="search__form">
+            <h2 className='searchForm__title'>FILTRAR BÚSQUEDA</h2>
+            <form className="searchForm__form">
 
                 <article>
                     <h4>INSTRUMENTOS Y ESTILOS</h4>
@@ -103,7 +103,7 @@ function SearchForm() {
                         title='Estilos'
                     />
                 </article>
-                <article className="searchForm__container">
+                <article>
                     <h4>LOCALIZACIÓN</h4>
 
                     <Selector
@@ -121,7 +121,7 @@ function SearchForm() {
                 }
 
                 </article>
-                <article className="searchForm__container">
+                <article>
                     <h4>EDAD</h4>
 
                     <AgeSelector

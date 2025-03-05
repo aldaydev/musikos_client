@@ -1,5 +1,23 @@
 # musikos_client
-### Sprint 3 - 05/03/2025 - Madrugada - search functionality completed
+### Sprint 3 - 05/03/2025 - Madrugada - third sprint finished
+
+## 3er SPRINT (FRONTEND)
+
+### RESUMEN DE OBJETIVOS:
+
+He pre diseñado la página de búsqueda de músicos (Search.jsx). Se divide en dos componentes: SearchForm y SearchList.
+
+1. Pre diseño de Search.jsx (página)
+    * Contenedor para SearchForm y SearchList.
+    * Se apoya en un contexto (searchContext) utilizado tanto para obtener los listados generales de instrumentos, estilos, provincias... que se usarán para los inputs como para gestionar el listado final de usuario encontrados o posibles errores.
+2. Pre diseño SearchForm.jsx 
+    * Incluye inputs totalmente creados por mí con css y acordes a la estética general de la aplicación.
+    * Se puede filtrar por instrumentos, estilos, provincia, ciudad, edad mínima y máxima y nombre.
+    * Custom hook useSearch utilizado para manejar la información de dichos filtros y finalmente conformar el query param final que se incluye en el fetch para obtener los datos del back.
+3. Pre diseño de SearchList.jsx
+    * Nada más cargarse el componente solicita al back un listado completo (sin filtrar), que es lo que aparece en la búsqueda. Este listado se guarda en sessionStorage para no hacer la búsqueda cada vez que se actualiza la página.
+    * Mostrará un listado con los siguientes datos por usuario: username, nombre, edad, estilos, instrumentos, provincia y ciudad (si la hay).
+4. Queda pendiente: Pulir los estilos de todos los componentes y elementos, así como posiblemente añadir el dato "género" del usuario si finalmente lo pongo.
 
 ## 2o SPRINT (FRONTEND)
 
