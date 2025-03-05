@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useFetch from "../../../../utils/useFetch";
-import ErrorModal from '../../../../components/Modals/ErrorModal';
-import Spinner from "../../../../components/spinners/Spinner";
-import { UseSearchContext } from "../../../../context/SearchContext";
+import useFetch from "../../../utils/useFetch";
+import ErrorModal from '../../../components/Modals/ErrorModal';
+import Spinner from "../../../components/spinners/Spinner";
+import { UseSearchContext } from "../../../context/SearchContext";
 
 
 function SearchList ({musicianslist, isLoading}){

@@ -1,18 +1,13 @@
-import ErrorModal from '../../../../components/Modals/ErrorModal';
+import ErrorModal from '../../../components/Modals/ErrorModal';
 import { useEffect, useState } from 'react';
-import useFetch from '../../../../utils/useFetch';
-import Selector from '../../../../components/Forms/Selector';
-import MultiSelector from '../../../../components/Forms/MultiSelector';
-import Button from '../../../../components/Forms/Button';
-import DateSelector from '../../../../components/Forms/DateSelector';
-import RegionSelector from '../../../../components/Forms/RegionSelector';
-import SearchInstStyle from './SearchInstStyle';
-import useSearch from '../../useSearch';
-import SearchLocation from './SearchLocation';
-import SearchAge from './SearchAge';
-import Input from '../../../../components/Forms/Input';
-import { UseSearchContext } from '../../../../context/SearchContext';
-import AgeSelector from '../../../../components/Forms/AgeSelector';
+import useFetch from '../../../utils/useFetch';
+import Selector from '../../../components/Forms/Selector';
+import MultiSelector from '../../../components/Forms/MultiSelector';
+import Button from '../../../components/Forms/Button';
+import useSearch from '../useSearch';
+import Input from '../../../components/Forms/Input';
+import { UseSearchContext } from '../../../context/SearchContext';
+import AgeSelector from '../../../components/Forms/AgeSelector';
 
 
 function SearchForm() {

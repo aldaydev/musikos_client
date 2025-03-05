@@ -66,10 +66,13 @@
     display: flex;
     align-items: center;
 
+    position: relative;
+
     transition: background .4s ease-in-out;
 }
 
-.nav__item > a{
+.nav__item > a,
+.accountToggle__container > a{
     color: var(--color-white);
     height: 100%;
     display: flex;
@@ -85,7 +88,8 @@
     transition: color .3s ease-in-out;
 }
 
-.nav__item > a:hover > .nav__link--color{
+.nav__item > a:hover > .nav__link--color,
+.accountToggle__container > a:hover > .nav__link--color{
     color: var(--color-pink);
 }
 
@@ -107,4 +111,13 @@
     display: none;
     /* display: flex;
     align-items: center; */
+}
+
+.accountToggle__container{
+    position: absolute;
+    background-color: var(--color-blue-dark);
+    width: 100%;
+    top: 118%;
+    z-index: 999;
+    padding-bottom: 15px;
 }

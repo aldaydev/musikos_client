@@ -46,6 +46,31 @@ export default {
 
     },
 
+    name: (name) => {
+
+        if(!name){
+            return [false, 'Campo obligatorio'];
+        }
+
+        const charactersRegex = /^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/;
+        const minLengthRegex = /^.{3,}$/;
+        const maxLengthRegex = /^.{0,60}$/;
+
+        if(!charactersRegex.test(name)) {
+            return [false, "Carácteres especiales no admitidos"];
+        }
+
+        if(!minLengthRegex.test(name)) {
+            return [false, "Mínimo 3 caracteres"];
+        }
+
+        if(!maxLengthRegex.test(name)) {
+            return [false, "Máximo 60 caracteres"];
+        }
+
+        return [true, 'Nombre válido'];
+    },
+
     email: async (email) => {
         if(!email){
             return [false, 'Campo obligatorio'];
@@ -121,6 +146,11 @@ export default {
     },
 
     month: (month) => {
+
+        if(month.length === 1){
+            month = `0${month}`
+        }
+
         if(month.length > 2){
             return [false, "Mes incorrecto"];
         }
@@ -134,6 +164,11 @@ export default {
     },
 
     day: (day) => {
+
+        if(day.length === 1){
+            month = `0${day}`
+        }
+
         if(day.length > 2){
             return [false, "Día incorrecto"];
         }
@@ -149,6 +184,7 @@ export default {
     birthdate: ({day, month, year}) =>{
 
         if(!day || !month || !year){
+            console.log('Está entrando aquí', day, month, year)
             return [false, "Campo obligatorio"];
         }
 

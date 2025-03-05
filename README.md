@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 4 - 05/03/2025 - Madrugada - adding birthdate to signUp
+### Sprint 4 - 05/03/2025 - Tarde - working on profile and account components
 
 ## 3er SPRINT (FRONTEND)
 

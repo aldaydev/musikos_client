@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 //Context imports
 import { AuthProvider } from './context/AuthContext';
 //Pages imports
-import DashBoard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import Home from './pages/Home';
 import Search from './pages/Search/Search';
@@ -32,12 +32,15 @@ function App() {
         <SearchProvider>
         <Routes>
             <Route path="/" element={<Home />} />
+
             <Route element={<ProtectedFromNoAuth />}>
-              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/dashboard" element={<Dashboard/>}/>
             </Route>
+
             <Route element={<ProtectedFromAuth />}>
               <Route path="/login" element={<Login/>} />
             </Route>
+
             {
               isLoading ? <Spinner/>
               : <Route path="/buscar" element={<Search/>}/>

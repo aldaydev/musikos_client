@@ -28,6 +28,7 @@ function SignUp (){
     const [formData, setFormData] = useState({
         email: "",
         username: "",
+        name: "",
         password: "",
         birthdate: {year: "", month: "", day: ""},
         acceptTerms: false,
@@ -40,8 +41,10 @@ function SignUp (){
     //Form error STATES
     const [emailError, setEmailError] = useState(null);
     const [usernameError, setUsernameError] = useState(null);
+    const [nameError, setNameError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
     const [birthdateError, setBirthdateError] = useState(null);
+
     const [legalsError, setlegalsError] = useState(null);
 
     const [showPassword, setShowPassword] = useState(['password', show_icon]);
@@ -131,6 +134,13 @@ function SignUp (){
             }else{
                 setBirthdateError(null);
             }
+        }else if(id === 'name'){
+            const validateName = validate.name(value);
+            if(!validateName[0]){
+                setNameError(validateName[1]);
+            }else{
+                setNameError(null);
+            }
         }
 
     }
@@ -139,6 +149,7 @@ function SignUp (){
         e.preventDefault();
 
         const validateUsername = await validate.username(formData.username);
+        const validateName = validate.name(formData.name);
         const validateEmail = await validate.email(formData.email);
         const validatePassword = validate.password(formData.password);
         const validateBirthdate = validate.birthdate(formData.birthdate);
@@ -147,6 +158,12 @@ function SignUp (){
             setUsernameError(validateUsername[1]);
         }else{
             setUsernameError(null);
+        }
+
+        if(!validateName[0]){
+            setNameError(validateName[1]);
+        }else{
+            setNameError(null);
         }
 
         if(!validateEmail[0]){
@@ -183,8 +200,10 @@ function SignUp (){
                 item: 'signup'
             });
 
-            setFormData({email: "",
+            setFormData({
+                email: "",
                 username: "",
+                name: "",
                 password: "",
                 birthdate: {year: "", month: "", day: ""},
                 acceptTerms: false,
@@ -231,6 +250,16 @@ function SignUp (){
                 />
 
                 <Input 
+                    name='name'
+                    id='name'
+                    value={formData.name}
+                    placeholder='Nombre completo'
+                    onChange={handleChange}
+                    error={nameError}
+                    modClass={nameError && 'error'}
+                />
+
+                <Input 
                     name='username'
                     id='username'
                     value={formData.username}
@@ -273,7 +302,7 @@ function SignUp (){
                         <DateInput 
                             id='year'
                             placeholder='Año'
-                            value={formData.birthdate.age}
+                            value={formData.birthdate.year}
                             onChange={handleChange}
                             modClass={birthdateError && 'error'}
                         />

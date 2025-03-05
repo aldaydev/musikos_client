@@ -1,0 +1,25 @@
+.dashboard__container{
+    min-height: calc(100dvh - 70px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__accountContainer{
+    background-color: aqua;
+    width: 80%;
+    margin: 20px auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard__accountTitle,
+.dashboard__profileTitle{
+    display: inline;
+    text-align: center;
+    border-top: 3px solid var(--color-pink);
+    border-bottom: 3px solid var(--color-pink);
+    margin: 25px 0;
+}

@@ -7,7 +7,7 @@ import exit_icon from '../../assets/icons/exit_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
 import close_icon from '../../assets/icons/close_icon.svg';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { UseAuthContext } from '../../context/AuthContext';
 import useFetch from '../../utils/useFetch';
 import SuccessModal from '../Modals/SuccessModal'
@@ -20,6 +20,19 @@ function Header (){
     const navigate = useNavigate();
 
     const { isLoggedIn, setIsLoggedIn  } = UseAuthContext();
+
+    const [showAcoountMenu, setShowAccountMenu] = useState(false);
+
+    const [username, setUsername] = useState(null);
+
+    useEffect(()=>{
+        // console.log(JSON.parse(sessionStorage.auth).user.username);
+        if(JSON.parse(sessionStorage.auth).user){
+            setUsername(JSON.parse(sessionStorage.auth).user.username.toUpperCase());
+        }
+        
+    },[])
+
 
     const handleLogout = async () => {
         sessionStorage.auth = JSON.stringify({verified: false});
@@ -36,6 +49,10 @@ function Header (){
         setFetchItem(null);
         navigate('/');
         window.location.reload();
+    }
+
+    const handleShowAccountMenu = () =>{
+        showAcoountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true)
     }
     
 
@@ -82,11 +99,13 @@ function Header (){
                         :
                             <ul className='nav__loggedInList'>
                                 <li className='nav__item'>
-                                    <Link to="/dashboard">
-                                        <span className='nav__link--color'>T</span>U 
-                                        <span className='nav__link--color'>C</span>UENTA
-                                            <img src={user_icon} alt="User icon" className='nav__icon'/>
+                                    
+                                    <Link to="/dashboard/">
+                                    <span className='nav__link--color'>{username && username}</span>
+                                        {/* <span className='nav__link--color'>C</span>UENTA */}
+                                        <img src={user_icon} alt="User icon" className='nav__icon'/>
                                     </Link>
+                                    
                                 </li>
                                 <li className='nav__item'>
                                     <a onClick={handleLogout}>
