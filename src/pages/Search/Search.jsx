@@ -1,5 +1,5 @@
 import './search.css';
-import { SearchProvider, UseSearchContext } from '../../context/SearchContext';
+import { UseSearchContext } from '../../context/SearchContext';
 import { useEffect, useState } from "react";
 import useFetch from "../../utils/useFetch";
 import SearchForm from "./components/searchForm/SearchForm";

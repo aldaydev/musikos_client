@@ -85,6 +85,7 @@ export const SearchProvider = ({ children }) => {
     // },[province]);
 
     const [finalList, setFinalList] = useState(null);
+    const [searchError, setSearchError] = useState(null);
 
 
     return (
@@ -96,7 +97,9 @@ export const SearchProvider = ({ children }) => {
             currentTowns,
             setCurrentTowns,
             finalList, 
-            setFinalList
+            setFinalList,
+            searchError,
+            setSearchError
         }}>
             {children}
         </SearchContext.Provider>

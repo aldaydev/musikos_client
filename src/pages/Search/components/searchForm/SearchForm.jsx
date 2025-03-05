@@ -18,35 +18,49 @@ import AgeSelector from '../../../../components/Forms/AgeSelector';
 function SearchForm() {
 
     const { minAge, setMinAge, maxAge, setMaxAge, setStyles, setInstruments, province, setProvince, setTown, name, setName, finalQuery } = useSearch();
-    const { allAges, allProvinces, currentTowns, setCurrentTowns, allStyles, allInstruments, setFinalList } = UseSearchContext();
+    const { allAges, allProvinces, currentTowns, setCurrentTowns, allStyles, allInstruments, setFinalList, searchError, setSearchError } = UseSearchContext();
 
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError} = useFetch();
 
 
-    const [error, setError] = useState(null);
+    const [ageError, setAgeError] = useState(null);
+    const [minAgeTitle, setMinAgeTitle] = useState('Desde');
 
     // useEffect(() => {
-    //     (minAge && maxAge) && minAge > maxAge
+    //     (minAge && maxAge) && minAge > maxAges
     //         ? setError('Búsqueda no válida')
     //         : setError(null);
     // }, [minAge, maxAge])
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log(finalQuery);
-        fetchReq({
-            endpoint: `/musicians/filter?${finalQuery}`,
-            method: 'GET',
-            item: 'filterMusicians'
-        });
-        console.log('Ha hecho fetch');
+        console.log(minAge, maxAge);
+        if(minAge > maxAge){
+            setAgeError('Edades incorrectas');
+            return setSearchError('La edad mínima no puede ser mayor que la edad máxima');
+        }else{
+            setAgeError(null);
+            setSearchError(null);
+            fetchReq({
+                endpoint: `/musicians/filter?${finalQuery}`,
+                method: 'GET',
+                item: 'filterMusicians'
+            });
+        }
     }
 
     useEffect(() => {
-        (minAge && maxAge) && minAge > maxAge
-            ? setMinAge(maxAge)
-            : setMaxAge(maxAge)
+
+        if((minAge && maxAge) && minAge > maxAge){
+            setAgeError('La edad mínima no puede ser mayor que la máxima')
+        }
+            // ? setMinAge(maxAge)
+            // : setMaxAge(maxAge)
+
+        // (minAge && maxAge) && minAge > maxAge
+        //     ? setMinAge(maxAge)
+        //     : setMaxAge(maxAge)
     }, [minAge, maxAge])
 
     useEffect(()=>{
@@ -73,23 +87,24 @@ function SearchForm() {
 
     return (
         <section className="searchForm__container">
-            <h2>INSTRUMENTOS Y ESTILOS</h2>
+            <h2>FILTRAR BÚSQUEDA</h2>
             <form className="search__form">
 
                 <article>
+                    <h4>INSTRUMENTOS Y ESTILOS</h4>
                     <MultiSelector
                         options={allInstruments && allInstruments}
                         setSelection={setInstruments}
-                        title='Buscar por instrumento'
+                        title='Instrumentos'
                     />
                     <MultiSelector
                         options={allStyles && allStyles}
                         setSelection={setStyles}
-                        title='Buscar por estilo'
+                        title='Estilos'
                     />
                 </article>
                 <article className="searchForm__container">
-                    <h2>LOCALIZACIÓN</h2>
+                    <h4>LOCALIZACIÓN</h4>
 
                     <Selector
                         options={allProvinces && allProvinces}
@@ -107,12 +122,12 @@ function SearchForm() {
 
                 </article>
                 <article className="searchForm__container">
-                    <h2>EDAD</h2>
+                    <h4>EDAD</h4>
 
                     <AgeSelector
                         options={allAges && allAges}
                         setSelection={setMinAge}
-                        title='Desde'
+                        title={minAgeTitle}
                     />
 
                     <AgeSelector
@@ -121,10 +136,12 @@ function SearchForm() {
                         title='Hasta'
                     />
 
-                    {error && <div>{error}</div>}
+                    {ageError && <div>{ageError}</div>}
 
                 </article>
-                <Input
+                <article>
+                    <h4>NOMBRE</h4>
+                    <Input
                     name='email'
                     id='email'
                     value={name}
@@ -132,9 +149,11 @@ function SearchForm() {
                     onChange={(e) => setName(e.target.value)}
                     modClass='searchByName'
                     divModClass='searchByName'
-                // error={emailError}
-                // modClass={emailError && 'error'}
-                />
+                    // error={emailError}
+                    // modClass={emailError && 'error'}
+                    />
+                </article>
+                
 
                 <Button onClick={handleSearch}>CONFIRMAR BÚSQUEDA</Button>
 

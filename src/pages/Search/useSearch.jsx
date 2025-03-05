@@ -9,8 +9,8 @@ const useSearch = () => {
     const [instruments, setInstruments] = useState([]);
     const [province, setProvince] = useState([]);
     const [town, setTown] = useState(null);
-    const [minAge, setMinAge] = useState(16);
-    const [maxAge, setMaxAge] = useState(100);
+    const [minAge, setMinAge] = useState(null);
+    const [maxAge, setMaxAge] = useState(null);
     const [name, setName] = useState('');
     const [queryObject, setQueryObject] = useState({
         instruments: '',
