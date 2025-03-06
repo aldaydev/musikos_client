@@ -6,7 +6,6 @@
 }
 
 .dashboard__accountContainer{
-    background-color: aqua;
     width: 80%;
     margin: 20px auto;
 
@@ -22,4 +21,8 @@
     border-top: 3px solid var(--color-pink);
     border-bottom: 3px solid var(--color-pink);
     margin: 25px 0;
+}
+
+.profile__image{
+    max-height: 300px;
 }

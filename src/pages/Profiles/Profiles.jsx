@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
-import DashboardAccount from './components/DashboardAccount';
-import DashboardProfile from './components/DashboardProfile';
-import './dashboard.css';
 import useFetch from '../../utils/useFetch';
 import ErrorModal from '../../components/Modals/ErrorModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function Dashboard (){
+function Profile (){
 
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
     const navigate = useNavigate();
+    const params = useParams();
 
     useEffect(()=>{
+        console.log(params);
         fetchReq({
-            endpoint: '/musicians/public-data',
+            endpoint: `/musicians/${params.user}`,
             method: 'GET',
             item: 'musicianPublicData'
         });
@@ -34,4 +33,4 @@ function Dashboard (){
     )
 }
 
-export default Dashboard;
+export default Profile;

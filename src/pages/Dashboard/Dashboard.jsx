@@ -44,7 +44,7 @@ function Dashboard (){
 
     return(
         <div className="dashboard__container">
-            <DashboardAccount/>
+            <DashboardAccount userData={fetchRes && fetchItem === 'musicianRestrictedData' && fetchRes}/>
             <DashboardProfile userData={fetchRes && fetchItem === 'musicianRestrictedData' && fetchRes}/>
 
             {fetchError && <ErrorModal

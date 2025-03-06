@@ -27,7 +27,7 @@ function Header (){
 
     useEffect(()=>{
         // console.log(JSON.parse(sessionStorage.auth).user.username);
-        if(JSON.parse(sessionStorage.auth).user){
+        if(isLoggedIn && sessionStorage.auth && JSON.parse(sessionStorage.auth).user){
             setUsername(JSON.parse(sessionStorage.auth).user.username.toUpperCase());
         }
         
@@ -114,7 +114,6 @@ function Header (){
                                     </a>
                                 </li>
                             </ul>
-                            
                         }
 
                         {fetchRes && fetchItem === 'clearCookies' &&

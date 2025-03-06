@@ -18,6 +18,7 @@ import ProtectedFromAuth from './components/ProtectedRoutes/ProtectedFromAuth';
 import useFetch from './utils/useFetch';
 import Spinner from './components/spinners/Spinner';
 import { SearchProvider } from './context/SearchContext';
+import Profile from './pages/Profiles/Profiles';
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
             <Route element={<ProtectedFromAuth />}>
               <Route path="/login" element={<Login/>} />
             </Route>
+
+            <Route path="profile/:user" element={<Profile/>} />
 
             {
               isLoading ? <Spinner/>
