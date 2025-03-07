@@ -1,5 +1,19 @@
 # musikos_client
-### Sprint 4 - 07/03/2025 - Mañana - working on updating image
+### Sprint 4 - 07/03/2025 - Tarde - finishing sprint 4
+
+## 4o SPRINT (FRONTEND)
+
+### RESUMEN DE OBJETIVOS:
+
+He creado la página de Dashboard, donde el usuario podrá modificar sus datos. Debido a la falta de tiempo, he decidido poner solo algunas funciones básicas e intentar optimizar para cumplir con los objetivos que se piden en el trabajo, dejando funcionalidades para la versión 2.
+
+1. Diseño de Dashboard.jsx (página)
+    * Contenedor para DashboardAccount y DashboardProfile.
+    * Al cargarse el la página, recibirá los datos del usuario.
+2. DashboardAccount.jsx (componente)
+    * Aquí se podrán modificar los datos de la cuenta como tal (email y contraseña)
+3. DashboardProfile.jsx (componente)
+    * Aquí se podrán modificar los datos del perfil de músico. De momento solo he implementado actualizar el "username" por lo indicado en el resumen.
 
 ## 3er SPRINT (FRONTEND)
 

@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
                 }
             }
         }
-    },[])
+    },[isLoggedIn])
 
     useEffect(()=>{
         if(fetchItem === 'verifyAccessToken'){

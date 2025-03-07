@@ -117,7 +117,6 @@ function DashboardAccount ({userData}){
             </form>
             <div>
             <Button>ELIMINAR CUENTA</Button>
-            <Button>CERRAR SESIÓN</Button>
             </div>
             {success && <SuccessModal success={success} setSuccess={setSuccess}/>}
         </section>

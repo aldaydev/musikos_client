@@ -13,6 +13,8 @@ function Dashboard (){
 
     const navigate = useNavigate();
 
+    const [userData, setUserData] = useState(null);
+
     useEffect(()=>{
         fetchReq({
             endpoint: '/musicians/restricted-data',
@@ -34,18 +36,24 @@ function Dashboard (){
     },[fetchError])
 
     useEffect(() => {
+
         if(fetchItem === 'clearCookies'){
             setFetchItem(null);
             navigate('/');
             window.location.reload();
             sessionStorage.auth = JSON.stringify({verified: false});
         }
+
+        if(fetchRes && fetchItem === 'musicianRestrictedData'){
+            console.log('Entra aquí');
+            setUserData(fetchRes);
+        }
     }, [fetchRes])
 
     return(
         <div className="dashboard__container">
-            <DashboardAccount userData={fetchRes && fetchItem === 'musicianRestrictedData' && fetchRes}/>
-            <DashboardProfile userData={fetchRes && fetchItem === 'musicianRestrictedData' && fetchRes}/>
+            <DashboardAccount userData={userData && userData}/>
+            <DashboardProfile userData={userData && userData}/>
 
             {fetchError && <ErrorModal
                 error={fetchError} 
