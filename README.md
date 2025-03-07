@@ -1,5 +1,11 @@
 # musikos_client
-### Sprint 4 - 07/03/2025 - Tarde - finishing sprint 4
+### Sprint 5 - 07/03/2025 - Tarde - starting sprint 5
+
+## 5o SPRINT (BACKEND)
+
+### RESUMEN DE OBJETIVOS:
+
+Mi intención en este sprint es tener las funcionalidades mínimas que se piden en el trabajo, para asegurar así cumplir todos los puntos.
 
 ## 4o SPRINT (FRONTEND)
 
