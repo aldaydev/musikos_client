@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 4 - 05/03/2025 - Tarde - working on profile and account components
+### Sprint 4 - 07/03/2025 - Mañana - working on updating image
 
 ## 3er SPRINT (FRONTEND)
 
