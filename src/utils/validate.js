@@ -166,7 +166,7 @@ export default {
     day: (day) => {
 
         if(day.length === 1){
-            month = `0${day}`
+            day = `0${day}`
         }
 
         if(day.length > 2){

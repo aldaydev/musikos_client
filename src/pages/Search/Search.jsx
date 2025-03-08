@@ -21,6 +21,8 @@ function Search (){
                 method: 'GET',
                 item: 'searchAll'
             });
+        }else{
+            setFinalList(JSON.parse(sessionStorage.lastSearch));
         }
     }, []);
 
@@ -37,10 +39,10 @@ function Search (){
         // }
     },[fetchRes])
 
-    useEffect(()=>{
-        sessionStorage.lastSearch &&
-        setFinalList(JSON.parse(sessionStorage.lastSearch));
-    },[sessionStorage]);
+    // useEffect(()=>{
+    //     sessionStorage.lastSearch &&
+    //     setFinalList(JSON.parse(sessionStorage.lastSearch));
+    // },[sessionStorage]);
 
     return(
         

@@ -5,6 +5,7 @@ import search_icon from '../../assets/icons/search_icon.svg';
 import user_icon from '../../assets/icons/user_icon.svg';
 import exit_icon from '../../assets/icons/exit_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
+import logout_icon from '../../assets/icons/logout_icon.svg';
 import close_icon from '../../assets/icons/close_icon.svg';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -101,7 +102,10 @@ function Header (){
                                 <li className='nav__item'>
                                     
                                     <Link to="/dashboard/">
-                                    <span className='nav__link--color'>{username && username}</span>
+                                        <span className='nav__link--color'>
+                                        {username && username.slice(0,1)}
+                                        </span>
+                                        <span className='nav__link--white'>{username && username.slice(1)}</span>
                                         {/* <span className='nav__link--color'>C</span>UENTA */}
                                         <img src={user_icon} alt="User icon" className='nav__icon'/>
                                     </Link>
@@ -110,7 +114,7 @@ function Header (){
                                 <li className='nav__item'>
                                     <a onClick={handleLogout}>
                                         <span className='nav__link--color'>S</span>ALIR 
-                                            <img src={exit_icon} alt="User icon" className='nav__icon'/>
+                                        <img src={logout_icon} alt="User icon" className='nav__icon'/>
                                     </a>
                                 </li>
                             </ul>

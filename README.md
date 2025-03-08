@@ -1,11 +1,13 @@
 # musikos_client
-### Sprint 5 - 07/03/2025 - Tarde - starting sprint 5
+### Sprint 5 - 08/03/2025 - Noche - testing with cypress
 
 ## 5o SPRINT (BACKEND)
 
 ### RESUMEN DE OBJETIVOS:
 
 Mi intención en este sprint es tener las funcionalidades mínimas que se piden en el trabajo, para asegurar así cumplir todos los puntos.
+
+1. Realización de pruebas con cypres para el login.
 
 ## 4o SPRINT (FRONTEND)
 
@@ -86,6 +88,11 @@ Dependencias:
 - bandbros_client --template react
 - npm install react-router-dom@latest
 - npm install @lottiefiles/dotlottie-react
+- npm install --save-dev cypress
+    (npx cypress open)
+- npm install eslint-plugin-cypress --save-dev
+    (npx cypress run --spec "cypress/e2e/login.cy.js")
+
 
 * Crear el esqueleto del frontend
     - Proyecto de React con Vite
