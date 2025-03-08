@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from '../../assets/icons/musikos_logo.svg';
 import search_icon from '../../assets/icons/search_icon.svg';
 import user_icon from '../../assets/icons/user_icon.svg';
-import exit_icon from '../../assets/icons/exit_icon.svg';
+// import exit_icon from '../../assets/icons/exit_icon.svg';
 import menu_icon from '../../assets/icons/menu_icon.svg';
 import logout_icon from '../../assets/icons/logout_icon.svg';
 import close_icon from '../../assets/icons/close_icon.svg';
@@ -52,9 +52,9 @@ function Header (){
         window.location.reload();
     }
 
-    const handleShowAccountMenu = () =>{
-        showAcoountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true)
-    }
+    // const handleShowAccountMenu = () =>{
+    //     showAcoountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true)
+    // }
     
 
     return(

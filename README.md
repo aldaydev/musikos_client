@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 08/03/2025 - Noche - testing with cypress
+### Sprint 5 - 08/03/2025 - Tarde - testing with selenium
 
 ## 5o SPRINT (BACKEND)
 
@@ -7,7 +7,8 @@
 
 Mi intención en este sprint es tener las funcionalidades mínimas que se piden en el trabajo, para asegurar así cumplir todos los puntos.
 
-1. Realización de pruebas con cypres para el login.
+1. Realización de pruebas con cypress para el login.
+2. Realización de pruebas con selenium para el buscador.
 
 ## 4o SPRINT (FRONTEND)
 
@@ -92,6 +93,8 @@ Dependencias:
     (npx cypress open)
 - npm install eslint-plugin-cypress --save-dev
     (npx cypress run --spec "cypress/e2e/login.cy.js")
+- npm install selenium-webdriver chromedriver geckodriver
+    (node selenium/search_musicians.test.js)
 
 
 * Crear el esqueleto del frontend

@@ -137,8 +137,8 @@ function SearchForm() {
                 <article>
                     <h4>NOMBRE</h4>
                     <Input
-                    name='email'
-                    id='email'
+                    name='searchByName'
+                    id='searchByName'
                     value={name}
                     placeholder='Busca por nombre'
                     onChange={(e) => setName(e.target.value)}

@@ -26,7 +26,7 @@ function SearchList ({musicianslist, isLoading}){
                             <span>@{musician.username}</span>
                         </div>
                         <div className="musician__dataContainer">
-                            <span>Nombre: {musician.name}</span>
+                            <span id="user_name">Nombre: {musician.name}</span>
                             <span> Edad: {musician.age}</span>
                             <ul> Estilos: 
                                 {musician.styles ? musician.styles.map((style, i)=>{
