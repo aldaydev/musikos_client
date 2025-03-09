@@ -6,6 +6,7 @@ import './dashboard.css';
 import useFetch from '../../utils/useFetch';
 import ErrorModal from '../../components/Modals/ErrorModal';
 import { useNavigate } from 'react-router-dom';
+import DashboardComms from './components/DashboardComms';
 
 function Dashboard (){
 
@@ -54,6 +55,7 @@ function Dashboard (){
         <div className="dashboard__container">
             <DashboardAccount userData={userData && userData}/>
             <DashboardProfile userData={userData && userData}/>
+            <DashboardComms userId={userData && userData.id}/>
 
             {fetchError && <ErrorModal
                 error={fetchError} 

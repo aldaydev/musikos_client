@@ -27,3 +27,10 @@
 .profile__image{
     max-height: 300px;
 }
+
+.dashboard__comm{
+    border: 2px solid var(--color-pink);
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+}

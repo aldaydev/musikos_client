@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 08/03/2025 - Tarde - testing with selenium
+### Sprint 5 - 09/03/2025 - Tarde - DashboardComms component
 
 ## 5o SPRINT (BACKEND)
 
@@ -9,6 +9,8 @@ Mi intención en este sprint es tener las funcionalidades mínimas que se piden 
 
 1. Realización de pruebas con cypress para el login.
 2. Realización de pruebas con selenium para el buscador.
+3. DashboadComms.jsx (componente)
+    - Nos permite acceder y mostrar los comunicados al usuario
 
 ## 4o SPRINT (FRONTEND)
 
