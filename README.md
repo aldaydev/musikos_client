@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 09/03/2025 - Tarde - DashboardComms component
+### Sprint 5 - 10/03/2025 - Tarde - trying to upload images
 
 ## 5o SPRINT (BACKEND)
 
