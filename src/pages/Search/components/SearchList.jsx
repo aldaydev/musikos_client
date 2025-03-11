@@ -28,7 +28,7 @@ function SearchList ({musicianslist, isLoading}){
                         <div className="musician__dataContainer">
                             <span id="user_name">Nombre: {musician.name}</span>
                             <span> Edad: {musician.age}</span>
-                            <ul> Estilos: 
+                            <ul className="musician_styleList"> Estilos: 
                                 {musician.styles ? musician.styles.map((style, i)=>{
                                     return <span key={i} className="musician__style">{style}</span>
                                 })
@@ -36,7 +36,7 @@ function SearchList ({musicianslist, isLoading}){
                                     <span>No indicado</span>
                                 }
                             </ul>
-                            <ul> Instrumentos: 
+                            <ul className="musician_instrumentList"> Instrumentos: 
                                 {musician.instruments ? musician.instruments.map((instrument, i)=>{
                                     return <span key={i} className="musician__instrument">{instrument}</span>
                                 })

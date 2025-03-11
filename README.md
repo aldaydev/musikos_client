@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 11/03/2025 - Mañana - delete user function
+### Sprint 5 - 11/03/2025 - Tarde - fixing login
 
 ## 5o SPRINT (BACKEND)
 
