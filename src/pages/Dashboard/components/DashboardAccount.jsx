@@ -68,13 +68,33 @@ function DashboardAccount ({userData}){
         }
     }
 
+    const closeSession = ()=> {setTimeout(()=>{
+        sessionStorage.auth = JSON.stringify({verified: false});
+        window.location.reload();
+    },3000)};
 
     useEffect(()=>{
-        setSuccess(fetchRes)
+        if(fetchRes && fetchItem === 'updateData'){
+            setSuccess(fetchRes)
+        }
+
+        if(fetchRes && fetchItem === 'deleteAccount'){
+            setSuccess(fetchRes);
+            closeSession();
+        }
     },[fetchRes])
 
-
-
+    const handleDeleteAccount = async () =>{
+        await fetchReq({
+            endpoint: `/auth/delete-account`,
+            method: 'DELETE',
+            body: {
+                username: userData.username
+            },
+            item: 'deleteAccount',
+            credentials: 'include'
+        });
+    }
 
     return(
 
@@ -116,7 +136,7 @@ function DashboardAccount ({userData}){
                 </div>
             </form>
             <div>
-            <Button>ELIMINAR CUENTA</Button>
+            <Button onClick={handleDeleteAccount}>ELIMINAR CUENTA</Button>
             </div>
             {success && <SuccessModal success={success} setSuccess={setSuccess}/>}
         </section>

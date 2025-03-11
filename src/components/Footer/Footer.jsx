@@ -1,7 +1,9 @@
+import './footer.css';
+
 function Footer (){
     return(
         <footer className="App__footer">
-            <h2>ESTO ES EL FOOTER</h2>
+            <h3 className="footer__text">MUSIKOS &copy; RAFA ALDAY</h3>
         </footer>
     )
 }

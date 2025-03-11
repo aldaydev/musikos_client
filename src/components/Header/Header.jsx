@@ -32,7 +32,7 @@ function Header (){
             setUsername(JSON.parse(sessionStorage.auth).user.username.toUpperCase());
         }
         
-    },[])
+    },[isLoggedIn])
 
 
     const handleLogout = async () => {
@@ -48,8 +48,9 @@ function Header (){
 
     const handleExit = () => {
         setFetchItem(null);
-        navigate('/');
-        window.location.reload();
+        setIsLoggedIn(false);
+        // navigate('/');
+        // window.location.reload();
     }
 
     // const handleShowAccountMenu = () =>{

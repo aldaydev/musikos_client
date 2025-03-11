@@ -80,9 +80,9 @@ function SignIn (){
     useEffect(()=>{
         if(fetchRes && fetchItem === 'signin'){
             sessionStorage.auth = JSON.stringify(fetchRes);
-            // setIsLoggedIn(true);
-            navigate('/');
-            window.location.reload();
+            setIsLoggedIn(true);
+            // navigate('/');
+            // window.location.reload();
         }
     },[fetchRes, fetchItem, navigate])
 

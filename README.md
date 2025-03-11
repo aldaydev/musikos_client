@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 10/03/2025 - Tarde - trying to upload images
+### Sprint 5 - 11/03/2025 - Mañana - delete user function
 
 ## 5o SPRINT (BACKEND)
 
@@ -11,6 +11,7 @@ Mi intención en este sprint es tener las funcionalidades mínimas que se piden 
 2. Realización de pruebas con selenium para el buscador.
 3. DashboadComms.jsx (componente)
     - Nos permite acceder y mostrar los comunicados al usuario
+4. Gestión de eliminación de usuario
 
 ## 4o SPRINT (FRONTEND)
 
