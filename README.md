@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 11/03/2025 - Tarde - fixing login
+### Sprint 5 - 12/03/2025 - Tarde - mergin sprint5 to develop
 
 ## 5o SPRINT (FRONTEND)
 
