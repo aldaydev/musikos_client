@@ -1,14 +1,16 @@
 # musikos_client
 ### Sprint 5 - 11/03/2025 - Tarde - fixing login
 
-## 5o SPRINT (BACKEND)
+## 5o SPRINT (FRONTEND)
 
 ### RESUMEN DE OBJETIVOS:
 
 Mi intención en este sprint es tener las funcionalidades mínimas que se piden en el trabajo, para asegurar así cumplir todos los puntos.
 
 1. Realización de pruebas con cypress para el login.
+    (npx cypress run --spec cypress/e2e/login.cy.js)
 2. Realización de pruebas con selenium para el buscador.
+    (node selenium/search_musicians.test.js)
 3. DashboadComms.jsx (componente)
     - Nos permite acceder y mostrar los comunicados al usuario
 4. Gestión de eliminación de usuario
