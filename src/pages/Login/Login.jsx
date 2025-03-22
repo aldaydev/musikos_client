@@ -48,13 +48,6 @@ function Login (){
                 }else if(params.success && params.type === 'recoverPassword'){
                     const modalData = setSuccesMessage(params.type, params.email, params.username);
                     setNewPassModal(modalData);
-                    // setNewPassModal({
-                    //     title: 'Recuperación de contraseña',
-                    //     message: `Escribe tu nueva contraseña para ${params.username}`,
-                    //     password: true,
-                    //     link:true,
-                    //     username: params.username
-                    // });
                 }
             } 
         }

@@ -22,12 +22,6 @@ function SearchForm() {
     const [ageError, setAgeError] = useState(null);
     const [minAgeTitle, setMinAgeTitle] = useState('Desde');
 
-    // useEffect(() => {
-    //     (minAge && maxAge) && minAge > maxAges
-    //         ? setError('Búsqueda no válida')
-    //         : setError(null);
-    // }, [minAge, maxAge])
-
     const handleSearch = (e) => {
         e.preventDefault();
         console.log(minAge, maxAge);
@@ -50,12 +44,7 @@ function SearchForm() {
         if((minAge && maxAge) && minAge > maxAge){
             setAgeError('La edad mínima no puede ser mayor que la máxima')
         }
-            // ? setMinAge(maxAge)
-            // : setMaxAge(maxAge)
 
-        // (minAge && maxAge) && minAge > maxAge
-        //     ? setMinAge(maxAge)
-        //     : setMaxAge(maxAge)
     }, [minAge, maxAge])
 
     useEffect(()=>{
@@ -76,7 +65,6 @@ function SearchForm() {
 
         if (fetchRes && fetchItem === 'filterMusicians') {
             setFinalList(fetchRes);
-            // sessionStorage.lastSearch = JSON.stringify(fetchRes);
         }
     }, [fetchRes])
 
@@ -144,8 +132,6 @@ function SearchForm() {
                     onChange={(e) => setName(e.target.value)}
                     modClass='searchByName'
                     divModClass='searchByName'
-                    // error={emailError}
-                    // modClass={emailError && 'error'}
                     />
                 </article>
                 

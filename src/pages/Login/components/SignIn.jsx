@@ -21,8 +21,6 @@ function SignIn (){
     //UseFetch Initialization
     const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
 
-    const { setIsLoggedIn } = useContext(AuthContext);
-
     const [ recoverPass, setRecoverPass ] = useState(null);
 
     const navigate = useNavigate();

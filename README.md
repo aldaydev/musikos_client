@@ -1,5 +1,5 @@
 # musikos_client
-### Sprint 5 - 12/03/2025 - Tarde - mergin sprint5 to develop
+### Sprint 6 - 22/03/2025 - Tarde - cleaning up archives
 
 ## 5o SPRINT (FRONTEND)
 

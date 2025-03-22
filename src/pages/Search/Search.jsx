@@ -33,16 +33,7 @@ function Search (){
             sessionStorage.lastSearch = JSON.stringify(fetchRes);
         }
 
-        // if(fetchItem === 'filterMusicians'){
-        //     setFinalList(fetchRes);
-        //     sessionStorage.lastSearch = JSON.stringify(fetchRes);
-        // }
     },[fetchRes])
-
-    // useEffect(()=>{
-    //     sessionStorage.lastSearch &&
-    //     setFinalList(JSON.parse(sessionStorage.lastSearch));
-    // },[sessionStorage]);
 
     return(
         

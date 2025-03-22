@@ -1,9 +1,8 @@
-// const { Builder, By, until } = require('selenium-webdriver');
-
 import { Builder, By, Key, until } from 'selenium-webdriver';
 import assert from 'assert';
 
 (async function testTitle() {
+    
     // 1. Crear una nueva instancia de Chrome
     let driver = await new Builder().forBrowser('chrome').build();
 
