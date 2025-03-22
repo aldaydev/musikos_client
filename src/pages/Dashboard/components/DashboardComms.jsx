@@ -3,7 +3,7 @@ import useFetch from "../../../utils/useFetch";
 
 const DashboardComms = ({userId}) => {
 
-    const { fetchRes, isLoading, fetchError, fetchReq, fetchItem, setFetchItem, setFetchError } = useFetch();
+    const { fetchRes, fetchReq } = useFetch();
 
     useEffect(()=>{
         if(userId){
