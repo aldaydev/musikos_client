@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "../../../utils/useFetch";
 
 const DashboardComms = ({userId}) => {
 
-    const { fetchRes, fetchReq } = useFetch();
+    const { fetchRes, fetchReq, fetchItem } = useFetch();
+
+    const [comms, setComms] = useState(null);
 
     useEffect(()=>{
         if(userId){
@@ -16,13 +18,17 @@ const DashboardComms = ({userId}) => {
     },[userId]);
 
     useEffect(()=>{
-        console.log(fetchRes);
-    },[fetchRes])
+        
+        if(fetchRes && fetchItem === 'usercomm'){
+            console.log(fetchRes);
+            setComms(fetchRes);
+        }
+    },[fetchRes, fetchItem])
 
     return (
         <section className="dashboard__accountContainer">
             <h2 className='dashboard__profileTitle'>COMUNICADOS</h2>
-            {fetchRes && fetchRes.map((comm, index) => {
+            {comms && comms.map((comm, index) => {
                 return(
                     <div key={index} className='dashboard__comm'>
                         <h3 className='dashboard__commTitle'>{comm.title}</h3>
